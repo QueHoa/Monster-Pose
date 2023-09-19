@@ -11,6 +11,8 @@ public class ModeController : MonoBehaviour
     public int numberPlaying;
     [HideInInspector]
     public bool isWin;
+    public Image bg;
+    public Sprite[] background;
     public GameObject home;
     public GameObject loseGame;
     public GameObject endGame;
@@ -36,6 +38,7 @@ public class ModeController : MonoBehaviour
         buttonTextLevel.anchoredPosition = new Vector3(buttonTextLevel.anchoredPosition.x, 115, 0);
         buttonTime.anchoredPosition = new Vector3(buttonTime.anchoredPosition.x, 115, 0);
         time = 30.5f;
+        ChangeBG();
         isWin = false;
         buttonBack.DOAnchorPosX(102, 0.5f).SetEase(Ease.OutQuart);        
         buttonTextLevel.DOAnchorPosY(-115, 0.5f).SetEase(Ease.OutQuart);
@@ -143,6 +146,10 @@ public class ModeController : MonoBehaviour
         level.transform.SetParent(gameObject.transform, false);
         time = 30;
         AudioManager.Play("new_level");
-
+    }
+    private void ChangeBG()
+    {
+        int numBG = Random.Range(0, background.Length);
+        bg.sprite = background[numBG];
     }
 }

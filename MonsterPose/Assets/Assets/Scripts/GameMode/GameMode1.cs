@@ -9,7 +9,7 @@ public class GameMode1 : MonoBehaviour
     public Sprite[] playerSprites;
     public RectTransform rightPos;
     public int numberLockWin;
-    [HideInInspector]
+    //[HideInInspector]
     public List<int> numbers = new List<int>();
     [HideInInspector]
     public int numberLock;

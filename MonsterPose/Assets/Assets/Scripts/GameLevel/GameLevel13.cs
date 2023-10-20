@@ -48,7 +48,7 @@ public class GameLevel13 : MonoBehaviour
         win = false;
         bee1.position = new Vector3(-10, oldBee1.y, oldBee1.z);
         bee2.position = new Vector3(-10, oldBee2.y, oldBee2.z);
-        hand.DOMoveX(oldHand, 0.8f).SetEase(Ease.OutQuart);
+        hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
     }
 
     // Update is called once per frame
@@ -64,10 +64,17 @@ public class GameLevel13 : MonoBehaviour
         }
         if (main.isHint)
         {
-            player.playerRenderer.sprite = player.playerSprites[player.numberWin];
-            player.transform.DOMove(player.rightPos.position, 1f).SetEase(Ease.OutQuart);
+            if (!player.locked)
+            {
+                player.playerRenderer.sprite = player.playerSprites[player.numberWin];
+                player.transform.DOMove(player.rightPos.position, 1f).SetEase(Ease.OutQuart).OnComplete(() =>
+                {
+                    player.transform.DOMove(new Vector3(player.oldPosition.x, player.oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                });
+            }
             
-            win = true;
+            main.isHint = false;
         }
         if (win && takeShot == 0)
         {
@@ -79,15 +86,7 @@ public class GameLevel13 : MonoBehaviour
     {
         main.isWin = true;
         StartCoroutine(BeeMove());
-        if (main.isHint)
-        {
-            main.isHint = false;
-            yield return new WaitForSeconds(1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.8f);
-        }
+        yield return new WaitForSeconds(0.8f);
         if (isVibrate == 1)
         {
             MMVibrationManager.Haptic(hapticTypes, true, true, this);
@@ -95,6 +94,7 @@ public class GameLevel13 : MonoBehaviour
         heart.SetActive(false);
         losePanel.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
     IEnumerator BeeMove()

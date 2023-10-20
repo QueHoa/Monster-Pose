@@ -38,7 +38,7 @@ public class GameLevel18 : MonoBehaviour
         takeShot = 0;
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
         win = false;
-        hand.DOMoveX(oldHand, 0.8f).SetEase(Ease.OutQuart);
+        hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
     }
 
     // Update is called once per frame
@@ -60,12 +60,20 @@ public class GameLevel18 : MonoBehaviour
         {
             for (int i = 0; i < player.Length; i++)
             {
-                player[i].effect.Play();
-                player[i].tideObject.SetActive(false);
-                player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
-                player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart);
+                if (!player[i].locked)
+                {
+                    int index = i;
+                    player[i].effect.Play();
+                    player[i].tideObject.SetActive(false);
+                    player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
+                    player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
+                    {
+                        player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                    });
+                }
             }
-            win = true;
+            main.isHint = false;
         }
         if (win && takeShot == 0)
         {
@@ -75,15 +83,7 @@ public class GameLevel18 : MonoBehaviour
     }
     IEnumerator Win()
     {
-        if (main.isHint)
-        {
-            main.isHint = false;
-            yield return new WaitForSeconds(1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+        yield return new WaitForSeconds(0.3f);
         if (isVibrate == 1)
         {
             MMVibrationManager.Haptic(hapticTypes, true, true, this);
@@ -91,6 +91,7 @@ public class GameLevel18 : MonoBehaviour
         heart.SetActive(false);
         losePanel.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
 }

@@ -16,9 +16,10 @@ public class ChoosePhoto : MonoBehaviour
     private GameObject lockPhoto;
 
     private GameObject home;
-    private GameObject gallery;
     private GameObject photo;
+    private Transform frameImageWin;
     private Image imageWin;
+    private Text levelPhoto;
     private HomeController homeController;
     private int unlockedLevelsNumber;
     private int value;
@@ -27,9 +28,10 @@ public class ChoosePhoto : MonoBehaviour
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         transform.localScale = new Vector3(0, 0, 1);
         home = GameManager.Instance.home;
-        gallery = GameManager.Instance.gallery;
         photo = GameManager.Instance.photo;
+        frameImageWin = GameManager.Instance.frameImageWin;
         imageWin = GameManager.Instance.imageWin;
+        levelPhoto = GameManager.Instance.levelPhoto;
         homeController = GameManager.Instance.homeController;
         value = int.Parse(gameObject.name);
         value += 1;
@@ -68,12 +70,16 @@ public class ChoosePhoto : MonoBehaviour
     IEnumerator EffectChoose()
     {
         AudioManager.Play("click");
-        homeController.buttonBackGallery.DOAnchorPosX(-112, 0.5f).SetEase(Ease.OutQuart);
-        homeController.buttonTextGallery.DOAnchorPosY(160, 0.5f).SetEase(Ease.OutQuart);
-        homeController.boardGallery.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
         imageWin.sprite = BG.sprite;
-        gallery.SetActive(false);
+        frameImageWin.localScale = Vector3.zero;
+        frameImageWin.position = transform.position;
+        frameImageWin.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuart);
+        frameImageWin.DOMove(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);
+        levelPhoto.text = "Photo " + value.ToString();
+        /*homeController.buttonBackGallery.DOAnchorPosX(-112, 0.5f).SetEase(Ease.OutQuart);
+        homeController.buttonTextGallery.DOAnchorPosY(160, 0.5f).SetEase(Ease.OutQuart);
+        homeController.boardGallery.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);*/
         photo.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
     }
 }

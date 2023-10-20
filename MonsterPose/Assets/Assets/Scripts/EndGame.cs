@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using OneHit.Framework;
+using OneHit;
 
 public class EndGame : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EndGame : MonoBehaviour
     private GameObject trailerMode;
     [SerializeField]
     private GameObject[] effect;
+    public GameObject fade;
     private RawImage screenShot;
     private Animator anim;
     private int unlockedLevelsNumber;
@@ -24,18 +26,19 @@ public class EndGame : MonoBehaviour
     }
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        screenShot = GameManager.Instance.screenShot;
+        
     }
     private void OnEnable()
     {
+        screenShot = GameManager.Instance.screenShot;
+        anim = GetComponent<Animator>();
+        anim.SetTrigger("show");
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
         for (int i = 0; i < effect.Length; i++)
         {
             effect[i].SetActive(true);
         }
-        anim.SetTrigger("show");
         if (main.numberPlaying <= unlockedLevelsNumber - 1)
         {
             Texture2D rawImageTexture = (Texture2D)screenShot.texture;
@@ -44,10 +47,14 @@ public class EndGame : MonoBehaviour
             File.WriteAllBytes(filePath, bytes); // Lưu dãy byte vào tệp
         }
     }
+    public void Clap()
+    {
+        AudioManager.Play("clap2");
+    }
     // Update is called once per frame
     void Update()
     {
-        if (main.numberPlaying == unlockedLevelsNumber - 1)
+        if (main.numberPlaying == unlockedLevelsNumber - 1 && main.numberPlaying != 19)
         {
             PlayerPrefs.SetInt("levelsUnlocked", unlockedLevelsNumber + 1);
         }
@@ -55,27 +62,70 @@ public class EndGame : MonoBehaviour
     public void Next()
     {
         AudioManager.Play("click");
-        main.isWin = false;
-        Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
-        if (Level != null)
+        AudioManager.Stop("clap2");
+        if(main.numberPlaying > 1)
         {
-            Destroy(Level.gameObject);
-        }
-        main.numberPlaying++;
-        main.gameObject.SetActive(false); 
-        if (unlockedLevelsNumber > 9 && unlockedLevelsNumber % 5 == 0 && unlockedModeNumber == 1)
-        {
-            StartCoroutine(ShowTrailer());
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                main.isWin = false;
+                Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
+                if (main.numberPlaying != 149)
+                {
+                    main.numberPlaying++;
+                }
+                else
+                {
+                    main.numberPlaying = 0;
+                }
+                main.gameObject.SetActive(false);
+                if (unlockedLevelsNumber > 9 && unlockedLevelsNumber % 10  == 0 && unlockedModeNumber == 1)
+                {
+                    StartCoroutine(ShowTrailer());
+                }
+                else
+                {
+                    StartCoroutine(Hide());
+                }
+            });
         }
         else
         {
-            StartCoroutine(Hide());
+            main.isWin = false;
+            Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+            if (Level != null)
+            {
+                Destroy(Level.gameObject);
+            }
+            if (main.numberPlaying != 149)
+            {
+                main.numberPlaying++;
+            }
+            else
+            {
+                main.numberPlaying = 0;
+            }
+            main.gameObject.SetActive(false);
+            if (unlockedLevelsNumber > 9 && unlockedLevelsNumber % 10 == 0 && unlockedModeNumber == 1)
+            {
+                StartCoroutine(ShowTrailer());
+            }
+            else
+            {
+                StartCoroutine(Hide());
+            }
         }
+        
     }
     IEnumerator Hide()
     {
         anim.SetTrigger("hide");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
+        fade.SetActive(true);
+        yield return new WaitForSeconds(1f);
         GameObject loadedPrefab = Resources.Load<GameObject>(main.numberPlaying.ToString());
         GameObject level = Instantiate(loadedPrefab, main.transform);
         level.transform.SetParent(main.transform, false);
@@ -84,13 +134,13 @@ public class EndGame : MonoBehaviour
         {
             effect[i].SetActive(false);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
     }
     IEnumerator ShowTrailer()
     {
         anim.SetTrigger("hide");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         for (int i = 0; i < effect.Length; i++)
         {
             effect[i].SetActive(false);

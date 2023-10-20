@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using OneHit.Framework;
+using OneHit;
 
 public class HomeController : MonoBehaviour
 {
     [SerializeField]
     private Text textLevel;
+    [SerializeField]
+    private Text textPlayMode;
     [SerializeField]
     private Text textLevelMode;
     [SerializeField]
@@ -23,6 +26,7 @@ public class HomeController : MonoBehaviour
     public GameObject photo;
     public GameObject mode;
     public RectTransform buttonSetting;
+    public RectTransform buttonNoAds;
     public RectTransform buttonPlay;
     public RectTransform buttonLevelList;
     public RectTransform buttonGallery;
@@ -48,6 +52,8 @@ public class HomeController : MonoBehaviour
     public int numberLevel;
     public int numberMode;
 
+    private Tween butTween1;
+    private Tween butTween2;
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;
     private MainController mainController;
@@ -60,29 +66,35 @@ public class HomeController : MonoBehaviour
     private void OnEnable()
     {
         buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
+        buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
+        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
         buttonPlay.localScale = new Vector3(0, 0, 1);
-        buttonLevelList.localScale = new Vector3(0, 0, 1);
-        buttonGallery.localScale = new Vector3(0, 0, 1);
         buttonMode.localScale = new Vector3(0, 0, 1);
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
         textLevel.text = "Level " + unlockedLevelsNumber.ToString();
-        if(unlockedLevelsNumber >= 10)
+        if (unlockedLevelsNumber > 10)
         {
             buttonMode.GetComponent<Button>().interactable = true;
             textLevelMode.gameObject.SetActive(true);
             textLevelMode.text = "Level " + unlockedModeNumber.ToString();
+            textPlayMode.gameObject.SetActive(true);
             iconLockMode.gameObject.SetActive(false);
             textLockMode.gameObject.SetActive(false);
         }
         else
         {
             buttonMode.GetComponent<Button>().interactable = false;
+            textPlayMode.gameObject.SetActive(false);
             textLevelMode.gameObject.SetActive(false);
             iconLockMode.gameObject.SetActive(true);
             textLockMode.gameObject.SetActive(true);
         }
         buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
         StartCoroutine(StartHome());
     }
 
@@ -133,17 +145,19 @@ public class HomeController : MonoBehaviour
     }
     public void LevelList()
     {
+        FirebaseManager.Instance.LogEvent("Level_Levelist_Access");
         StartCoroutine(EffectLevelList());
     }
     IEnumerator EffectLevelList()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
-        buttonPlay.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonLevelList.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonGallery.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonMode.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonPlay.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        buttonMode.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.4f);
         levelList.SetActive(true);
         boardLevel.localScale = Vector3.one;
         StartCoroutine(CreateButtonsWithNames());
@@ -154,20 +168,23 @@ public class HomeController : MonoBehaviour
     }
     public void Gallery()
     {
+        FirebaseManager.Instance.LogEvent("Level_Gallery_Access");
         StartCoroutine(EffectGallery());
     }
     IEnumerator EffectGallery()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
-        buttonPlay.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonLevelList.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonGallery.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonMode.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.3f);
+        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonPlay.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        buttonMode.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        
+        yield return new WaitForSeconds(0.4f);
         gallery.SetActive(true);
-        boardGallery.localScale = Vector3.one;
         StartCoroutine(CreateGalleryWithNames());
+        boardGallery.localScale = Vector3.one;
         buttonBackGallery.anchoredPosition = new Vector3(-112, buttonBack.anchoredPosition.y, 0);
         buttonTextGallery.anchoredPosition = new Vector3(buttonText.anchoredPosition.x, 160, 0);
         buttonBackGallery.DOAnchorPosX(112, 0.5f).SetEase(Ease.OutQuart);
@@ -175,17 +192,19 @@ public class HomeController : MonoBehaviour
     }
     public void Modelist()
     {
+        FirebaseManager.Instance.LogEvent("Level_Challenge_Access");
         StartCoroutine(EffectMode());
     }
     IEnumerator EffectMode()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
-        buttonPlay.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonLevelList.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonGallery.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonMode.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonPlay.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        buttonMode.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.4f);
         levelListMode.SetActive(true);
         boardLevelMode.localScale = Vector3.one;
         StartCoroutine(CreateButtonsModeWithNames());
@@ -201,12 +220,13 @@ public class HomeController : MonoBehaviour
     IEnumerator EffectPlay()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
-        buttonPlay.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonLevelList.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonGallery.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        buttonMode.DOScale(0, 0.6f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonPlay.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        buttonMode.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.4f);
         GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
         GameObject level = Instantiate(loadedPrefab, main.transform);
         level.transform.SetParent(main.transform, false);
@@ -216,14 +236,21 @@ public class HomeController : MonoBehaviour
     }
     IEnumerator StartHome()
     {
-        yield return new WaitForSeconds(0.6f);
-        buttonPlay.DOScale(1, 0.6f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.4f);
-        buttonLevelList.DOScale(1, 0.6f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.4f);
-        buttonGallery.DOScale(1, 0.6f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.4f);
-        buttonMode.DOScale(1, 0.6f).SetEase(Ease.OutQuart);
+        buttonPlay.DOKill();
+        buttonMode.DOKill();
+        butTween1.Kill();
+        butTween2.Kill();
+        buttonPlay.transform.localScale = Vector3.zero;
+        buttonMode.transform.localScale = Vector3.zero;
+        yield return new WaitForSeconds(0.45f);
+        buttonPlay.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+        buttonMode.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+        yield return new WaitForSeconds(0.75f);
+        butTween1 = buttonPlay.DOScale(Vector3.one * 0.95f, 0.65f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        if (unlockedLevelsNumber >= 10)
+        {
+            butTween2 = buttonMode.DOScale(Vector3.one * 0.95f, 0.65f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        }
     }
     IEnumerator CreateButtonsWithNames()
     {
@@ -233,7 +260,7 @@ public class HomeController : MonoBehaviour
             newButton.name = i.ToString();
             if(i % 4 == 3)
             {
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.1f);
             }
             if (!levelList.activeInHierarchy)
             {
@@ -247,7 +274,10 @@ public class HomeController : MonoBehaviour
         {
             GameObject newButton = Instantiate(buttonModePrefab, buttonModeParent);
             newButton.name = (i+1).ToString();
-            yield return new WaitForSeconds(0.25f);
+            if (i % 4 == 3)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
             if (!levelListMode.activeInHierarchy)
             {
                 break;
@@ -262,7 +292,7 @@ public class HomeController : MonoBehaviour
             newButton.name = i.ToString();
             if (i % 2 == 1)
             {
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.5f);
             }
             if (!gallery.activeInHierarchy)
             {
@@ -272,20 +302,27 @@ public class HomeController : MonoBehaviour
     }
     public void SetBack()
     {
-        StartCoroutine(EffectBack());
+        AudioManager.Play("click");
+        MasterControl.Instance.ShowInterAd((bool res) =>
+        {
+            StartCoroutine(EffectBack());
+        });
     }
     IEnumerator EffectBack()
     {
-        AudioManager.Play("click");
-        buttonBack.DOAnchorPosX(-112, 0.5f).SetEase(Ease.OutQuart);
-        buttonText.DOAnchorPosY(160, 0.5f).SetEase(Ease.OutQuart);
-        boardLevel.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        buttonBack.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
+        buttonText.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
+        boardLevel.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.75f);
         buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
+        buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
+        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
         buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.localScale = new Vector3(0, 0, 1);
-        buttonLevelList.localScale = new Vector3(0, 0, 1);
-        buttonGallery.localScale = new Vector3(0, 0, 1);
         buttonMode.localScale = new Vector3(0, 0, 1);
         levelList.SetActive(false);
         StartCoroutine(StartHome());
@@ -297,54 +334,66 @@ public class HomeController : MonoBehaviour
     IEnumerator EffectBackMode()
     {
         AudioManager.Play("click");
-        buttonBackMode.DOAnchorPosX(-112, 0.5f).SetEase(Ease.OutQuart);
-        buttonTextMode.DOAnchorPosY(160, 0.5f).SetEase(Ease.OutQuart);
-        boardLevelMode.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        buttonBackMode.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
+        buttonTextMode.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
+        boardLevelMode.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.75f);
         buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
+        buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
+        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
         buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.localScale = new Vector3(0, 0, 1);
-        buttonLevelList.localScale = new Vector3(0, 0, 1);
-        buttonGallery.localScale = new Vector3(0, 0, 1);
         buttonMode.localScale = new Vector3(0, 0, 1);
         levelListMode.SetActive(false);
         StartCoroutine(StartHome());
     }
     public void SetBackGallery()
     {
-        StartCoroutine(EffectBackGallery());
+        AudioManager.Play("click");
+        MasterControl.Instance.ShowInterAd((bool res) =>
+        {
+            StartCoroutine(EffectBackGallery());
+        });
     }
     IEnumerator EffectBackGallery()
     {
-        AudioManager.Play("click");
-        buttonBackGallery.DOAnchorPosX(-112, 0.5f).SetEase(Ease.OutQuart);
-        buttonTextGallery.DOAnchorPosY(160, 0.5f).SetEase(Ease.OutQuart);
-        boardGallery.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        buttonBackGallery.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
+        buttonTextGallery.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
+        boardGallery.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.75f);
         buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
+        buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
+        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
         buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.localScale = new Vector3(0, 0, 1);
-        buttonLevelList.localScale = new Vector3(0, 0, 1);
-        buttonGallery.localScale = new Vector3(0, 0, 1);
         buttonMode.localScale = new Vector3(0, 0, 1);
         gallery.SetActive(false);
         StartCoroutine(StartHome());
     }
     public void BackPhoto()
     {
-        StartCoroutine(EffectGallery1());
+        AudioManager.Play("click");
+        MasterControl.Instance.ShowInterAd((bool res) =>
+        {
+            StartCoroutine(EffectGallery1());
+        });
     }
     IEnumerator EffectGallery1()
     {
-        AudioManager.Play("click");
-        buttonBackPhoto.DOAnchorPosX(-112, 0.5f).SetEase(Ease.OutQuart);
-        buttonTextPhoto.DOAnchorPosY(160, 0.5f).SetEase(Ease.OutQuart);
-        imagePhoto.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
-        gallery.SetActive(true);
+        buttonBackPhoto.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
+        buttonTextPhoto.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
+        imagePhoto.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.75f);
         photo.SetActive(false);
-        boardGallery.localScale = Vector3.one;
-        StartCoroutine(CreateGalleryWithNames());
+        boardGallery.DOScale(Vector3.one, 0.75f).SetEase(Ease.OutQuart);
         buttonBackGallery.anchoredPosition = new Vector3(-112, buttonBack.anchoredPosition.y, 0);
         buttonTextGallery.anchoredPosition = new Vector3(buttonText.anchoredPosition.x, 160, 0);
         buttonBackGallery.DOAnchorPosX(112, 0.5f).SetEase(Ease.OutQuart);

@@ -70,19 +70,35 @@ public class GameLevel5 : MonoBehaviour
         {
             for (int i = 0; i < player.Length; i++)
             {
-                player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
-                player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart);
-                if (player[i].handTap != null)
+                if (!player[i].locked)
                 {
-                    player[i].isHand = false;
+                    int index = i;
+                    player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
+                    player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
+                    {
+                        player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                    });
+                    if (player[i].handTap != null)
+                    {
+                        player[i].isHand = false;
+                    }
                 }
             }
             for (int i = 0; i < sidePlayer.Length; i++)
             {
-                sidePlayer[i].transform.DOMove(sidePlayer[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart);
+                if (!sidePlayer[i].locked)
+                {
+                    int index = i;
+                    sidePlayer[i].transform.DOMove(sidePlayer[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
+                    {
+                        sidePlayer[index].transform.DOMove(new Vector3(sidePlayer[index].oldPosition.x, sidePlayer[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                    });
+                }
+                
             }
-            win = true;
-            win2 = true;
+            main.isHint = false;
         }
         if (win && win2 && takeShot == 0)
         {
@@ -93,15 +109,7 @@ public class GameLevel5 : MonoBehaviour
     IEnumerator Win()
     {
         main.isWin = true;
-        if (main.isHint)
-        {
-            main.isHint = false;
-            yield return new WaitForSeconds(1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+        yield return new WaitForSeconds(0.3f);
         if (isVibrate == 1)
         {
             MMVibrationManager.Haptic(hapticTypes, true, true, this);
@@ -109,6 +117,7 @@ public class GameLevel5 : MonoBehaviour
         heart.SetActive(false);
         losePanel.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
 }

@@ -44,7 +44,7 @@ public class GameLevel3 : MonoBehaviour
         win = false;
         if (hand != null)
         {
-            hand.DOMoveX(oldHand, 0.8f).SetEase(Ease.OutQuart);
+            hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
         }
     }
 
@@ -67,15 +67,23 @@ public class GameLevel3 : MonoBehaviour
         {
             for (int i = 0; i < player.Length; i++)
             {
-                player[i].tideObject.SetActive(false);
-                player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
-                player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart);
-                if(player[i].handTap != null)
+                if (!player[i].locked)
                 {
-                    player[i].handTap.SetActive(false);
+                    int index = i;
+                    player[i].tideObject.SetActive(false);
+                    player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
+                    player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
+                    {
+                        player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                    });
+                    if (player[i].handTap != null)
+                    {
+                        player[i].handTap.SetActive(false);
+                    }
                 }
             }
-            win = true;
+            main.isHint = false;
         }
         if(transform.localScale != oldScale)
         {
@@ -93,15 +101,7 @@ public class GameLevel3 : MonoBehaviour
     IEnumerator Win()
     {
         main.isWin = true;
-        if (main.isHint)
-        {
-            main.isHint = false;
-            yield return new WaitForSeconds(1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+        yield return new WaitForSeconds(0.3f);
         if (isVibrate == 1)
         {
             MMVibrationManager.Haptic(hapticTypes, true, true, this);
@@ -109,6 +109,7 @@ public class GameLevel3 : MonoBehaviour
         heart.SetActive(false);
         losePanel.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
 }

@@ -87,6 +87,7 @@ public class GameLevelTutorial : MonoBehaviour
         }
         heart.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
 }

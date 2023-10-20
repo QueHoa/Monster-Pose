@@ -12,7 +12,8 @@ public class SideGamePlay1 : MonoBehaviour
     private Animator anim;
     private float deltaX, deltaY;
     private bool isDrag;
-    private Vector2 oldPosition;
+    [HideInInspector]
+    public Vector2 oldPosition;
 
     // Start is called before the first frame update
     void Start()

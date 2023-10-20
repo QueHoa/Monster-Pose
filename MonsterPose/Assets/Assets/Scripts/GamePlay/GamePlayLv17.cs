@@ -20,14 +20,16 @@ public class GamePlayLv17 : MonoBehaviour
     public bool locked;
 
     private Camera mainCamera;
-    private BoxCollider2D boxCollider;
+    [HideInInspector]
+    public BoxCollider2D boxCollider;
     private Rigidbody2D rb;
     private Animator anim;
     private GameObject losePanel;
     private int numHeart = 0;
     private float deltaX, deltaY;
     private bool isDrag;
-    private Vector2 oldPosition;
+    [HideInInspector]
+    public Vector2 oldPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -110,8 +112,8 @@ public class GamePlayLv17 : MonoBehaviour
     }
     IEnumerator StartLevel()
     {
-        transform.DOMoveX(oldPosition.x, 0.8f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.8f);
+        transform.DOMoveX(oldPosition.x, 1f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(1f);
         boxCollider.enabled = true;
     }
 }

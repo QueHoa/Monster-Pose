@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -30,11 +29,30 @@ namespace OneHit.Framework
         public List<Sound> sounds = new List<Sound>();
         public static void PlayBGM()
         {
-            Sound s = Instance.sounds.Find(sound => sound.name == "BGM");
-            if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+            int x = Random.Range(1,3);
+            if (x == 1)
             {
-                s.source?.Play();
+                Sound s = Instance.sounds.Find(sound => sound.name == "BGM");
+                if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+                {
+                    s.source?.Play();
+                }
+            }else if (x == 2)
+            {
+                Sound s = Instance.sounds.Find(sound => sound.name == "BGM1");
+                if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+                {
+                    s.source?.Play();
+                }
+            }else if (x == 3)
+            {
+                Sound s = Instance.sounds.Find(sound => sound.name == "BGM2");
+                if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+                {
+                    s.source?.Play();
+                }
             }
+            
         }
         public static void UpdateMusic()
         {
@@ -52,6 +70,13 @@ namespace OneHit.Framework
             if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
             {
                 s.source.DOFade(volume, time);
+            }
+        }
+        public static void ChangePitch(float pitch)
+        {
+            foreach (Sound s in Instance.sounds)
+            {
+                s.source.pitch = pitch;
             }
         }
         public static void PlayOneShot(string name)
@@ -101,6 +126,10 @@ namespace OneHit.Framework
                     loop = false // Set the desired default loop value for the new sound
                 };
                 if (newSound.name == "BGM")
+                    newSound.loop = true;
+                if (newSound.name == "BGM1")
+                    newSound.loop = true;
+                if (newSound.name == "BGM2")
                     newSound.loop = true;
 
                 sounds.Add(newSound); // Use Add method to add new sound to the list

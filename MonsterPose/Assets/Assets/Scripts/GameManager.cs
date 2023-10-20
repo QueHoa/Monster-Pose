@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using OneHit.Framework;
+using OneHit;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject levelListMode;
     public GameObject gallery;
     public GameObject photo;
+    public Transform frameImageWin;
     public Image imageWin;
+    public Text levelPhoto;
     public MainController mainController;
     public ModeController modeController;
     public HomeController homeController;
@@ -101,7 +104,7 @@ public class GameManager : MonoBehaviour
     {
         Input.multiTouchEnabled = false;
         Instance = this;
-        //PlayerPrefs.SetInt("levelsUnlocked", 1);
+        //PlayerPrefs.SetInt("levelsUnlocked", 150);
         if (!PlayerPrefs.HasKey("levelsUnlocked"))
         {
             PlayerPrefs.SetInt("levelsUnlocked", 1);
@@ -110,10 +113,6 @@ public class GameManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("levelsModeUnlocked"))
         {
             PlayerPrefs.SetInt("levelsModeUnlocked", 1);
-        }
-        if (!PlayerPrefs.HasKey("gold"))
-        {
-            PlayerPrefs.SetInt("gold", 0);
         }
         if (!PlayerPrefs.HasKey("MusicOn"))
         {
@@ -140,9 +139,13 @@ public class GameManager : MonoBehaviour
         isMusic = PlayerPrefs.GetInt("MusicOn");
         isSound = PlayerPrefs.GetInt("SoundOn");
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
-        if (!loading.activeInHierarchy && noLoading == 0 && isMusic == 1)
+        if (!loading.activeInHierarchy && noLoading == 0)
         {
-            AudioManager.PlayBGM();
+            if(isMusic == 1)
+            {
+                AudioManager.PlayBGM();
+            }
+            MasterControl.Instance.ShowBanner();
             noLoading++;
         }
     }
@@ -185,7 +188,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetSound()
     {
-        AudioManager.Play("click");
         if (isSound == 1)
         {
             onSound.enabled = false;
@@ -200,5 +202,6 @@ public class GameManager : MonoBehaviour
             offSound.enabled = false;
             PlayerPrefs.SetInt("SoundOn", 1);
         }
+        AudioManager.Play("click");
     }
 }

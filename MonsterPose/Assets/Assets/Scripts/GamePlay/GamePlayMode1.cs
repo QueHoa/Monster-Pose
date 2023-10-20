@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using OneHit.Framework;
+using UnityEngine.EventSystems;
 
 public class GamePlayMode1 : MonoBehaviour
 {
@@ -49,13 +50,17 @@ public class GamePlayMode1 : MonoBehaviour
             {
                 Touch touch = Input.GetTouch(0);
                 Vector2 touchPos = mainCamera.ScreenToWorldPoint(touch.position);
+                if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    return;
+                }
                 if (touch.phase == TouchPhase.Began)
                 {
                     isDrag = true;
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
                     isTouch = 1;
-                    boxCollider.size = new Vector2(6.5f, 13);
+                    boxCollider.size = new Vector2(40f, 80);
                 }
                 if (touch.phase == TouchPhase.Moved && isTouch == 1)
                 {
@@ -70,7 +75,7 @@ public class GamePlayMode1 : MonoBehaviour
                         {
                             if (gameMode1.numbers[numberSprite] == i && rightPos[i].gameObject.activeInHierarchy)
                             {
-                                if (-0.1f <= transform.position.y - rightPos[i].transform.position.y && transform.position.y - rightPos[i].transform.position.y <= 1.4f && Mathf.Abs(transform.position.x - rightPos[i].transform.position.x) <= 0.8f)
+                                if (-0.2f <= transform.position.y - rightPos[i].transform.position.y && transform.position.y - rightPos[i].transform.position.y <= 2f && Mathf.Abs(transform.position.x - rightPos[i].transform.position.x) <= 1f)
                                 {
                                     AudioManager.Play("hint");
                                     anim.SetTrigger("complete");
@@ -78,17 +83,24 @@ public class GamePlayMode1 : MonoBehaviour
                                     locked = true;
                                     gameMode1.numberLock++;
                                     rightPos[i].gameObject.SetActive(false);
-                                    break;
                                 }
                                 else
                                 {
-                                    if (i == rightPos.Length - 1)
-                                    {
-                                        AudioManager.Play("pen_fail");
-                                        anim.SetTrigger("fail");
-                                        transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
-                                    }
+                                    AudioManager.Play("pen_fail");
+                                    anim.SetTrigger("fail");
+                                    transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
                                 }
+                                break;
+                            }
+                            else
+                            {
+                                if(i == rightPos.Length - 1)
+                                {
+                                    AudioManager.Play("pen_fail");
+                                    anim.SetTrigger("fail");
+                                    transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+                                }
+                                continue;
                             }
                         }
                     }

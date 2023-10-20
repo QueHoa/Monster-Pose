@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1092048094839",
+    "project_id": "tricky-pose-gp",
+    "storage_bucket": "tricky-pose-gp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092048094839:android:1fc028333193d18dde2872",
+        "android_client_info": {
+          "package_name": "com.trickypose.brainpuzzle.heartposing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRJKdAlIEQufjxeUlsb1PHzYY58TOEWS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

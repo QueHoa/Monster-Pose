@@ -1,8 +1,10 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using OneHit.Framework;
+using UnityEngine.EventSystems;
 
 public class GamePlayModeTutorial : MonoBehaviour
 {
@@ -43,86 +45,18 @@ public class GamePlayModeTutorial : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        if (!locked && IsWithinBoxCollider())
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Vector2 touchPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                isDrag = true;
-                deltaX = touchPos.x - transform.position.x;
-                deltaY = touchPos.y - transform.position.y;
-                isTouch = 1;
-                boxCollider.size = new Vector2(10f, 15);
-            }
-            if (Input.GetMouseButton(0) && isTouch == 1)
-            {
-                Vector2 touchPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                isDrag = true;
-                rb.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
-            }
-            if (Input.GetMouseButtonUp(0) && isTouch == 1)
-            {
-                if (gameModeToturial.numbers[numberSprite] < rightPos.Length)
-                {
-                    if (gameModeToturial.numbers[numberSprite] < rightPos.Length)
-                    {
-                        for (int i = 0; i < rightPos.Length; i++)
-                        {
-                            if (gameModeToturial.numbers[numberSprite] == i && rightPos[i].gameObject.activeInHierarchy)
-                            {
-                                if (-0.1f <= transform.position.y - rightPos[i].transform.position.y && transform.position.y - rightPos[i].transform.position.y <= 1.4f && Mathf.Abs(transform.position.x - rightPos[i].transform.position.x) <= 0.8f)
-                                {
-                                    AudioManager.Play("hint");
-                                    anim.SetTrigger("complete");
-                                    transform.position = new Vector3(rightPos[i].transform.position.x, rightPos[i].transform.position.y, 0);
-                                    locked = true;
-                                    gameModeToturial.numberLock++;
-                                    rightPos[i].gameObject.SetActive(false);
-                                    //break;
-                                }
-                                else
-                                {
-                                    AudioManager.Play("pen_fail");
-                                    anim.SetTrigger("fail");
-                                    transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    AudioManager.Play("pen_fail");
-                    anim.SetTrigger("fail");
-                    transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
-                }
-                boxCollider.size = new Vector2(3.28f, 6.84f);
-                isDrag = false;
-                isTouch = 0;
-            }
-        }
-        if (!locked && time >= 5 && !gameModeToturial.win)
-        {
-            AudioManager.Play("change_sprite");
-            anim.SetTrigger("change");
-            transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
-            time = 0;
-        }
-        /*anim.SetBool("drag", isDrag);
-        if (!gameModeToturial.isTutorial)
-        {
-            time += Time.deltaTime;
-        }
-        if (!locked && IsWithinBoxCollider())
+        if (!locked && IsWithinBoxCollider() && !gameModeToturial.isTutorial)
         {
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
                 Vector2 touchPos = mainCamera.ScreenToWorldPoint(touch.position);
+                if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    return;
+                }
                 if (touch.phase == TouchPhase.Began)
                 {
-                    isDrag = true;
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
                     isTouch = 1;
@@ -135,13 +69,13 @@ public class GamePlayModeTutorial : MonoBehaviour
                 }
                 if (touch.phase == TouchPhase.Ended && isTouch == 1)
                 {
-                    if(gameModeToturial.numbers[numberSprite] < rightPos.Length)
+                    if (gameModeToturial.numbers[numberSprite] < rightPos.Length)
                     {
                         for (int i = 0; i < rightPos.Length; i++)
                         {
                             if (gameModeToturial.numbers[numberSprite] == i && rightPos[i].gameObject.activeInHierarchy)
                             {
-                                if (-0.1f <= transform.position.y - rightPos[i].transform.position.y && transform.position.y - rightPos[i].transform.position.y <= 1.4f && Mathf.Abs(transform.position.x - rightPos[i].transform.position.x) <= 0.8f)
+                                if (-0.2f <= transform.position.y - rightPos[i].transform.position.y && transform.position.y - rightPos[i].transform.position.y <= 2f && Mathf.Abs(transform.position.x - rightPos[i].transform.position.x) <= 1f)
                                 {
                                     AudioManager.Play("hint");
                                     anim.SetTrigger("complete");
@@ -149,7 +83,6 @@ public class GamePlayModeTutorial : MonoBehaviour
                                     locked = true;
                                     gameModeToturial.numberLock++;
                                     rightPos[i].gameObject.SetActive(false);
-                                    //break;
                                 }
                                 else
                                 {
@@ -179,7 +112,7 @@ public class GamePlayModeTutorial : MonoBehaviour
             anim.SetTrigger("change");
             transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
             time = 0;
-        }*/
+        }
     }
     bool IsWithinBoxCollider()
     {

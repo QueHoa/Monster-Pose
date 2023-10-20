@@ -8,9 +8,9 @@ using MoreMountains.NiceVibrations;
 public class GameLevel31 : MonoBehaviour
 {
     [SerializeField]
-    private GamePlayLv2 player;
+    private GamePlayLv2[] player;
     [SerializeField]
-    private GamePlayLv31 player2;
+    private GamePlayLv31[] player2;
     [SerializeField]
     private GameObject heart;
     private MainController main;
@@ -42,30 +42,65 @@ public class GameLevel31 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.locked)
+        for (int i = 0; i < player.Length; i++)
+        {
+            if (!player[i].locked)
+            {
+                win = false;
+                break;
+            }
+            if (i == player.Length - 1 && player[i].locked)
+            {
+                win = true;
+            }
+        }
+        if (player.Length == 0)
         {
             win = true;
         }
-        else
+        for (int i = 0; i < player2.Length; i++)
         {
-            win = false;
-        }
-        if (player2.locked)
-        {
-            win2 = true;
-        }
-        else
-        {
-            win2 = false;
+            if (!player2[i].locked)
+            {
+                win2 = false;
+                break;
+            }
+            if (i == player2.Length - 1 && player2[i].locked)
+            {
+                win2 = true;
+            }
         }
         if (main.isHint)
         {
-            player2.numHeart = player2.numberWin;
-            player2.playerRenderer.sprite = player2.playerSprites[player2.numberWin];
-            player2.transform.DOMove(player2.rightPos.position, 1.2f).SetEase(Ease.OutQuart);
-            player.transform.DOMove(player.rightPos.position, 1.2f).SetEase(Ease.OutQuart);
-            win = true;
-            win2 = true;
+            for (int i = 0; i < player2.Length; i++)
+            {
+                if (!player2[i].locked)
+                {
+                    int index = i;
+                    player2[index].numHeart = player2[index].numberWin;
+                    player2[index].playerRenderer.sprite = player2[index].playerSprites[player2[index].numberWin];
+                    player2[index].transform.DOMove(player2[index].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
+                    {
+                        player2[index].transform.DOMove(new Vector3(player2[index].oldPosition.x, player2[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                    });
+                }
+            }
+            for (int i = 0; i < player.Length; i++)
+            {
+                if (!player[i].locked)
+                {
+                    int index = i;
+                    player[index].playerRenderer.sprite = player[index].playerSprites[player[index].numberWin];
+                    player[index].transform.DOMove(player[index].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
+                    {
+                        player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                    });
+                }
+            }
+            
+            main.isHint = false;
         }
         if (win && win2 && takeShot == 0)
         {
@@ -76,15 +111,7 @@ public class GameLevel31 : MonoBehaviour
     IEnumerator Win()
     {
         main.isWin = true;
-        if (main.isHint)
-        {
-            main.isHint = false;
-            yield return new WaitForSeconds(1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+        yield return new WaitForSeconds(0.3f);
         if (isVibrate == 1)
         {
             MMVibrationManager.Haptic(hapticTypes, true, true, this);
@@ -92,6 +119,7 @@ public class GameLevel31 : MonoBehaviour
         heart.SetActive(false);
         losePanel.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
 }

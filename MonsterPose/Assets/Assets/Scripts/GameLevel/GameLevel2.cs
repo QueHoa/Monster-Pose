@@ -43,7 +43,7 @@ public class GameLevel2 : MonoBehaviour
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
         if (hand != null)
         {
-            hand.DOMoveX(oldHand, 0.8f).SetEase(Ease.OutQuart);
+            hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
         }
     }
 
@@ -64,16 +64,7 @@ public class GameLevel2 : MonoBehaviour
         }
         if (main.isHint)
         {
-            for (int i = 0; i < player.Length; i++)
-            {
-                player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
-                player[i].transform.DOMove(player[i].rightPos.position, 1f).SetEase(Ease.OutQuart);
-                if(player[i].handTap != null)
-                {
-                    player[i].isHand = false;
-                }
-            }
-            win = true;
+            NewMethod();
         }
         if (win && takeShot == 0)
         {
@@ -81,25 +72,41 @@ public class GameLevel2 : MonoBehaviour
             takeShot++;
         }
     }
+    [ContextMenu("btn")]
+    private void NewMethod()
+    {
+        for (int i = 0; i < player.Length; i++)
+        {
+            if (!player[i].locked)
+            {
+                int index = i;
+                player[index].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
+                player[index].transform.DOMove(player[i].rightPos.position, 1f).SetEase(Ease.OutQuart).OnComplete(() =>
+                {
+                    player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                });
+                if (player[index].handTap != null)
+                {
+                    player[index].isHand = false;
+                }
+            }
+        }
+        main.isHint = false;
+    }
+
     IEnumerator Win()
     {
         main.isWin = true;
-        if (main.isHint)
-        {
-            main.isHint = false;
-            yield return new WaitForSeconds(1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
-        if(isVibrate == 1)
+        yield return new WaitForSeconds(0.3f);
+        if (isVibrate == 1)
         {
             MMVibrationManager.Haptic(hapticTypes, true, true, this);
         }
         heart.SetActive(false);
         losePanel.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
 }

@@ -13,8 +13,8 @@ public class TrailerMode : MonoBehaviour
     private ModeController mode;
     [SerializeField]
     private GameObject[] effect;
+    public GameObject fade;
     private Animator anim;
-    private int unlockedLevelsNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +26,11 @@ public class TrailerMode : MonoBehaviour
     }
     private void OnEnable()
     {
-        unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         for (int i = 0; i < effect.Length; i++)
         {
             effect[i].SetActive(true);
         }
+        AudioManager.Play("SoundMode");
         anim.SetTrigger("show");
     }
     // Update is called once per frame
@@ -69,9 +69,11 @@ public class TrailerMode : MonoBehaviour
     {
         anim.SetTrigger("hide");
         yield return new WaitForSeconds(0.4f);
+        fade.SetActive(true);
+        yield return new WaitForSeconds(1f);
         GameObject loadedPrefab = Resources.Load<GameObject>(main.numberPlaying.ToString());
-        GameObject level = Instantiate(loadedPrefab, main.transform);
-        level.transform.SetParent(main.transform, false);
+        GameObject level1 = Instantiate(loadedPrefab, main.transform);
+        level1.transform.SetParent(main.transform, false);
         main.gameObject.SetActive(true);
         for (int i = 0; i < effect.Length; i++)
         {

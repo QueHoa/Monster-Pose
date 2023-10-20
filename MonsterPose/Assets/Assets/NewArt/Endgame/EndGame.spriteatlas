@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EndGame
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 6d6b04b1ff4881640a0e7080b777805b, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: df054d20d2819e240be8256bbc490ef2, type: 3}
+  - {fileID: 21300000, guid: f2d79130fc4f8374bb2ee84f0e7840a0, type: 3}
+  - {fileID: 21300000, guid: 888556b1bcc3ffb48aae75716bcc36de, type: 3}
+  - {fileID: 21300000, guid: 47284012e8486e646acaa8116a082886, type: 3}
+  - {fileID: 21300000, guid: 16714a523b30fb546a7c6d7426e0516f, type: 3}
+  - {fileID: 21300000, guid: 34dbb2c4b553d4d4c846de4f2abca75e, type: 3}
+  - {fileID: 21300000, guid: a677cff442cb83044ae5c7edb55fa7ec, type: 3}
+  - {fileID: 21300000, guid: 34605c450a005894c8fc8254ab7749a2, type: 3}
+  - {fileID: 21300000, guid: 1ee2d5c6019f5a442bb5fd3de78c6fc3, type: 3}
+  - {fileID: 21300000, guid: 06838bd6f40a88948b0ac60778b1d4f2, type: 3}
+  - {fileID: 21300000, guid: a745c0071e91cb447b73d0d99a548988, type: 3}
+  - {fileID: 21300000, guid: 2a7d5a579102b7f4cb1584fec07baf23, type: 3}
+  - {fileID: 21300000, guid: b6ebd36779afcf749be29398a1edc120, type: 3}
+  - {fileID: 21300000, guid: d0bc9987f62b818469eb2a860c1e4f1b, type: 3}
+  - {fileID: 21300000, guid: b8578ef85623e2949ad6d74588a3dbc4, type: 3}
+  - {fileID: 21300000, guid: 894a0629e4eac034a8907073fbf7d869, type: 3}
+  - {fileID: 21300000, guid: 833821a912ce71e4bb65dd59acc79de0, type: 3}
+  - {fileID: 21300000, guid: 5ee7a86a87eaeaf4cba437278c8fc691, type: 3}
+  - {fileID: 21300000, guid: 0a8cfa4b5edb8824f8036aab78e656c5, type: 3}
+  - {fileID: 21300000, guid: 73c7e76b66d1296429285fee1e6fbb24, type: 3}
+  - {fileID: 21300000, guid: 1860c8abed5a7b741bfa771383a965e7, type: 3}
+  - {fileID: 21300000, guid: d290f4db25c68eb47a8f9e83ceec3f6d, type: 3}
+  - {fileID: 21300000, guid: c67a36ed84b5da640bcf48cc2b7380b6, type: 3}
+  - {fileID: 21300000, guid: 47af250e67fb75d4fb85075b8704bc17, type: 3}
+  - {fileID: 21300000, guid: 9dcdd94f8f755ff41af7f6959f0aca67, type: 3}
+  - {fileID: 21300000, guid: b43d437f28be12e45a2f0138a812541a, type: 3}
+  - {fileID: 21300000, guid: 635cf97fe671ad5499c04fed2ea4f775, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - video
+  - khung level
+  - end_lose_btn_skip
+  - end_lose_popup
+  - No Internet - Smart Object Group
+  - end_lose_btn_X
+  - khung notification
+  - complete
+  - end_lose_icon_skip
+  - end_lose_btn_replay
+  - 'reload '
+  - failed
+  - end_lose_icon_replay
+  - home
+  - wifi
+  - close.
+  - Please check your Internet Connection - Smart Object Group
+  - next
+  - end_dark overlay
+  - close (1)
+  - end_win_popup
+  - Layer 212 - Smart Object Group
+  - end_win_btn_next
+  - video is not ready
+  - end_win_preview
+  - Notification
+  - light
+  m_RenderDataMap: {}
+  m_Tag: EndGame
+  m_IsVariant: 0

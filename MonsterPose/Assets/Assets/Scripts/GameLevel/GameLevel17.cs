@@ -24,6 +24,7 @@ public class GameLevel17 : MonoBehaviour
     private RawImage rawImage;
     private int isVibrate;
     private float oldHand;
+    private Vector3 oldScale = new Vector3(100, 100, 1);
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +39,7 @@ public class GameLevel17 : MonoBehaviour
         takeShot = 0;
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
         win = false;
-        hand.DOMoveX(oldHand, 0.8f).SetEase(Ease.OutQuart);
+        hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
     }
 
     // Update is called once per frame
@@ -60,13 +61,28 @@ public class GameLevel17 : MonoBehaviour
         {
             for (int i = 0; i < player.Length; i++)
             {
-                player[i].effect.Play();
-                player[i].tideObject.SetActive(false);
-                player[i].firework.SetActive(true);
-                player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
-                player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart);
+                if (!player[i].locked)
+                {
+                    int index = i;
+                    player[i].effect.Play();
+                    player[i].tideObject.SetActive(false);
+                    player[i].firework.SetActive(true);
+                    player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
+                    player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
+                    {
+                        player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+
+                    });
+                }
             }
-            win = true;
+            main.isHint = false;
+        }
+        if (transform.localScale != oldScale)
+        {
+            for (int i = 0; i < player.Length; i++)
+            {
+                player[i].boxCollider.size = Vector2.zero;
+            }
         }
         if (win && takeShot == 0)
         {
@@ -77,15 +93,7 @@ public class GameLevel17 : MonoBehaviour
     IEnumerator Win()
     {
         main.isWin = true;
-        if (main.isHint)
-        {
-            main.isHint = false;
-            yield return new WaitForSeconds(1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+        yield return new WaitForSeconds(0.3f);
         if (isVibrate == 1)
         {
             MMVibrationManager.Haptic(hapticTypes, true, true, this);
@@ -93,6 +101,7 @@ public class GameLevel17 : MonoBehaviour
         heart.SetActive(false);
         losePanel.SetActive(false);
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
+        yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
 }

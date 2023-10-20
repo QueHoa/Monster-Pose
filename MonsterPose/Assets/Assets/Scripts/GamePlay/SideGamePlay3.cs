@@ -21,7 +21,8 @@ public class SideGamePlay3 : MonoBehaviour
     private int isTouch = 0;
     private float deltaX, deltaY;
     private bool isDrag;
-    private Vector2 oldPosition;
+    [HideInInspector]
+    public Vector2 oldPosition;
 
     // Start is called before the first frame update
     void Start()

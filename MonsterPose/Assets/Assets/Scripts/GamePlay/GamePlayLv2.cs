@@ -26,7 +26,8 @@ public class GamePlayLv2 : MonoBehaviour
     private int isTouch = 0;
     private float deltaX, deltaY;
     private bool isDrag;
-    private Vector2 oldPosition;
+    [HideInInspector]
+    public  Vector2 oldPosition;
     private float time;
     [HideInInspector]
     public bool isHand;
@@ -46,7 +47,7 @@ public class GamePlayLv2 : MonoBehaviour
         locked = false;
         time = 0;
         isHand = true;
-        transform.DOMoveX(oldPosition.x, 0.8f).SetEase(Ease.OutQuart);
+        transform.DOMoveX(oldPosition.x, 1f).SetEase(Ease.OutQuart);
     }
 
     // Update is called once per frame

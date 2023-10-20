@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using OneHit.Framework;
+using OneHit;
 
 public class ModeController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ModeController : MonoBehaviour
     public int numberPlaying;
     [HideInInspector]
     public bool isWin;
+    public Animator lose;
     public Image bg;
     public Sprite[] background;
     public GameObject home;
@@ -20,6 +22,7 @@ public class ModeController : MonoBehaviour
     public RectTransform buttonTextLevel;
     public RectTransform buttonTime;
 
+    public Transform clock;
     [SerializeField]
     private Image sliceTime;
     [SerializeField]
@@ -27,6 +30,8 @@ public class ModeController : MonoBehaviour
     private float time;
     private int timeInSecond;
     private int unlockedModeNumber;
+    private int numberTictac;
+    private bool startTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +39,27 @@ public class ModeController : MonoBehaviour
     }
     private void OnEnable()
     {
+        FirebaseManager.Instance.LogEvent("Level_Challenge_Replay_" + numberPlaying);
         buttonBack.anchoredPosition = new Vector3(-102, buttonBack.anchoredPosition.y, 0);
         buttonTextLevel.anchoredPosition = new Vector3(buttonTextLevel.anchoredPosition.x, 115, 0);
         buttonTime.anchoredPosition = new Vector3(buttonTime.anchoredPosition.x, 115, 0);
-        time = 30.5f;
+        loseGame.SetActive(false);
+        if (numberPlaying <= 20)
+        {
+            time = 25.5f;
+        }
+        else 
+        {
+            time = 30.5f;
+        }
+        numberTictac = 0;
+        sliceTime.fillAmount = 1;
         ChangeBG();
         isWin = false;
         buttonBack.DOAnchorPosX(102, 0.5f).SetEase(Ease.OutQuart);        
         buttonTextLevel.DOAnchorPosY(-115, 0.5f).SetEase(Ease.OutQuart);
-        buttonTime.DOAnchorPosY(-283, 0.5f).SetEase(Ease.OutQuart);
+        buttonTime.DOAnchorPosY(-260, 0.5f).SetEase(Ease.OutQuart);
+        startTime = false;
     }
 
     // Update is called once per frame
@@ -50,12 +67,121 @@ public class ModeController : MonoBehaviour
     {
         if (!loseGame.activeInHierarchy && !endGame.activeInHierarchy)
         {
-            time -= Time.deltaTime;
+            if (numberPlaying != 1) 
+            {
+                startTime = true;
+            }
+            else
+            {
+                StartCoroutine(StartTime());
+            }
+            if (startTime)
+            {
+                time -= Time.deltaTime;
+            }
             if (time <= 0)
             {
                 time = 0;
             }
-            sliceTime.fillAmount = time / 30f;
+            if (timeInSecond == 5 && numberTictac == 0)
+            {
+                AudioManager.Play("tictac");
+                clock.DORotate(new Vector3(0, 0, -6), 0.05f).SetEase(Ease.OutSine).OnComplete(() =>
+                {
+                    clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                    {
+                        clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            clock.DORotate(Vector3.zero, 0.05f).SetEase(Ease.OutSine);
+                        });
+                    });
+                });
+                numberTictac++;
+
+            }
+            else if (timeInSecond == 4 && numberTictac == 1)
+            {
+                AudioManager.Play("tictac");
+                clock.DORotate(new Vector3(0, 0, -6), 0.05f).SetEase(Ease.OutSine).OnComplete(() =>
+                {
+                    clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                    {
+                        clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            clock.DORotate(Vector3.zero, 0.05f).SetEase(Ease.OutSine);
+                        });
+                    });
+                });
+                numberTictac++;
+            }
+            else if (timeInSecond == 3 && numberTictac == 2)
+            {
+                AudioManager.Play("tictac");
+                clock.DORotate(new Vector3(0, 0, -6), 0.05f).SetEase(Ease.OutSine).OnComplete(() =>
+                {
+                    clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                    {
+                        clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            clock.DORotate(Vector3.zero, 0.05f).SetEase(Ease.OutSine);
+                        });
+                    });
+                });
+                numberTictac++;
+            }
+            else if (timeInSecond == 2 && numberTictac == 3)
+            {
+                AudioManager.Play("tictac");
+                clock.DORotate(new Vector3(0, 0, -6), 0.05f).SetEase(Ease.OutSine).OnComplete(() =>
+                {
+                    clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                    {
+                        clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            clock.DORotate(Vector3.zero, 0.05f).SetEase(Ease.OutSine);
+                        });
+                    });
+                });
+                numberTictac++;
+            }
+            else if (timeInSecond == 1 && numberTictac == 4)
+            {
+                AudioManager.Play("tictac");
+                clock.DORotate(new Vector3(0, 0, -6), 0.05f).SetEase(Ease.OutSine).OnComplete(() =>
+                {
+                    clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                    {
+                        clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            clock.DORotate(Vector3.zero, 0.05f).SetEase(Ease.OutSine);
+                        });
+                    });
+                });
+                numberTictac++;
+            }
+            else if (timeInSecond == 0 && numberTictac == 5)
+            {
+                AudioManager.Play("tictac");
+                clock.DORotate(new Vector3(0, 0, -6), 0.05f).SetEase(Ease.OutSine).OnComplete(() =>
+                {
+                    clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                    {
+                        clock.DORotate(new Vector3(0, 0, 6), 0.1f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            clock.DORotate(Vector3.zero, 0.05f).SetEase(Ease.OutSine);
+                        });
+                    });
+                });
+                numberTictac++;
+            }
+            if (numberPlaying <= 20)
+            {
+                sliceTime.fillAmount = time / 25f;
+            }
+            else
+            {
+                sliceTime.fillAmount = time / 30f;
+            }
         }
         else
         {
@@ -77,6 +203,7 @@ public class ModeController : MonoBehaviour
         }
         if (time <= 0 && !endGame.activeInHierarchy)
         {
+            FirebaseManager.Instance.LogEvent("Level_Lose_Mode_" + numberPlaying);
             loseGame.SetActive(true);
         }
         if (isWin)
@@ -86,19 +213,28 @@ public class ModeController : MonoBehaviour
             buttonTime.DOAnchorPosY(115, 0.3f).SetEase(Ease.OutQuart);
         }
     }
+    IEnumerator StartTime()
+    {
+        yield return new WaitForSeconds(14);
+        startTime = true;
+    }
     public void Back()
     {
-        StartCoroutine(EffectBack());
+        AudioManager.Play("click");
+        MasterControl.Instance.ShowInterAd((bool res) =>
+        {
+            StartCoroutine(EffectBack());
+        });
+        
     }
     IEnumerator EffectBack()
     {
-        AudioManager.Play("click");
         Transform Level = transform.Find("Lv" + numberPlaying.ToString() + "(Clone)");
-        Level.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutQuart);
-        buttonBack.DOAnchorPosX(-102, 0.3f).SetEase(Ease.OutQuart);
-        buttonTextLevel.DOAnchorPosY(115, 0.3f).SetEase(Ease.OutQuart);
-        buttonTime.DOAnchorPosY(115, 0.3f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        Level.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
+        buttonBack.DOAnchorPosX(-102, 0.75f).SetEase(Ease.OutQuart);
+        buttonTextLevel.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);
+        buttonTime.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.8f);
         if (Level != null)
         {
             Destroy(Level.gameObject);
@@ -109,43 +245,51 @@ public class ModeController : MonoBehaviour
     public void Replay()
     {
         AudioManager.Play("click");
+        StartCoroutine(effectReplay());
+    }
+    IEnumerator effectReplay()
+    {
+        lose.SetTrigger("hide");
+        yield return new WaitForSeconds(0.5f);
         Transform Level = transform.Find("Lv" + numberPlaying.ToString() + "(Clone)");
         if (Level != null)
         {
             Destroy(Level.gameObject);
         }
+        numberTictac = 0;
         loseGame.SetActive(false);
         GameObject loadedPrefab = Resources.Load<GameObject>("Lv" + numberPlaying.ToString());
         GameObject level = Instantiate(loadedPrefab, gameObject.transform);
         level.transform.SetParent(gameObject.transform, false);
-        time = 30;
+        if (numberPlaying <= 20)
+        {
+            time = 25.5f;
+        }
+        else 
+        {
+            time = 30.5f;
+        }
         AudioManager.Play("new_level");
     }
-    public void SkipLevel()
+    public void Home()
     {
         AudioManager.Play("click");
-        buttonBack.anchoredPosition = new Vector3(-102, buttonBack.anchoredPosition.y, 0);
-        buttonTextLevel.anchoredPosition = new Vector3(buttonTextLevel.anchoredPosition.x, 115, 0);
-        buttonTime.anchoredPosition = new Vector3(buttonTime.anchoredPosition.x, 115, 0);
-        buttonBack.DOAnchorPosX(102, 0.5f).SetEase(Ease.OutQuart);
-        buttonTextLevel.DOAnchorPosY(-115, 0.5f).SetEase(Ease.OutQuart);
-        buttonTime.DOAnchorPosY(-283, 0.5f).SetEase(Ease.OutQuart);
-        if (numberPlaying == unlockedModeNumber - 1)
-        {
-            PlayerPrefs.SetInt("levelsUnlocked", unlockedModeNumber + 1);
-        }
-        Transform Level = transform.Find( "Lv" + numberPlaying.ToString() + "(Clone)");
+        isWin = false;
+        Transform Level = transform.Find("Lv" + numberPlaying.ToString() + "(Clone)");
         if (Level != null)
         {
             Destroy(Level.gameObject);
         }
-        numberPlaying++;
+        StartCoroutine(HideHome());
+    }
+    IEnumerator HideHome()
+    {
+        lose.SetTrigger("hide");
+        yield return new WaitForSeconds(0.5f);
         loseGame.SetActive(false);
-        GameObject loadedPrefab = Resources.Load<GameObject>("Lv" + numberPlaying.ToString());
-        GameObject level = Instantiate(loadedPrefab, gameObject.transform);
-        level.transform.SetParent(gameObject.transform, false);
-        time = 30;
-        AudioManager.Play("new_level");
+        home.SetActive(true);
+        //yield return new WaitForSeconds(0.05f);
+        gameObject.SetActive(false);
     }
     private void ChangeBG()
     {

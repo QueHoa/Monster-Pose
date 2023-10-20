@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 124276993952611736}
   - component: {fileID: 8503853543000472553}
   - component: {fileID: 8503853543000472558}
+  - component: {fileID: 5620236112325389861}
   m_Layer: 5
   m_Name: ItemMode
   m_TagString: Untagged
@@ -156,6 +157,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d0fc36db8c694e848b3daa4752dce292, type: 3}
   - {fileID: 21300000, guid: 49f50bbdd5d325243901641dc8064ecb, type: 3}
   tickDone: {fileID: 124276993952611356}
+--- !u!114 &5620236112325389861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124276993952611339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9726a4da22a88c4f87a1540a3fe1e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 0.95
 --- !u!1 &124276993952611356
 GameObject:
   m_ObjectHideFlags: 0

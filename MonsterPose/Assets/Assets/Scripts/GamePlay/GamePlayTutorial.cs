@@ -78,16 +78,16 @@ public class GamePlayTutorial : MonoBehaviour
                         isBeginInBox = false;
                     }
                 }                  
-                if (playerRenderer.sprite == playerSprites[2] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
+                if (playerRenderer.sprite == playerSprites[1] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
                 {
                     isDrag = true;
                     rb.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
                 }
-                if (playerRenderer.sprite != playerSprites[2] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
+                if (playerRenderer.sprite != playerSprites[1] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
                 {
                     transform.position = new Vector2(oldPosition.x, oldPosition.y);
                 }
-                if (playerRenderer.sprite != playerSprites[2] && touch.phase == TouchPhase.Ended)
+                if (playerRenderer.sprite != playerSprites[1] && touch.phase == TouchPhase.Ended)
                 {
                     if (Mathf.Abs(touchPos.x - deltaX - oldPosition.x) <= 0.15f && Mathf.Abs(touchPos.y - deltaY - oldPosition.y) <= 0.15f && IsWithinBoxCollider())
                     {
@@ -99,7 +99,7 @@ public class GamePlayTutorial : MonoBehaviour
                         anim.SetTrigger("fail");
                     }  
                 }                
-                if (playerRenderer.sprite == playerSprites[2] && touch.phase == TouchPhase.Ended && IsWithinBoxCollider())
+                if (playerRenderer.sprite == playerSprites[1] && touch.phase == TouchPhase.Ended && IsWithinBoxCollider())
                 {
                     if (Mathf.Abs(transform.position.x - rightPos.position.x) <= 0.8f && Mathf.Abs(transform.position.y - rightPos.position.y) <= 0.8f && playerRenderer.sprite == playerSprites[numberWin])
                     {
@@ -139,7 +139,7 @@ public class GamePlayTutorial : MonoBehaviour
             numHeart++;
         }           
         playerRenderer.sprite = playerSprites[numHeart];
-        if (playerRenderer.sprite == playerSprites[2])
+        if (playerRenderer.sprite == playerSprites[1])
         {
             textTap.SetActive(false);
             MoveTap();

@@ -30,7 +30,7 @@ public class Setting : MonoBehaviour
     {
         AudioManager.Play("click");
         anim.SetTrigger("hide");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         gameObject.SetActive(false);
     }
 }

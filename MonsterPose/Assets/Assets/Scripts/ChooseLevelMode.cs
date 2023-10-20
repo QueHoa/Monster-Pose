@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using OneHit.Framework;
+using OneHit;
 
 public class ChooseLevelMode : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class ChooseLevelMode : MonoBehaviour
         homeController = GameManager.Instance.homeController;
         value = int.Parse(gameObject.name) ;
         numberLevel.text = value.ToString();
-        transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuart);
+        transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutQuart);
         if (value <= unlockedModeNumber)
         {
             gameObject.GetComponent<Button>().interactable = true;
@@ -70,10 +71,10 @@ public class ChooseLevelMode : MonoBehaviour
     IEnumerator EffectChoose()
     {
         AudioManager.Play("click");
-        homeController.buttonBackMode.DOAnchorPosX(-112, 0.5f).SetEase(Ease.OutQuart);
-        homeController.buttonTextMode.DOAnchorPosY(160, 0.5f).SetEase(Ease.OutQuart);
-        homeController.boardLevelMode.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.5f);
+        homeController.buttonBackMode.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
+        homeController.buttonTextMode.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
+        homeController.boardLevelMode.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
+        yield return new WaitForSeconds(0.8f);
         modeController.numberPlaying = int.Parse(gameObject.name);
         GameObject loadedPrefab = Resources.Load<GameObject>("Lv" + gameObject.name);
         GameObject level = Instantiate(loadedPrefab, mode.transform);

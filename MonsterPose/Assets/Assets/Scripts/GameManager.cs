@@ -8,7 +8,6 @@ using OneHit;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject loading;
     public GameObject main;
     public GameObject mode;
     public GameObject home;
@@ -52,14 +51,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int isSound;
 
-    private int noLoading;
     private int unlockedLevelsNumber;
     private int unlockedModesNumber;
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
-        noLoading = 0;
         isMusic = PlayerPrefs.GetInt("MusicOn");
         isSound = PlayerPrefs.GetInt("SoundOn");
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
@@ -99,6 +96,10 @@ public class GameManager : MonoBehaviour
             onVibrate2.enabled = false;
             offVibrate.enabled = true;
         }
+        if (isMusic == 1)
+        {
+            AudioManager.PlayBGM();
+        }
     }
     private void Awake()
     {
@@ -130,6 +131,7 @@ public class GameManager : MonoBehaviour
         GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
         GameObject level = Instantiate(loadedPrefab, main.transform);
         level.transform.SetParent(main.transform, false);
+        MasterControl.Instance.ShowBanner();
     }   
 
     // Update is called once per frame
@@ -139,15 +141,6 @@ public class GameManager : MonoBehaviour
         isMusic = PlayerPrefs.GetInt("MusicOn");
         isSound = PlayerPrefs.GetInt("SoundOn");
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
-        if (!loading.activeInHierarchy && noLoading == 0)
-        {
-            if(isMusic == 1)
-            {
-                AudioManager.PlayBGM();
-            }
-            MasterControl.Instance.ShowBanner();
-            noLoading++;
-        }
     }
     public void SetMusic()
     {

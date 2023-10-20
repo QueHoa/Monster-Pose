@@ -59,7 +59,7 @@ public class MainController : MonoBehaviour
 
     private void OnEnable()
     {
-        FirebaseManager.Instance.LogEvent("Level_Reload_" + (numberPlaying + 1));
+        FirebaseManager.Instance.LogEvent("LEVEL_PLAY_" + (numberPlaying + 1));
         buttonBack.anchoredPosition = new Vector3(-102, buttonBack.anchoredPosition.y, 0);
         buttonSuggest.anchoredPosition = new Vector3(260.2f, buttonSuggest.anchoredPosition.y, 0);
         buttonSkip.anchoredPosition = new Vector3(113.8f, buttonSkip.anchoredPosition.y, 0);
@@ -287,7 +287,7 @@ public class MainController : MonoBehaviour
 
         void SkipAfterAds()
         {
-            FirebaseManager.Instance.LogEvent("Level_Skip_" + (numberPlaying + 1));
+            FirebaseManager.Instance.LogEvent("LEVEL_SKIP_" + (numberPlaying + 1));
             buttonBack.anchoredPosition = new Vector3(-102, buttonBack.anchoredPosition.y, 0);
             buttonSuggest.anchoredPosition = new Vector3(260.2f, buttonSuggest.anchoredPosition.y, 0);
             buttonSkip.anchoredPosition = new Vector3(113.8f, buttonSkip.anchoredPosition.y, 0);
@@ -348,7 +348,7 @@ public class MainController : MonoBehaviour
         if (!PrefInfo.adEnable)
         {
             isHint = true;
-            FirebaseManager.Instance.LogEvent("Level_Hint_" + (numberPlaying + 1));
+            FirebaseManager.Instance.LogEvent("LEVEL_HINT_" + (numberPlaying + 1));
             return;
         }
 
@@ -357,7 +357,7 @@ public class MainController : MonoBehaviour
             if (res)
             {
                 isHint = true;
-                FirebaseManager.Instance.LogEvent("Level_Hint_" + (numberPlaying + 1));
+                FirebaseManager.Instance.LogEvent("LEVEL_HINT_" + (numberPlaying + 1));
             }
         });
     }
@@ -414,17 +414,33 @@ public class MainController : MonoBehaviour
     }
     public void Replay()
     {
-        MasterControl.Instance.ShowInterAd((res) =>
+        AudioManager.Play("click");
+        if (numberPlaying < 3)
         {
-            AudioManager.Play("click");
             numberTictac = 0;
+            FirebaseManager.Instance.LogEvent("REPLAY_" + (numberPlaying + 1));
             Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
             if (Level != null)
             {
                 Destroy(Level.gameObject);
             }
             StartCoroutine(ReloadLevel());
-        });
+        }
+        else
+        {
+            MasterControl.Instance.ShowInterAd((res) =>
+            {
+                numberTictac = 0;
+                FirebaseManager.Instance.LogEvent("REPLAY_" + (numberPlaying + 1));
+                Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
+                StartCoroutine(ReloadLevel());
+            });
+        }
+        
     }
     IEnumerator ReloadLevel()
     {

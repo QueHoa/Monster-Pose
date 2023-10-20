@@ -28,13 +28,14 @@ public class LoadingSystem : Singleton<LoadingSystem>
           firstLoadingDuration = normalLoadingDuration;
 #endif
 
-          //! Start in scene Loading => Main
-          if (PlayerPrefs.GetInt("FirstTimePlay", 1) == 1)
-          {
-               LoadSceneAsync("Play");
-          }
-          else
-               LoadSceneAsync("Lobby");
+        LoadSceneAsync("Main");
+        //! Start in scene Loading => Main
+        //if (PlayerPrefs.GetInt("FirstTimePlay", 1) == 1)
+        //  {
+        //       LoadSceneAsync("Main");
+        //  }
+        //  else
+        //       LoadSceneAsync("Lobby");
      }
 
      public async void LoadSceneAsync(string sceneName)

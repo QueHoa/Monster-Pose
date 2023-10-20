@@ -14,7 +14,7 @@ public class LosePanelMode : MonoBehaviour
     }
     private void OnEnable()
     {
-        FirebaseManager.Instance.LogEvent("Level_Lose_Challenge_" + mode.numberPlaying);
+        FirebaseManager.Instance.LogEvent("LEVEL_LOSE_CHALLENGE_" + mode.numberPlaying);
         anim.SetTrigger("show");
     }
 

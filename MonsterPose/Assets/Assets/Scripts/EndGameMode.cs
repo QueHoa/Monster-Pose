@@ -24,6 +24,7 @@ public class EndGameMode : MonoBehaviour
     }
     private void OnEnable()
     {
+        FirebaseManager.Instance.LogEvent("LEVEL_WIN_CHALLENGE_" + mode.numberPlaying);
         anim = GetComponent<Animator>();
         anim.SetTrigger("show");
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
@@ -46,7 +47,7 @@ public class EndGameMode : MonoBehaviour
         AudioManager.Play("click");
         MasterControl.Instance.ShowInterAd((bool res) =>
         {
-            FirebaseManager.Instance.LogEvent("Level_Next_Challenge_" + mode.numberPlaying);
+            FirebaseManager.Instance.LogEvent("LEVEL_NEXT_CHALLENGE_" + mode.numberPlaying);
             mode.isWin = false;
             Transform Level = mode.transform.Find("Lv" + mode.numberPlaying.ToString() + "(Clone)");
             if (Level != null)

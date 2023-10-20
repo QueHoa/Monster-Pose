@@ -30,6 +30,7 @@ public class EndGame : MonoBehaviour
     }
     private void OnEnable()
     {
+        FirebaseManager.Instance.LogEvent("LEVEL_WIN_" + (main.numberPlaying + 1));
         screenShot = GameManager.Instance.screenShot;
         anim = GetComponent<Animator>();
         anim.SetTrigger("show");

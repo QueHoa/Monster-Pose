@@ -145,7 +145,7 @@ public class HomeController : MonoBehaviour
     }
     public void LevelList()
     {
-        FirebaseManager.Instance.LogEvent("Level_Levelist_Access");
+        FirebaseManager.Instance.LogEvent("LEVEL_LEVELIST_ACCESS");
         StartCoroutine(EffectLevelList());
     }
     IEnumerator EffectLevelList()
@@ -168,7 +168,7 @@ public class HomeController : MonoBehaviour
     }
     public void Gallery()
     {
-        FirebaseManager.Instance.LogEvent("Level_Gallery_Access");
+        FirebaseManager.Instance.LogEvent("LEVEL_GALLERY_ACCESS");
         StartCoroutine(EffectGallery());
     }
     IEnumerator EffectGallery()
@@ -192,7 +192,7 @@ public class HomeController : MonoBehaviour
     }
     public void Modelist()
     {
-        FirebaseManager.Instance.LogEvent("Level_Challenge_Access");
+        FirebaseManager.Instance.LogEvent("LEVEL_CHALLENGE_ACCESS");
         StartCoroutine(EffectMode());
     }
     IEnumerator EffectMode()

@@ -39,7 +39,7 @@ public class ModeController : MonoBehaviour
     }
     private void OnEnable()
     {
-        FirebaseManager.Instance.LogEvent("Level_Challenge_Replay_" + numberPlaying);
+        FirebaseManager.Instance.LogEvent("LEVEL_CHALLENGE_REPLAY_" + numberPlaying);
         buttonBack.anchoredPosition = new Vector3(-102, buttonBack.anchoredPosition.y, 0);
         buttonTextLevel.anchoredPosition = new Vector3(buttonTextLevel.anchoredPosition.x, 115, 0);
         buttonTime.anchoredPosition = new Vector3(buttonTime.anchoredPosition.x, 115, 0);
@@ -203,7 +203,6 @@ public class ModeController : MonoBehaviour
         }
         if (time <= 0 && !endGame.activeInHierarchy)
         {
-            FirebaseManager.Instance.LogEvent("Level_Lose_Mode_" + numberPlaying);
             loseGame.SetActive(true);
         }
         if (isWin)
@@ -245,7 +244,17 @@ public class ModeController : MonoBehaviour
     public void Replay()
     {
         AudioManager.Play("click");
-        StartCoroutine(effectReplay());
+        if (numberPlaying <= 3)
+        {
+            StartCoroutine(effectReplay());
+        }
+        else
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                StartCoroutine(effectReplay());
+            });
+        }
     }
     IEnumerator effectReplay()
     {
@@ -274,13 +283,16 @@ public class ModeController : MonoBehaviour
     public void Home()
     {
         AudioManager.Play("click");
-        isWin = false;
-        Transform Level = transform.Find("Lv" + numberPlaying.ToString() + "(Clone)");
-        if (Level != null)
+        MasterControl.Instance.ShowInterAd((bool res) =>
         {
-            Destroy(Level.gameObject);
-        }
-        StartCoroutine(HideHome());
+            isWin = false;
+            Transform Level = transform.Find("Lv" + numberPlaying.ToString() + "(Clone)");
+            if (Level != null)
+            {
+                Destroy(Level.gameObject);
+            }
+            StartCoroutine(HideHome());
+        });
     }
     IEnumerator HideHome()
     {

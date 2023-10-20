@@ -9,8 +9,6 @@ using OneHit;
 public class StartLoading : MonoBehaviour
 {
     [SerializeField]
-    private GameObject uiMain;
-    [SerializeField]
     private Image bar;
     [SerializeField]
     private AnimationCurve curve;
@@ -36,10 +34,6 @@ public class StartLoading : MonoBehaviour
                 DOTween.To(() => alpha.alpha, x => alpha.alpha = x, 0, 1f)
             .OnUpdate(() =>
             {
-                if (alpha.alpha < 0.7f)
-                {
-                    uiMain.SetActive(true);
-                }
                 if (alpha.alpha < 0.1f)
                 {
                     gameObject.SetActive(false);

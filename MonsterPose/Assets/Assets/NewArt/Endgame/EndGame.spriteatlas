@@ -52,6 +52,8 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: df054d20d2819e240be8256bbc490ef2, type: 3}
   - {fileID: 21300000, guid: f2d79130fc4f8374bb2ee84f0e7840a0, type: 3}
+  - {fileID: 21300000, guid: f58514a1d1b822a4baefc1764add7e57, type: 3}
+  - {fileID: 21300000, guid: 49f452b1aa6367445a1f2cbf5988a2ab, type: 3}
   - {fileID: 21300000, guid: 888556b1bcc3ffb48aae75716bcc36de, type: 3}
   - {fileID: 21300000, guid: 47284012e8486e646acaa8116a082886, type: 3}
   - {fileID: 21300000, guid: 16714a523b30fb546a7c6d7426e0516f, type: 3}
@@ -74,12 +76,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d290f4db25c68eb47a8f9e83ceec3f6d, type: 3}
   - {fileID: 21300000, guid: c67a36ed84b5da640bcf48cc2b7380b6, type: 3}
   - {fileID: 21300000, guid: 47af250e67fb75d4fb85075b8704bc17, type: 3}
-  - {fileID: 21300000, guid: 9dcdd94f8f755ff41af7f6959f0aca67, type: 3}
   - {fileID: 21300000, guid: b43d437f28be12e45a2f0138a812541a, type: 3}
   - {fileID: 21300000, guid: 635cf97fe671ad5499c04fed2ea4f775, type: 3}
   m_PackedSpriteNamesToIndex:
   - video
   - khung level
+  - next (1)
+  - home (2)
   - end_lose_btn_skip
   - end_lose_popup
   - No Internet - Smart Object Group
@@ -102,7 +105,6 @@ SpriteAtlas:
   - Layer 212 - Smart Object Group
   - end_win_btn_next
   - video is not ready
-  - end_win_preview
   - Notification
   - light
   m_RenderDataMap: {}

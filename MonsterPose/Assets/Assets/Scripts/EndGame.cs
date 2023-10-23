@@ -8,17 +8,19 @@ using OneHit;
 
 public class EndGame : MonoBehaviour
 {
-    [SerializeField]
-    private MainController main;
+    public MainController main;
+    public GameObject home;
     [SerializeField]
     private GameObject trailerMode;
     [SerializeField]
     private GameObject[] effect;
     public GameObject fade;
+    public Text title;
     private RawImage screenShot;
     private Animator anim;
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;
+    private int x;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,27 @@ public class EndGame : MonoBehaviour
     {
         FirebaseManager.Instance.LogEvent("LEVEL_WIN_" + (main.numberPlaying + 1));
         screenShot = GameManager.Instance.screenShot;
+        x = Random.Range(1,5);
+        if (x == 1)
+        {
+            title.text = "Great!!!";
+        }
+        else if (x == 2)
+        {
+            title.text = "Well Done!";
+        }
+        else if (x == 3)
+        {
+            title.text = "Good Job!";
+        }
+        else if (x == 4)
+        {
+            title.text = "Amazing!!!";
+        }
+        else if (x == 5)
+        {
+            title.text = "Perfect!!!";
+        }
         anim = GetComponent<Animator>();
         anim.SetTrigger("show");
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
@@ -55,7 +78,7 @@ public class EndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (main.numberPlaying == unlockedLevelsNumber - 1 && main.numberPlaying != 19)
+        if (main.numberPlaying == unlockedLevelsNumber - 1 && main.numberPlaying != 149)
         {
             PlayerPrefs.SetInt("levelsUnlocked", unlockedLevelsNumber + 1);
         }
@@ -131,6 +154,50 @@ public class EndGame : MonoBehaviour
         GameObject level = Instantiate(loadedPrefab, main.transform);
         level.transform.SetParent(main.transform, false);
         main.gameObject.SetActive(true);
+        for (int i = 0; i < effect.Length; i++)
+        {
+            effect[i].SetActive(false);
+        }
+        yield return new WaitForSeconds(0.2f);
+        gameObject.SetActive(false);
+    }
+    public void BackHome()
+    {
+        AudioManager.Play("click");
+        AudioManager.Stop("clap2");
+        if (main.numberPlaying > 1)
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                main.isWin = false;
+                Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
+                main.gameObject.SetActive(false);
+                StartCoroutine(HideHome());
+            });
+        }
+        else
+        {
+            main.isWin = false;
+            Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+            if (Level != null)
+            {
+                Destroy(Level.gameObject);
+            }
+            main.gameObject.SetActive(false);
+            StartCoroutine(HideHome());
+        }
+    }
+    IEnumerator HideHome()
+    {
+        anim.SetTrigger("hide");
+        yield return new WaitForSeconds(1.5f);
+        fade.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        home.SetActive(true);
         for (int i = 0; i < effect.Length; i++)
         {
             effect[i].SetActive(false);

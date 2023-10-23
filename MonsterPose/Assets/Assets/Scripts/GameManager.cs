@@ -56,7 +56,38 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+    private void Awake()
+    {
         Application.targetFrameRate = 60;
+        Input.multiTouchEnabled = false;
+        Instance = this;
+        //PlayerPrefs.SetInt("levelsUnlocked", 150);
+        if (!PlayerPrefs.HasKey("levelsUnlocked"))
+        {
+            PlayerPrefs.SetInt("levelsUnlocked", 1);
+        }
+        //PlayerPrefs.SetInt("levelsModeUnlocked", 1);
+        if (!PlayerPrefs.HasKey("levelsModeUnlocked"))
+        {
+            PlayerPrefs.SetInt("levelsModeUnlocked", 1);
+        }
+        if (!PlayerPrefs.HasKey("MusicOn"))
+        {
+            PlayerPrefs.SetInt("MusicOn", 1);
+        }
+        if (!PlayerPrefs.HasKey("SoundOn"))
+        {
+            PlayerPrefs.SetInt("SoundOn", 1);
+        }
+        if (!PlayerPrefs.HasKey("VibrateOn"))
+        {
+            PlayerPrefs.SetInt("VibrateOn", 1);
+        }
+        unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
+        MasterControl.Instance.ShowBanner();
+        
         isMusic = PlayerPrefs.GetInt("MusicOn");
         isSound = PlayerPrefs.GetInt("SoundOn");
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
@@ -96,48 +127,18 @@ public class GameManager : MonoBehaviour
             onVibrate2.enabled = false;
             offVibrate.enabled = true;
         }
+        GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
+        GameObject level = Instantiate(loadedPrefab, main.transform);
+        level.transform.SetParent(main.transform, false);
         if (isMusic == 1)
         {
             AudioManager.PlayBGM();
         }
-    }
-    private void Awake()
-    {
-        Input.multiTouchEnabled = false;
-        Instance = this;
-        //PlayerPrefs.SetInt("levelsUnlocked", 150);
-        if (!PlayerPrefs.HasKey("levelsUnlocked"))
-        {
-            PlayerPrefs.SetInt("levelsUnlocked", 1);
-        }
-        //PlayerPrefs.SetInt("levelsModeUnlocked", 1);
-        if (!PlayerPrefs.HasKey("levelsModeUnlocked"))
-        {
-            PlayerPrefs.SetInt("levelsModeUnlocked", 1);
-        }
-        if (!PlayerPrefs.HasKey("MusicOn"))
-        {
-            PlayerPrefs.SetInt("MusicOn", 1);
-        }
-        if (!PlayerPrefs.HasKey("SoundOn"))
-        {
-            PlayerPrefs.SetInt("SoundOn", 1);
-        }
-        if (!PlayerPrefs.HasKey("VibrateOn"))
-        {
-            PlayerPrefs.SetInt("VibrateOn", 1);
-        }
-        unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
-        GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
-        GameObject level = Instantiate(loadedPrefab, main.transform);
-        level.transform.SetParent(main.transform, false);
-        MasterControl.Instance.ShowBanner();
     }   
 
     // Update is called once per frame
     void Update()
     {
-
         isMusic = PlayerPrefs.GetInt("MusicOn");
         isSound = PlayerPrefs.GetInt("SoundOn");
         isVibrate = PlayerPrefs.GetInt("VibrateOn");

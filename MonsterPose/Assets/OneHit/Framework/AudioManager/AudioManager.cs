@@ -8,6 +8,7 @@ namespace OneHit.Framework
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager Instance;
+        public static int x;
         void Awake()
         {
             Instance = this;
@@ -19,6 +20,7 @@ namespace OneHit.Framework
                 s.source.pitch = 1;
                 s.source.loop = s.loop;
             }
+            x = Random.Range(1, 3);
         }
 
         private void Start()
@@ -29,7 +31,6 @@ namespace OneHit.Framework
         public List<Sound> sounds = new List<Sound>();
         public static void PlayBGM()
         {
-            int x = Random.Range(1,3);
             if (x == 1)
             {
                 Sound s = Instance.sounds.Find(sound => sound.name == "BGM");
@@ -56,13 +57,38 @@ namespace OneHit.Framework
         }
         public static void UpdateMusic()
         {
-            Sound s = Instance.sounds.Find(sound => sound.name == "BGM");
-            if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+            if (x == 1)
             {
-                s.source?.Stop();
+                Sound s = Instance.sounds.Find(sound => sound.name == "BGM");
+                if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+                {
+                    s.source?.Stop();
+                }
+                else
+                    s.source?.Play();
             }
-            else
-                s.source?.Play();
+            else if (x == 2)
+            {
+                Sound s = Instance.sounds.Find(sound => sound.name == "BGM1");
+                if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+                {
+                    s.source?.Stop();
+                }
+                else
+                    s.source?.Play();
+            }
+            else if (x == 3)
+            {
+                Sound s = Instance.sounds.Find(sound => sound.name == "BGM2");
+                if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+                {
+                    s.source?.Stop();
+                }
+                else
+                    s.source?.Play();
+            }
+
+            
         }
         public static void AdjustMusicVolume(float volume, float time = 0.5f)
         {

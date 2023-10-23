@@ -87,22 +87,25 @@ public class EndGameMode : MonoBehaviour
     public void Home()
     {
         AudioManager.Play("click");
-        mode.isWin = false;
-        Transform Level = mode.transform.Find("Lv" + mode.numberPlaying.ToString() + "(Clone)");
-        if (Level != null)
+        MasterControl.Instance.ShowInterAd((bool res) =>
         {
-            Destroy(Level.gameObject);
-        }
-        if (mode.numberPlaying !=30)
-        {
-            mode.numberPlaying++;
-        }
-        else
-        {
-            mode.numberPlaying = 1;
-        }
-        mode.gameObject.SetActive(false);
-        StartCoroutine(HideHome());
+            mode.isWin = false;
+            Transform Level = mode.transform.Find("Lv" + mode.numberPlaying.ToString() + "(Clone)");
+            if (Level != null)
+            {
+                Destroy(Level.gameObject);
+            }
+            if (mode.numberPlaying != 30)
+            {
+                mode.numberPlaying++;
+            }
+            else
+            {
+                mode.numberPlaying = 1;
+            }
+            mode.gameObject.SetActive(false);
+            StartCoroutine(HideHome());
+        });
     }
     IEnumerator HideHome()
     {

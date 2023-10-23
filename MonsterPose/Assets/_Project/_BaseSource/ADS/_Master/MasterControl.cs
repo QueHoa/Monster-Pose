@@ -59,8 +59,6 @@ namespace OneHit
 
         public void ShowRewardAd(Action<bool> callback)
         {
-            //AdLoadingPanel.Instance.TurnOn();
-            //await UniTask.Delay(500);
             _adsManager.ShowRewardedVideo(callback);
         }
 

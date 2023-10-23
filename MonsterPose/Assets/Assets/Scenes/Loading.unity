@@ -471,6 +471,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 277936360, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: isTestNoInternet
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1298855112, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: _androidAppKey
       value: 1b2b5e35d

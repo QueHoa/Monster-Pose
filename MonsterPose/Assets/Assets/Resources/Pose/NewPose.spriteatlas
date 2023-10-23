@@ -339,6 +339,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e9e3f26cb9f312c4eaee6abe768215ff, type: 3}
   - {fileID: 21300000, guid: c991c96c52a2eef41b68737fee451f94, type: 3}
   - {fileID: 21300000, guid: 6e85317c8cd2b94409a577fa9287a8cf, type: 3}
+  - {fileID: 21300000, guid: 573aa38cacb76e54f80ad6eed4ebb1cd, type: 3}
   - {fileID: 21300000, guid: 9369398cb225cb04aacd6b948dfdd150, type: 3}
   - {fileID: 21300000, guid: 7facac8c077637c43b58228e47158188, type: 3}
   - {fileID: 21300000, guid: d8a9839c5cbceeb4db4ab0917aa540d2, type: 3}
@@ -409,6 +410,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cd38dc9fb2b45b84b93a16377527c546, type: 3}
   - {fileID: 21300000, guid: a3ec84afcf073504291177da89256d94, type: 3}
   - {fileID: 21300000, guid: 1d36eaaf8dcd99249882963c9b04d3ff, type: 3}
+  - {fileID: 21300000, guid: db4850bf5ff0e8442a206c0cc5ffc9b9, type: 3}
   - {fileID: 21300000, guid: 92eb72bf3dfb9e24496c42bd3e4f6aba, type: 3}
   - {fileID: 21300000, guid: 081ba2bfa123baf40adbf4e26c1f31c8, type: 3}
   - {fileID: 21300000, guid: 44b781cf40e7a524bbac57695c9dadfa, type: 3}
@@ -710,6 +712,7 @@ SpriteAtlas:
   - kissy1
   - tim lv 64
   - brown 68_1
+  - logo2
   - grimace4
   - banban do lv60
   - 97red2
@@ -780,6 +783,7 @@ SpriteAtlas:
   - green lv57
   - D
   - Loa_lv119
+  - logo
   - 89duck
   - 99blue
   - orange 71

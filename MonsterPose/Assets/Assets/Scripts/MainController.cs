@@ -81,7 +81,7 @@ public class MainController : MonoBehaviour
         numberTictac = 0;
         sliceTime.fillAmount = 1;
         ChangeBG();
-        AudioManager.Play("new_level");
+        
         isHint = false;
         isWin = false;
         buttonBack.DOAnchorPosX(102, 0.8f).SetEase(Ease.OutQuart);
@@ -89,6 +89,7 @@ public class MainController : MonoBehaviour
         buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
         buttonTextLevel.DOAnchorPosY(-115, 0.8f).SetEase(Ease.OutQuart);
         buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+        AudioManager.Play("new_level");
     }
     // Update is called once per frame
     void Update()

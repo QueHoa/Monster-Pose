@@ -54,7 +54,8 @@ public class MainController : MonoBehaviour
 
     private void Start()
     {
-        InternetConnection.Instance.CheckInternetAfterLoading();   
+        InternetConnection.Instance.CheckInternetAfterLoading();
+        AudioManager.Play("new_level");
     }
 
     private void OnEnable()

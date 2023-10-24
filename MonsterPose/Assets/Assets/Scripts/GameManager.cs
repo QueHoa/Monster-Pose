@@ -56,7 +56,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (isMusic == 1)
+        {
+            AudioManager.PlayBGM();
+        }
     }
     private void Awake()
     {
@@ -130,10 +133,6 @@ public class GameManager : MonoBehaviour
         GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
         GameObject level = Instantiate(loadedPrefab, main.transform);
         level.transform.SetParent(main.transform, false);
-        if (isMusic == 1)
-        {
-            AudioManager.PlayBGM();
-        }
     }   
 
     // Update is called once per frame

@@ -12,6 +12,7 @@ namespace OneHit {
           [Header("Key")]
           [SerializeField, GUIColor(0f, 0.8f, 1f)] private string androidAppOpenAdID;
           [SerializeField, GUIColor(0f, 0.8f, 1f)] private string iosAppOpenAdID;
+        public GameObject fade;
 
           [Header("Test")]
           [SerializeField] private bool testAppOpenAd;
@@ -154,7 +155,11 @@ namespace OneHit {
                if (state == AppState.Foreground) {
                     if (SceneManager.GetActiveScene().buildIndex == 0)
                          return;
-                    _adsManager.ShowAppOpenAd(null);
+                fade.SetActive(true);
+                    _adsManager.ShowAppOpenAd(res =>
+                    {
+                        fade.SetActive(false);
+                    });
                }
           }
 

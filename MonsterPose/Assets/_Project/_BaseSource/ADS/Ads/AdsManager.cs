@@ -27,6 +27,7 @@ namespace OneHit
         public float rewardedVideoReloadWaitTime = 1.2f;
         public float appOpenAdReloadWaitTime = 2f;
 
+        public GameObject fade;
         [Header("Time between 2 ads in a row")]
         public static float timeAllowedToShowInterstitial = 15f;
 
@@ -407,7 +408,6 @@ namespace OneHit
                 Debug.LogError("ADS MANAGER: Ads unavailable");
                 return;
             }
-
             _admob.LoadAppOpenAd();
         }
 
@@ -420,7 +420,6 @@ namespace OneHit
             //               OnAppOpenAdCallback(true);
             //               return;
             //#endif
-
             if (adsState == AdsState.UnlockAll || !PrefInfo.IsUsingAd())
             {
                 Debug.LogWarning("ADS MANAGER: Skip app open ad (Unlock all || Ads removed)");
@@ -447,6 +446,7 @@ namespace OneHit
             if (_admob.IsOpenAdAvailable)
             {
                 Debug.LogWarning("ADS MANAGER: Ready show app open ad");
+                await UniTask.Delay(100);
                 _admob.ShowAppOpenAd();
             }
             else
@@ -473,7 +473,6 @@ namespace OneHit
         {
             Debug.LogWarning("ADS MANAGER: On App Open Ad Close");
             FirebaseManager.Instance.LogEvent(FirebaseEvent.OPEN_AD);
-
             allowShowOpenAd = true;
 
             OnAppOpenAdCallback(true);
@@ -484,7 +483,6 @@ namespace OneHit
         {
             Debug.LogWarning("ADS MANAGER: On App Open Ad Failed");
             PrefInfo.SetTimeShowAds();
-
             allowShowOpenAd = true;
 
             OnAppOpenAdCallback(false);

@@ -288,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 853875739}
     - target: {fileID: 4850430750209478173, guid: ac9da4f4d02cec94087686fe2f57f146, type: 3}
       propertyPath: normalLoadingDuration
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4850430750300295226, guid: ac9da4f4d02cec94087686fe2f57f146, type: 3}
       propertyPath: m_Sprite
@@ -480,6 +480,10 @@ PrefabInstance:
       value: 1b2b5e35d
       objectReference: {fileID: 0}
     - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 1568703030}
+    - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: androidAppOpenAdID
       value: ca-app-pub-1370756799605534/4527120795
       objectReference: {fileID: 0}
@@ -549,6 +553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+--- !u!1 &1568703030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5259106620008571256, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+  m_PrefabInstance: {fileID: 1065078600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1616826701
 GameObject:
   m_ObjectHideFlags: 0

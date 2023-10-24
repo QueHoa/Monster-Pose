@@ -63,8 +63,10 @@ public class LoadingSystem : Singleton<LoadingSystem>
           // Phải show xong open ad mới cho chuyển scene
           if (isFirstTimeLoading)
           {
+            MasterControl.Instance._adsManager.fade.SetActive(true);
                MasterControl.Instance.ShowOpenAd(async success =>
                {
+                   MasterControl.Instance._adsManager.fade.SetActive(false);
                     // Activate the next scene
                     scene.allowSceneActivation = true;
                     await UniTask.Delay(300);

@@ -283,6 +283,10 @@ PrefabInstance:
       value: LoadingSystem
       objectReference: {fileID: 0}
     - target: {fileID: 4850430750209478173, guid: ac9da4f4d02cec94087686fe2f57f146, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 1568703030}
+    - target: {fileID: 4850430750209478173, guid: ac9da4f4d02cec94087686fe2f57f146, type: 3}
       propertyPath: loadingLogo
       value: 
       objectReference: {fileID: 853875739}
@@ -475,6 +479,10 @@ PrefabInstance:
       propertyPath: isTestNoInternet
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 667280063, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: fadeOpenAd
+      value: 
+      objectReference: {fileID: 1568703030}
     - target: {fileID: 1298855112, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: _androidAppKey
       value: 1b2b5e35d
@@ -483,6 +491,10 @@ PrefabInstance:
       propertyPath: fade
       value: 
       objectReference: {fileID: 1568703030}
+    - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: testAppOpenAd
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: androidAppOpenAdID
       value: ca-app-pub-1370756799605534/4527120795
@@ -550,6 +562,26 @@ PrefabInstance:
     - target: {fileID: 3052101458498344343, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259106620008571256, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265296008581422274, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f82ed504fb2c1d14487e86d6d3579a87, type: 3}
+    - target: {fileID: 5265296008581422274, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265296008581422274, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265296008581422274, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}

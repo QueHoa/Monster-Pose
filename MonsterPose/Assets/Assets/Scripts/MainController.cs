@@ -34,6 +34,7 @@ public class MainController : MonoBehaviour
     private GameObject endGame;
     [SerializeField]
     private GameObject trailerMode;
+    public GameObject panelSetting;
     public RectTransform buttonBack;
     public RectTransform buttonSuggest;
     public RectTransform buttonSkip;
@@ -44,6 +45,7 @@ public class MainController : MonoBehaviour
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;
     private int numberTictac;
+    private bool startTime;
 
     // Start is called before the first frame update
     private void Awake()
@@ -90,6 +92,7 @@ public class MainController : MonoBehaviour
         buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
         buttonTextLevel.DOAnchorPosY(-115, 0.8f).SetEase(Ease.OutQuart);
         buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+        startTime = false;
         AudioManager.Play("new_level");
     }
     // Update is called once per frame
@@ -99,7 +102,18 @@ public class MainController : MonoBehaviour
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
         if (!losePanel.gameObject.activeInHierarchy && !endGame.activeInHierarchy)
         {
-            time -= Time.deltaTime;
+            if (numberPlaying != 0 && !startTime)
+            {
+                startTime = true;
+            }
+            if(numberPlaying == 0 && !startTime)
+            {
+                StartCoroutine(StartTime());
+            }
+            if (startTime)
+            {
+                time -= Time.deltaTime;
+            }
             if (time <= 0)
             {
                 time = 0;
@@ -240,6 +254,11 @@ public class MainController : MonoBehaviour
         }
         textLevel.text = "LEVEL " + (numberPlaying + 1).ToString();
     }
+    IEnumerator StartTime()
+    {
+        yield return new WaitForSeconds(7);
+        startTime = true;
+    }
     private void ChangeBG()
     {
         int numBG = Random.Range(0, background.Length);
@@ -248,10 +267,17 @@ public class MainController : MonoBehaviour
     public void Back()
     {
         AudioManager.Play("click");
-        MasterControl.Instance.ShowInterAd((bool res) =>
+        if(unlockedLevelsNumber > 4)
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                StartCoroutine(EffectBack());
+            });
+        }
+        else
         {
             StartCoroutine(EffectBack());
-        });
+        }
     }
     IEnumerator EffectBack()
     {
@@ -269,6 +295,11 @@ public class MainController : MonoBehaviour
         }
         home.SetActive(true);
         gameObject.SetActive(false);
+    }
+    public void Setting()
+    {
+        AudioManager.Play("click");
+        panelSetting.SetActive(true);
     }
     public void Skip()
     {
@@ -340,6 +371,7 @@ public class MainController : MonoBehaviour
                 {
                     time = 30.5f;
                 }
+                startTime = false;
                 AudioManager.Play("new_level");
             }
         }
@@ -347,21 +379,22 @@ public class MainController : MonoBehaviour
     public void Suggest()
     {
         AudioManager.Play("click");
-        if (!PrefInfo.adEnable)
+        /*if (!PrefInfo.adEnable)
         {
             isHint = true;
             FirebaseManager.Instance.LogEvent("LEVEL_HINT_" + (numberPlaying + 1));
             return;
-        }
-
-        MasterControl.Instance.ShowRewardAd((bool res) =>
+        }*/
+        isHint = true;
+        FirebaseManager.Instance.LogEvent("LEVEL_HINT_" + (numberPlaying + 1));
+        /*MasterControl.Instance.ShowRewardAd((bool res) =>
         {
             if (res)
             {
                 isHint = true;
                 FirebaseManager.Instance.LogEvent("LEVEL_HINT_" + (numberPlaying + 1));
             }
-        });
+        });*/
     }
 
     public void SkipLevel()
@@ -417,18 +450,7 @@ public class MainController : MonoBehaviour
     public void Replay()
     {
         AudioManager.Play("click");
-        if (numberPlaying < 3)
-        {
-            numberTictac = 0;
-            FirebaseManager.Instance.LogEvent("REPLAY_" + (numberPlaying + 1));
-            Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
-            if (Level != null)
-            {
-                Destroy(Level.gameObject);
-            }
-            StartCoroutine(ReloadLevel());
-        }
-        else
+        if (unlockedLevelsNumber > 4)
         {
             MasterControl.Instance.ShowInterAd((res) =>
             {
@@ -441,6 +463,17 @@ public class MainController : MonoBehaviour
                 }
                 StartCoroutine(ReloadLevel());
             });
+        }
+        else
+        {
+            numberTictac = 0;
+            FirebaseManager.Instance.LogEvent("REPLAY_" + (numberPlaying + 1));
+            Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
+            if (Level != null)
+            {
+                Destroy(Level.gameObject);
+            }
+            StartCoroutine(ReloadLevel());
         }
         
     }
@@ -464,6 +497,41 @@ public class MainController : MonoBehaviour
         {
             time = 30.5f;
         }
+        startTime = false;
         AudioManager.Play("new_level");
+    }
+    public void Home()
+    {
+        AudioManager.Play("click");
+        if (unlockedLevelsNumber > 4)
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                StartCoroutine(EffectHome());
+            });
+        }
+        else
+        {
+            StartCoroutine(EffectHome());
+        }
+    }
+    IEnumerator EffectHome()
+    {
+        Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
+        Level.DOScale(Vector3.one, 0.75f).SetEase(Ease.OutQuart);
+        buttonBack.DOAnchorPosX(-102, 0.75f).SetEase(Ease.OutQuart);
+        buttonSuggest.DOAnchorPosX(260.2f, 0.75f).SetEase(Ease.OutQuart);
+        buttonSkip.DOAnchorPosX(113.8f, 0.75f).SetEase(Ease.OutQuart);
+        buttonTextLevel.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);
+        buttonTime.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);
+        losePanel.SetTrigger("hide");
+        yield return new WaitForSeconds(0.8f);
+        losePanel.gameObject.SetActive(false);
+        if (Level != null)
+        {
+            Destroy(Level.gameObject);
+        }
+        home.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

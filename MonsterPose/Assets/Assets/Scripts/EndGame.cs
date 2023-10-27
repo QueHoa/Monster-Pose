@@ -87,7 +87,7 @@ public class EndGame : MonoBehaviour
     {
         AudioManager.Play("click");
         AudioManager.Stop("clap2");
-        if(main.numberPlaying > 1)
+        if(unlockedLevelsNumber > 3)
         {
             MasterControl.Instance.ShowInterAd((bool res) =>
             {
@@ -165,7 +165,7 @@ public class EndGame : MonoBehaviour
     {
         AudioManager.Play("click");
         AudioManager.Stop("clap2");
-        if (main.numberPlaying > 1)
+        if (unlockedLevelsNumber > 4)
         {
             MasterControl.Instance.ShowInterAd((bool res) =>
             {

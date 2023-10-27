@@ -303,10 +303,18 @@ public class HomeController : MonoBehaviour
     public void SetBack()
     {
         AudioManager.Play("click");
-        MasterControl.Instance.ShowInterAd((bool res) =>
+        if(unlockedLevelsNumber > 4)
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                StartCoroutine(EffectBack());
+            });
+        }
+        else
         {
             StartCoroutine(EffectBack());
-        });
+        }
+        
     }
     IEnumerator EffectBack()
     {
@@ -354,10 +362,17 @@ public class HomeController : MonoBehaviour
     public void SetBackGallery()
     {
         AudioManager.Play("click");
-        MasterControl.Instance.ShowInterAd((bool res) =>
+        if(unlockedLevelsNumber > 4)
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                StartCoroutine(EffectBackGallery());
+            });
+        }
+        else
         {
             StartCoroutine(EffectBackGallery());
-        });
+        }
     }
     IEnumerator EffectBackGallery()
     {
@@ -381,10 +396,17 @@ public class HomeController : MonoBehaviour
     public void BackPhoto()
     {
         AudioManager.Play("click");
-        MasterControl.Instance.ShowInterAd((bool res) =>
+        if (unlockedLevelsNumber > 4)
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                StartCoroutine(EffectGallery1());
+            });
+        }
+        else
         {
             StartCoroutine(EffectGallery1());
-        });
+        }
     }
     IEnumerator EffectGallery1()
     {

@@ -8,13 +8,15 @@ using MoreMountains.NiceVibrations;
 public class GameLevelTutorial : MonoBehaviour
 {
     [SerializeField]
-    private GamePlayTutorial[] player;
+    private GamePlayTutorial player;
     [SerializeField]
     private Sprite img3;
     [SerializeField]
     private GameObject heart;
     [SerializeField]
     private GameObject handTap;
+    public GameObject frame;
+    public GameObject frame2;
     private GameObject endGame;
     private MainController main;
     public HapticTypes hapticTypes = HapticTypes.HeavyImpact;
@@ -39,22 +41,20 @@ public class GameLevelTutorial : MonoBehaviour
         win = false;
         takeShot = 0;
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
+        frame.SetActive(false);
+        frame2.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < player.Length; i++)
+        if (!player.locked)
         {
-            if (!player[i].locked)
-            {
-                win = false;
-                break;
-            }
-            if (i == player.Length - 1 && player[i].locked)
-            {
-                win = true;
-            }
+            win = false;
+        }
+        if (player.locked)
+        {
+            win = true;
         }
         if (main.isHint)
         {
@@ -70,16 +70,18 @@ public class GameLevelTutorial : MonoBehaviour
     {
         anim.SetTrigger("tutorial");
         Input.multiTouchEnabled = false;
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(7.5f);
         Input.multiTouchEnabled = true;
     }
     private void ShowHandTap()
     {
         handTap.SetActive(true);
+        player.ChangeSprite();
     }
     IEnumerator Win()
     {
         main.isWin = true;
+        frame2.SetActive(false);
         yield return new WaitForSeconds(0.2f);
         if (isVibrate == 1)
         {
@@ -89,5 +91,14 @@ public class GameLevelTutorial : MonoBehaviour
         ScreenshotWin.Screenshot(screenshotCamera, rawImage);
         yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
+    }
+    public void setFrame()
+    {
+        frame.SetActive(true);
+    }
+    public void setFrame2()
+    {
+        frame.SetActive(false);
+        frame2.SetActive(true);
     }
 }

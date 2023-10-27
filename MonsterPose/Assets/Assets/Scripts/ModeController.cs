@@ -201,7 +201,7 @@ public class ModeController : MonoBehaviour
         {
             loseGame.SetActive(false);
         }
-        if (time <= 0 && !endGame.activeInHierarchy)
+        if (time <= 0 && !endGame.activeInHierarchy && !loseGame.activeInHierarchy)
         {
             loseGame.SetActive(true);
         }

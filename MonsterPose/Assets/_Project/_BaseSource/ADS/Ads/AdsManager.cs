@@ -21,13 +21,13 @@ namespace OneHit
 
         [Space, GUIColor(0f, 0.8f, 1f)]
         public AdsState adsState;
+        public GameObject fadeOpenAd;
 
         [Header("Time wait to reload if ad not ready")]
         public float interstitialReloadWaitTime = 0.8f;
         public float rewardedVideoReloadWaitTime = 1.2f;
         public float appOpenAdReloadWaitTime = 2f;
 
-        public GameObject fade;
         [Header("Time between 2 ads in a row")]
         public static float timeAllowedToShowInterstitial = 15f;
 
@@ -211,7 +211,7 @@ namespace OneHit
         {
             Debug.LogWarning("ADS MANAGER: On Interstitial Load Failed");
             readyShowInterstitial = false;
-            this.LoadInterstitial();
+            //this.LoadInterstitial();
         }
 
         public void OnInterstitialOpen()
@@ -242,14 +242,14 @@ namespace OneHit
             FirebaseManager.Instance.LogEvent(FirebaseEvent.ADS_INTERSTITIAL);
 
             this.OnInterstitialCallback(true);
-            this.LoadInterstitial();
+            //this.LoadInterstitial();
         }
 
         public void OnInterstitialShowFailed()
         {
             Debug.LogWarning("ADS MANAGER: On Interstitial Show Failed");
             this.OnInterstitialCallback(false);
-            this.LoadInterstitial();
+            //this.LoadInterstitial();
         }
 
         public void OnInterstitialCallback(bool showSuccess)
@@ -347,7 +347,7 @@ namespace OneHit
         {
             Debug.LogWarning("ADS MANAGER: On Rewarded Video Unavailable");
             readyShowRewardedVideo = false;
-            this.LoadRewardedVideo();
+            //this.LoadRewardedVideo();
         }
 
         public void OnRewardedVideoOpen()
@@ -378,14 +378,14 @@ namespace OneHit
             FirebaseManager.Instance.LogEvent(FirebaseEvent.ADS_REWARD);
 
             this.OnRewardedVideoCallback(true);
-            this.LoadRewardedVideo();
+            //this.LoadRewardedVideo();
         }
 
         public void OnRewardedVideoShowFailed()
         {
             Debug.LogWarning("ADS MANAGER: On Rewarded Video Show Failed");
             this.OnRewardedVideoCallback(false);
-            this.LoadRewardedVideo();
+            //this.LoadRewardedVideo();
         }
 
         public void OnRewardedVideoCallback(bool showSuccess)
@@ -446,7 +446,8 @@ namespace OneHit
             if (_admob.IsOpenAdAvailable)
             {
                 Debug.LogWarning("ADS MANAGER: Ready show app open ad");
-                await UniTask.Delay(100);
+                fadeOpenAd.SetActive(true);
+                await UniTask.Delay(50);
                 _admob.ShowAppOpenAd();
             }
             else
@@ -459,6 +460,7 @@ namespace OneHit
         public void OnAppOpenAdCallback(bool showSuccess)
         {
             Debug.LogWarning($"ADS MANAGER: On app open ad callback: ({showSuccess})");
+            fadeOpenAd.SetActive(false);
             _appOpenAdCallback?.Invoke(showSuccess);
             _appOpenAdCallback = null;
         }
@@ -473,6 +475,7 @@ namespace OneHit
         {
             Debug.LogWarning("ADS MANAGER: On App Open Ad Close");
             FirebaseManager.Instance.LogEvent(FirebaseEvent.OPEN_AD);
+
             allowShowOpenAd = true;
 
             OnAppOpenAdCallback(true);
@@ -486,7 +489,7 @@ namespace OneHit
             allowShowOpenAd = true;
 
             OnAppOpenAdCallback(false);
-            LoadAppOpenAd();
+            //LoadAppOpenAd();
         }
 
         public void OnAppOpenAdPaid(AdValue adValue)

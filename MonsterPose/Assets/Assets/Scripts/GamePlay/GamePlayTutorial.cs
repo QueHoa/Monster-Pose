@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using OneHit.Framework;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class GamePlayTutorial : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GamePlayTutorial : MonoBehaviour
     [SerializeField]
     private GameObject handTap;
     [SerializeField]
-    private GameObject textTap;
+    private GameObject fade;
     [SerializeField]
     private SpriteRenderer playerRenderer;
 
@@ -78,16 +79,16 @@ public class GamePlayTutorial : MonoBehaviour
                         isBeginInBox = false;
                     }
                 }                  
-                if (playerRenderer.sprite == playerSprites[1] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
+                if (playerRenderer.sprite == playerSprites[0] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
                 {
                     isDrag = true;
                     rb.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
                 }
-                if (playerRenderer.sprite != playerSprites[1] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
+                if (playerRenderer.sprite != playerSprites[0] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
                 {
                     transform.position = new Vector2(oldPosition.x, oldPosition.y);
                 }
-                if (playerRenderer.sprite != playerSprites[1] && touch.phase == TouchPhase.Ended)
+                if (playerRenderer.sprite != playerSprites[0] && touch.phase == TouchPhase.Ended)
                 {
                     if (Mathf.Abs(touchPos.x - deltaX - oldPosition.x) <= 0.15f && Mathf.Abs(touchPos.y - deltaY - oldPosition.y) <= 0.15f && IsWithinBoxCollider())
                     {
@@ -99,7 +100,7 @@ public class GamePlayTutorial : MonoBehaviour
                         anim.SetTrigger("fail");
                     }  
                 }                
-                if (playerRenderer.sprite == playerSprites[1] && touch.phase == TouchPhase.Ended && IsWithinBoxCollider())
+                if (playerRenderer.sprite == playerSprites[0] && touch.phase == TouchPhase.Ended && IsWithinBoxCollider())
                 {
                     if (Mathf.Abs(transform.position.x - rightPos.position.x) <= 0.8f && Mathf.Abs(transform.position.y - rightPos.position.y) <= 0.8f && playerRenderer.sprite == playerSprites[numberWin])
                     {
@@ -122,6 +123,7 @@ public class GamePlayTutorial : MonoBehaviour
         if (locked)
         {
             handTap.SetActive(false);
+            fade.SetActive(false);
             losePanel.SetActive(false);
         }
     }    
@@ -131,7 +133,7 @@ public class GamePlayTutorial : MonoBehaviour
         Vector2 touchPosition2D = new Vector2(touchPosition.x, touchPosition.y);
         return boxCollider.OverlapPoint(touchPosition2D);
     }
-    void ChangeSprite()
+    public void ChangeSprite()
     {
         AudioManager.Play("change_sprite");
         if (numHeart != playerSprites.Length - 1)
@@ -139,25 +141,25 @@ public class GamePlayTutorial : MonoBehaviour
             numHeart++;
         }           
         playerRenderer.sprite = playerSprites[numHeart];
-        if (playerRenderer.sprite == playerSprites[1])
+        if (playerRenderer.sprite == playerSprites[0])
         {
-            textTap.SetActive(false);
+            handTap.SetActive(true);
             MoveTap();
         }
     }    
     IEnumerator Tutorial()
     {
         Input.multiTouchEnabled = false;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(7.5f);
         Input.multiTouchEnabled = true;
         isTutorial = false;
     }
     private void MoveTap()
     {
-        handTap.transform.DOMove(endHand.position, 0.5f)
+        handTap.transform.DOMove(endHand.position + new Vector3(0.5f, 4, 0), 1f)
             .OnComplete(() =>
             {
-                handTap.transform.position = transform.position;
+                handTap.transform.position = transform.position + new Vector3(0.5f, 4, 0);
                 MoveTap();
             });
     }

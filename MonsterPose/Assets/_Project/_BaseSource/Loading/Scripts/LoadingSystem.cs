@@ -10,6 +10,7 @@ public class LoadingSystem : Singleton<LoadingSystem>
      [SerializeField] private CanvasGroup canvasGroup;
      [SerializeField] private LoadingLogo loadingLogo;
      [SerializeField] private LoadingBar loadingBar;
+     [SerializeField] private GameObject fade;
 
      [Header("Time loading")]
      [SerializeField] private bool isFirstTimeLoading = true;
@@ -63,10 +64,10 @@ public class LoadingSystem : Singleton<LoadingSystem>
           // Phải show xong open ad mới cho chuyển scene
           if (isFirstTimeLoading)
           {
-            MasterControl.Instance._adsManager.fade.SetActive(true);
+               //fade.SetActive(true);
                MasterControl.Instance.ShowOpenAd(async success =>
                {
-                   MasterControl.Instance._adsManager.fade.SetActive(false);
+                    //fade.SetActive(false);
                     // Activate the next scene
                     scene.allowSceneActivation = true;
                     await UniTask.Delay(300);

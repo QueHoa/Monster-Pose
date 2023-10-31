@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using OneHit.Framework;
 using OneHit;
+using DG.Tweening;
 
 public class EndGame : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EndGame : MonoBehaviour
     private GameObject trailerMode;
     [SerializeField]
     private GameObject[] effect;
+    public Text heart;
     public GameObject fade;
     public Text title;
     private RawImage screenShot;
@@ -21,6 +23,7 @@ public class EndGame : MonoBehaviour
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;
     private int x;
+    private int numberHeart;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,8 @@ public class EndGame : MonoBehaviour
     {
         FirebaseManager.Instance.LogEvent("LEVEL_WIN_" + (main.numberPlaying + 1));
         screenShot = GameManager.Instance.screenShot;
+        heart.gameObject.SetActive(false);
+        numberHeart = 0;
         x = Random.Range(1,5);
         if (x == 1)
         {
@@ -215,5 +220,16 @@ public class EndGame : MonoBehaviour
         }
         trailerMode.SetActive(true);
         gameObject.SetActive(false);
+    }
+    public void SetHeart()
+    {
+        int endHeart = Random.Range(71, 99);
+        PlayerPrefs.SetInt(main.numberPlaying.ToString(), endHeart);
+        heart.gameObject.SetActive(true);
+        DOTween.To(() => numberHeart, x => numberHeart = x, endHeart, 1.5f)
+            .OnUpdate(() =>
+            {
+                heart.text ="LOVE: " + numberHeart.ToString();
+            });
     }
 }

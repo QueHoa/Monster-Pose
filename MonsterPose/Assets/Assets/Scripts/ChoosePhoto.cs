@@ -20,9 +20,11 @@ public class ChoosePhoto : MonoBehaviour
     private Transform frameImageWin;
     private Image imageWin;
     private Text levelPhoto;
+    private Text textHeart;
     private HomeController homeController;
     private int unlockedLevelsNumber;
     private int value;
+    private int numberHeart;
     void Start()
     {
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
@@ -33,7 +35,9 @@ public class ChoosePhoto : MonoBehaviour
         imageWin = GameManager.Instance.imageWin;
         levelPhoto = GameManager.Instance.levelPhoto;
         homeController = GameManager.Instance.homeController;
+        textHeart = GameManager.Instance.textHeart;
         value = int.Parse(gameObject.name);
+        numberHeart = PlayerPrefs.GetInt(value.ToString());
         value += 1;
         numberPhoto.text = "Photo " + value.ToString();
         transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuart);
@@ -71,6 +75,7 @@ public class ChoosePhoto : MonoBehaviour
     {
         AudioManager.Play("click");
         imageWin.sprite = BG.sprite;
+        textHeart.text = "LOVE: " + numberHeart.ToString();
         frameImageWin.localScale = Vector3.zero;
         frameImageWin.position = transform.position;
         frameImageWin.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuart);

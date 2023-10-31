@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject photo;
     public Transform frameImageWin;
     public Image imageWin;
+    public Text textHeart;
     public Text levelPhoto;
     public MainController mainController;
     public ModeController modeController;

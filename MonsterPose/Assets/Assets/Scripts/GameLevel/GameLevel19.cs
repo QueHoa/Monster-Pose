@@ -48,7 +48,10 @@ public class GameLevel19 : MonoBehaviour
         if (main.isHint)
         {
             player.playerRenderer.sprite = player.playerSprites[player.numberWin];
-            player.handTap.SetActive(false);
+            if (player.handTap != null)
+            {
+                player.handTap.SetActive(false);
+            }
             player.trueTap.SetTrigger("show");
             win = true;
         }

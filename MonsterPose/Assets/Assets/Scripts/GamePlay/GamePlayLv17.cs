@@ -35,6 +35,7 @@ public class GamePlayLv17 : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+        playerRenderer.sprite = playerSprites[0];
         oldPosition = transform.position;
         transform.position = new Vector3(oldPosition.x - 7, oldPosition.y, 0);
         boxCollider = GetComponent<BoxCollider2D>();

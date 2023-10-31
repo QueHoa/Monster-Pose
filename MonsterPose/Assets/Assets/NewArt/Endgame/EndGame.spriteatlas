@@ -57,9 +57,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 888556b1bcc3ffb48aae75716bcc36de, type: 3}
   - {fileID: 21300000, guid: 47284012e8486e646acaa8116a082886, type: 3}
   - {fileID: 21300000, guid: 16714a523b30fb546a7c6d7426e0516f, type: 3}
+  - {fileID: 21300000, guid: 4af3f6245dbff3f4dbeebd8ee300479c, type: 3}
   - {fileID: 21300000, guid: 34dbb2c4b553d4d4c846de4f2abca75e, type: 3}
   - {fileID: 21300000, guid: a677cff442cb83044ae5c7edb55fa7ec, type: 3}
   - {fileID: 21300000, guid: 34605c450a005894c8fc8254ab7749a2, type: 3}
+  - {fileID: 21300000, guid: 258d7706913472c4ea1e7dbd9189e6bf, type: 3}
   - {fileID: 21300000, guid: 1ee2d5c6019f5a442bb5fd3de78c6fc3, type: 3}
   - {fileID: 21300000, guid: 06838bd6f40a88948b0ac60778b1d4f2, type: 3}
   - {fileID: 21300000, guid: a745c0071e91cb447b73d0d99a548988, type: 3}
@@ -86,9 +88,11 @@ SpriteAtlas:
   - end_lose_btn_skip
   - end_lose_popup
   - No Internet - Smart Object Group
+  - end_win_popup 1
   - end_lose_btn_X
   - khung notification
   - complete
+  - tym
   - end_lose_icon_skip
   - end_lose_btn_replay
   - 'reload '

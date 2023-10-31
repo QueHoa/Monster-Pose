@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using OneHit.Framework;
 using UnityEngine.EventSystems;
+using MoreMountains.NiceVibrations;
 
 public class GamePlayMode1 : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GamePlayMode1 : MonoBehaviour
     public GameMode1 gameMode1;
     public int numberSprite;
     public bool locked;
+    public HapticTypes hapticTypes = HapticTypes.Failure;
 
     private Camera mainCamera;
     private BoxCollider2D boxCollider;
@@ -22,10 +24,12 @@ public class GamePlayMode1 : MonoBehaviour
     private float time;
     private Vector3 oldPosition;
     private bool isDrag;
+    private int isVibrate;
 
     // Start is called before the first frame update
     void Start()
     {
+        isVibrate = PlayerPrefs.GetInt("VibrateOn");
         transform.localScale = Vector3.zero;
         mainCamera = Camera.main;
         boxCollider = GetComponent<BoxCollider2D>();
@@ -81,6 +85,10 @@ public class GamePlayMode1 : MonoBehaviour
                                     anim.SetTrigger("complete");
                                     transform.position = new Vector3(rightPos[i].transform.position.x, rightPos[i].transform.position.y, 0);
                                     locked = true;
+                                    if (isVibrate == 1)
+                                    {
+                                        MMVibrationManager.Haptic(hapticTypes, true, true, this);
+                                    }
                                     gameMode1.numberLock++;
                                     rightPos[i].gameObject.SetActive(false);
                                 }

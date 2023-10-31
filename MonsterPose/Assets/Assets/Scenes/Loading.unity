@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7e72b800fb7303a4badf9b287439067b, type: 3}
+    - target: {fileID: 4850430750758599377, guid: ac9da4f4d02cec94087686fe2f57f146, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4850430751832696300, guid: ac9da4f4d02cec94087686fe2f57f146, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -519,6 +523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterControl
       objectReference: {fileID: 0}
+    - target: {fileID: 3052101458498344342, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3052101458498344343, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -565,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5259106620008571256, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5265296008581422274, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: m_Sprite

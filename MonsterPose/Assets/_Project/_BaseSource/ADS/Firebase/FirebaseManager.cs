@@ -80,6 +80,8 @@ namespace OneHit
                     Debug.Log("Time between each ads:" + ads_time.LongValue);
                     ConfigValue allowAds = FirebaseRemoteConfig.DefaultInstance.GetValue("AdEnable");
                     PrefInfo.adEnable = allowAds.BooleanValue;
+                    ConfigValue levelAd = FirebaseRemoteConfig.DefaultInstance.GetValue("LevelStartShowAds");
+                    GameManager.levelShowAd = levelAd.LongValue;
 
                     //if (MasterControl.Instance != null)
                     //{

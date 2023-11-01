@@ -8,6 +8,10 @@ using OneHit;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [Header("Level Start Show Ad")]
+    public static float levelShowAd = 3f;
+
     public GameObject main;
     public GameObject mode;
     public GameObject home;

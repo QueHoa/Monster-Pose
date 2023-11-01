@@ -311,7 +311,7 @@ public class HomeController : MonoBehaviour
     public void SetBack()
     {
         AudioManager.Play("click");
-        if(unlockedLevelsNumber > 3)
+        if(unlockedLevelsNumber > 5)
         {
             MasterControl.Instance.ShowInterAd((bool res) =>
             {
@@ -406,7 +406,7 @@ public class HomeController : MonoBehaviour
     public void SetBackGallery()
     {
         AudioManager.Play("click");
-        if(unlockedLevelsNumber > 3)
+        if(unlockedLevelsNumber > 5)
         {
             MasterControl.Instance.ShowInterAd((bool res) =>
             {
@@ -458,7 +458,7 @@ public class HomeController : MonoBehaviour
     public void BackPhoto()
     {
         AudioManager.Play("click");
-        if (unlockedLevelsNumber > 3)
+        if (unlockedLevelsNumber > 5)
         {
             MasterControl.Instance.ShowInterAd((bool res) =>
             {

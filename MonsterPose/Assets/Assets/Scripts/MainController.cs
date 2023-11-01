@@ -267,7 +267,7 @@ public class MainController : MonoBehaviour
     public void Back()
     {
         AudioManager.Play("click");
-        if(unlockedLevelsNumber > 4)
+        if(unlockedLevelsNumber > 3)
         {
             MasterControl.Instance.ShowInterAd((bool res) =>
             {
@@ -450,7 +450,7 @@ public class MainController : MonoBehaviour
     public void Replay()
     {
         AudioManager.Play("click");
-        if (unlockedLevelsNumber > 4)
+        if (unlockedLevelsNumber > 3)
         {
             MasterControl.Instance.ShowInterAd((res) =>
             {
@@ -503,7 +503,7 @@ public class MainController : MonoBehaviour
     public void Home()
     {
         AudioManager.Play("click");
-        if (unlockedLevelsNumber > 4)
+        if (unlockedLevelsNumber > 3)
         {
             MasterControl.Instance.ShowInterAd((bool res) =>
             {

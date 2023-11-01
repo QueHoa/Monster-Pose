@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         Input.multiTouchEnabled = false;
         Instance = this;
-        //PlayerPrefs.SetInt("levelsUnlocked", 150);
+        //PlayerPrefs.SetInt("levelsUnlocked", 1);
         if (!PlayerPrefs.HasKey("levelsUnlocked"))
         {
             PlayerPrefs.SetInt("levelsUnlocked", 1);

@@ -83,6 +83,7 @@ public class GameLevel18 : MonoBehaviour
     }
     IEnumerator Win()
     {
+        main.isWin = true;
         yield return new WaitForSeconds(0.3f);
         if (isVibrate == 1)
         {

@@ -82,6 +82,8 @@ namespace OneHit
                     PrefInfo.adEnable = allowAds.BooleanValue;
                     ConfigValue levelAd = FirebaseRemoteConfig.DefaultInstance.GetValue("LevelStartShowAds");
                     GameManager.levelShowAd = levelAd.LongValue;
+                    ConfigValue allowTrailer = FirebaseRemoteConfig.DefaultInstance.GetValue("TrailerEnable");
+                    EndGame.allowTrailer = allowTrailer.BooleanValue;
 
                     //if (MasterControl.Instance != null)
                     //{

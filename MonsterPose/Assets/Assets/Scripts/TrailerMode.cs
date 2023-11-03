@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using OneHit.Framework;
+using OneHit;
 
 public class TrailerMode : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class TrailerMode : MonoBehaviour
     private GameObject[] effect;
     public GameObject fade;
     private Animator anim;
+    private int unlockedLevelsNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class TrailerMode : MonoBehaviour
         }
         AudioManager.Play("SoundMode");
         anim.SetTrigger("show");
+        unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
     }
     // Update is called once per frame
     void Update()
@@ -41,12 +44,15 @@ public class TrailerMode : MonoBehaviour
     public void Next()
     {
         AudioManager.Play("click");
-        
         StartCoroutine(NextEffect());
     }
     IEnumerator NextEffect()
     {
         anim.SetTrigger("hide");
+        if(unlockedLevelsNumber == 11)
+        {
+            FirebaseManager.Instance.LogEvent("LEVEL_CHALLENGE_PLAY_ACCESS");
+        }
         yield return new WaitForSeconds(0.4f);
         mode.numberPlaying = 1;
         GameObject loadedPrefab = Resources.Load<GameObject>("Lv1");

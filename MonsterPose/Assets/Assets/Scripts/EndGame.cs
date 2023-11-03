@@ -9,6 +9,9 @@ using DG.Tweening;
 
 public class EndGame : MonoBehaviour
 {
+    [Header("Trailer Mode Enable")]
+    public static bool allowTrailer = true;
+
     public MainController main;
     public GameObject home;
     [SerializeField]
@@ -113,7 +116,14 @@ public class EndGame : MonoBehaviour
                 main.gameObject.SetActive(false);
                 if (unlockedLevelsNumber > 9 && unlockedLevelsNumber % 10  == 0 && unlockedModeNumber == 1)
                 {
-                    StartCoroutine(ShowTrailer());
+                    if (allowTrailer)
+                    {
+                        StartCoroutine(ShowTrailer());
+                    }
+                    else
+                    {
+                        StartCoroutine(Hide());
+                    }
                 }
                 else
                 {
@@ -129,23 +139,9 @@ public class EndGame : MonoBehaviour
             {
                 Destroy(Level.gameObject);
             }
-            if (main.numberPlaying != 149)
-            {
-                main.numberPlaying++;
-            }
-            else
-            {
-                main.numberPlaying = 0;
-            }
+            main.numberPlaying++;
             main.gameObject.SetActive(false);
-            if (unlockedLevelsNumber > 9 && unlockedLevelsNumber % 10 == 0 && unlockedModeNumber == 1)
-            {
-                StartCoroutine(ShowTrailer());
-            }
-            else
-            {
-                StartCoroutine(Hide());
-            }
+            StartCoroutine(Hide());
         }
         
     }

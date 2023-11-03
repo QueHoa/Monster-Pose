@@ -21,7 +21,7 @@ public class GameLevel2 : MonoBehaviour
     private int takeShot;
     private bool win;
     private Camera screenshotCamera; 
-    private RawImage rawImage; 
+    private RawImage rawImage;
     private int isVibrate;
     private float oldHand;
     // Start is called before the first frame update

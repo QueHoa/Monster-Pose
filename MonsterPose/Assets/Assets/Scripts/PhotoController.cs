@@ -11,6 +11,7 @@ public class PhotoController : MonoBehaviour
     public RectTransform title;
     public RectTransform image;
     public CanvasGroup alpha;
+    public Image imageWin;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +31,16 @@ public class PhotoController : MonoBehaviour
     void Update()
     {
         DOTween.To(() => alpha.alpha, x => alpha.alpha = x, 1, 0.5f);
+    }
+    public void ShareImage()
+    {
+
+        Texture2D text = (Texture2D)imageWin.sprite.texture;
+        if (Application.isMobilePlatform)
+        {
+            NativeShare nativeShare = new NativeShare();
+            nativeShare.AddFile(text, level.text + ".jpg");
+            nativeShare.Share();
+        }
     }
 }

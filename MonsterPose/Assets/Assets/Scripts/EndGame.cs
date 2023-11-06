@@ -162,6 +162,16 @@ public class EndGame : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
     }
+    public void ShareImage()
+    {
+        Texture2D text = (Texture2D)screenShot.texture;
+        if (Application.isMobilePlatform)
+        {
+            NativeShare nativeShare = new NativeShare();
+            nativeShare.AddFile(text, (main.numberPlaying + 1).ToString() + ".jpg");
+            nativeShare.Share();
+        }
+    }
     public void BackHome()
     {
         AudioManager.Play("click");

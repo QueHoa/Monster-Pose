@@ -61,6 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4e3d90508b402ad4ab1b390a2c516c53, type: 3}
   - {fileID: 21300000, guid: 003e75504f3800c41863bbe93573ee40, type: 3}
   - {fileID: 21300000, guid: 15da2860c0d8dff4f8e9f94ac2ccb79f, type: 3}
+  - {fileID: 21300000, guid: 9bc078609b5d011429987da05d942c88, type: 3}
   - {fileID: 21300000, guid: 052a2070923db3844b0d66f59b77ef48, type: 3}
   - {fileID: 21300000, guid: 04f23980794656e44b14dcf4d0a6b4b8, type: 3}
   - {fileID: 21300000, guid: a9f1c980225ed124b96693f8257cbe61, type: 3}
@@ -218,6 +219,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c5daab27abc898940a67464722c8cfaa, type: 3}
   - {fileID: 21300000, guid: 7b3bdc273d91ef04696ac411e4105014, type: 3}
   - {fileID: 21300000, guid: 4930263770de92e499dff54b7036f262, type: 3}
+  - {fileID: 21300000, guid: b584b8376e0b4d54e93d47ccb36f4a9e, type: 3}
   - {fileID: 21300000, guid: 9aa1f047d6864a74cb45010896725ee7, type: 3}
   - {fileID: 21300000, guid: 043fc847615aead408bea761088a9564, type: 3}
   - {fileID: 21300000, guid: 06c81c47af4c77d4a8121de8d679a8a9, type: 3}
@@ -244,7 +246,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1a1ca708362e19140b194cd0420ec190, type: 3}
   - {fileID: 21300000, guid: 14a95118d125bee4988981ca778c7c5c, type: 3}
   - {fileID: 21300000, guid: 8ae67f18f859eb7489b0f490f803cbd4, type: 3}
-  - {fileID: 21300000, guid: 5687332826fdd2249aa8486d06daba28, type: 3}
   - {fileID: 21300000, guid: ef4d482894a112b499ef8a78d801dea3, type: 3}
   - {fileID: 21300000, guid: 88b8bd28b77de374ba19a5940b43ba14, type: 3}
   - {fileID: 21300000, guid: 7d4e31385b26bbb4e985ae36ef894372, type: 3}
@@ -275,7 +276,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8ceb003973b7d1d4bb9904db558674f0, type: 3}
   - {fileID: 21300000, guid: a4847039bab180842a2a38476b6681a5, type: 3}
   - {fileID: 21300000, guid: dfed08391cdd75545ad43299208b0ae3, type: 3}
-  - {fileID: 21300000, guid: eac86d39aafdd4942a4cf908b506481b, type: 3}
   - {fileID: 21300000, guid: 674b6d49a7a677047af8c7811b75a738, type: 3}
   - {fileID: 21300000, guid: 464a23594860c3348bf6fbea3e2f1c26, type: 3}
   - {fileID: 21300000, guid: 310f6459d7683594ca07a56eabdd24e2, type: 3}
@@ -319,7 +319,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7310d4bad0c3f66459d027d56aefb0c7, type: 3}
   - {fileID: 21300000, guid: 27107aea68f4d0243a560a1450a3fc6f, type: 3}
   - {fileID: 21300000, guid: 9c307feacd22f5e4ba73d096d33a4893, type: 3}
-  - {fileID: 21300000, guid: f933670bbfac89c4b8a4b2c34d16688b, type: 3}
   - {fileID: 21300000, guid: fa2db70b6f748f84d838ac5a6f8fdb5c, type: 3}
   - {fileID: 21300000, guid: b67c441b9622d284eb1be1f677852f18, type: 3}
   - {fileID: 21300000, guid: 243c0e1b4cc03964981996e78d502ebc, type: 3}
@@ -357,6 +356,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cda904fcf6d8bee49a31d52d5e0408f8, type: 3}
   - {fileID: 21300000, guid: e2ce6cfca355e8d419bc74ee1fe691fd, type: 3}
   - {fileID: 21300000, guid: 297dddfc3c941ae4980a236e64d28f53, type: 3}
+  - {fileID: 21300000, guid: 5ed2450d6782fb44c838308d63ba4f81, type: 3}
   - {fileID: 21300000, guid: 3551c50d31329884aa235a9035ea25d6, type: 3}
   - {fileID: 21300000, guid: 5d3a670d349545542b300cfa08bb01fa, type: 3}
   - {fileID: 21300000, guid: 6deb331db41b3f24e9aed743269ae5d8, type: 3}
@@ -441,6 +441,7 @@ SpriteAtlas:
   - asset_LV137
   - sky 114
   - 93red
+  - '98duck2 '
   - SMURF5
   - fish9
   - ban ban
@@ -598,6 +599,7 @@ SpriteAtlas:
   - green lv61
   - L
   - 96blue
+  - pink 74
   - tv 111
   - pink 64
   - ban red 73
@@ -624,7 +626,6 @@ SpriteAtlas:
   - 84blue
   - sheep_lv101
   - Sky_lv150
-  - S 1
   - amanda 106
   - red 2
   - ICON 2
@@ -652,10 +653,9 @@ SpriteAtlas:
   - purpil 68_1
   - cookie
   - sky 116
-  - 'orange 3 '
+  - orange 3
   - orange 4
   - red LV42
-  - pink 74
   - asset_Lv126
   - Loa_lv103
   - bun
@@ -699,7 +699,6 @@ SpriteAtlas:
   - purpil61
   - hurry1
   - 91red
-  - 98duck2
   - khung green
   - asset_Lv122
   - huy chuong bac 76
@@ -737,6 +736,7 @@ SpriteAtlas:
   - heart grimace5
   - tru dung
   - 79red
+  - 83duckhand
   - Wednesday_lv110
   - 83duck
   - 81blue

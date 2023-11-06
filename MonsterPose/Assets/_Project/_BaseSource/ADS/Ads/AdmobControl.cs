@@ -141,6 +141,8 @@ namespace OneHit
         // Raised when the ad is estimated to have earned money
         private void OnAdPaid(AdValue adValue)
         {
+            // khong xu ly
+
             if (adValue != null)
             {
                 Debug.Log($"Admob: App open ad paid value: {adValue.Value}, {adValue.CurrencyCode})");

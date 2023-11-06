@@ -53,7 +53,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: df054d20d2819e240be8256bbc490ef2, type: 3}
   - {fileID: 21300000, guid: f2d79130fc4f8374bb2ee84f0e7840a0, type: 3}
   - {fileID: 21300000, guid: f58514a1d1b822a4baefc1764add7e57, type: 3}
-  - {fileID: 21300000, guid: 49f452b1aa6367445a1f2cbf5988a2ab, type: 3}
   - {fileID: 21300000, guid: 888556b1bcc3ffb48aae75716bcc36de, type: 3}
   - {fileID: 21300000, guid: 47284012e8486e646acaa8116a082886, type: 3}
   - {fileID: 21300000, guid: 16714a523b30fb546a7c6d7426e0516f, type: 3}
@@ -61,6 +60,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 34dbb2c4b553d4d4c846de4f2abca75e, type: 3}
   - {fileID: 21300000, guid: a677cff442cb83044ae5c7edb55fa7ec, type: 3}
   - {fileID: 21300000, guid: 34605c450a005894c8fc8254ab7749a2, type: 3}
+  - {fileID: 21300000, guid: 4c81b5e5f371b9f43abd818a6119802f, type: 3}
   - {fileID: 21300000, guid: 258d7706913472c4ea1e7dbd9189e6bf, type: 3}
   - {fileID: 21300000, guid: 1ee2d5c6019f5a442bb5fd3de78c6fc3, type: 3}
   - {fileID: 21300000, guid: 06838bd6f40a88948b0ac60778b1d4f2, type: 3}
@@ -72,19 +72,21 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 894a0629e4eac034a8907073fbf7d869, type: 3}
   - {fileID: 21300000, guid: 833821a912ce71e4bb65dd59acc79de0, type: 3}
   - {fileID: 21300000, guid: 5ee7a86a87eaeaf4cba437278c8fc691, type: 3}
+  - {fileID: 21300000, guid: bdf6241b00c4588439ecf4608f639034, type: 3}
   - {fileID: 21300000, guid: 0a8cfa4b5edb8824f8036aab78e656c5, type: 3}
   - {fileID: 21300000, guid: 73c7e76b66d1296429285fee1e6fbb24, type: 3}
   - {fileID: 21300000, guid: 1860c8abed5a7b741bfa771383a965e7, type: 3}
   - {fileID: 21300000, guid: d290f4db25c68eb47a8f9e83ceec3f6d, type: 3}
+  - {fileID: 21300000, guid: f46ebdfbcc63f7d4dab71c0f90792f21, type: 3}
   - {fileID: 21300000, guid: c67a36ed84b5da640bcf48cc2b7380b6, type: 3}
   - {fileID: 21300000, guid: 47af250e67fb75d4fb85075b8704bc17, type: 3}
   - {fileID: 21300000, guid: b43d437f28be12e45a2f0138a812541a, type: 3}
   - {fileID: 21300000, guid: 635cf97fe671ad5499c04fed2ea4f775, type: 3}
+  - {fileID: 21300000, guid: 04a4bbffc3723bf4fb74a90bbfe21b5c, type: 3}
   m_PackedSpriteNamesToIndex:
   - video
   - khung level
   - next (1)
-  - home (2)
   - end_lose_btn_skip
   - end_lose_popup
   - No Internet - Smart Object Group
@@ -92,6 +94,7 @@ SpriteAtlas:
   - end_lose_btn_X
   - khung notification
   - complete
+  - home1
   - tym
   - end_lose_icon_skip
   - end_lose_btn_replay
@@ -103,14 +106,17 @@ SpriteAtlas:
   - close.
   - Please check your Internet Connection - Smart Object Group
   - next
+  - share1
   - end_dark overlay
   - close (1)
   - end_win_popup
   - Layer 212 - Smart Object Group
+  - share
   - end_win_btn_next
   - video is not ready
   - Notification
   - light
+  - home 1
   m_RenderDataMap: {}
   m_Tag: EndGame
   m_IsVariant: 0

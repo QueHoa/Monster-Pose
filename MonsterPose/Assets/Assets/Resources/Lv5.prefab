@@ -409,12 +409,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: be499c22f7b6363468fa30a9f5bb8d6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ceb003973b7d1d4bb9904db558674f0, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.56, y: 6.16}
+  m_Size: {x: 3.76, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -542,6 +542,7 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 3
   locked: 0
+  hapticTypes: 3
 --- !u!1 &8933288043324299164
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +665,7 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 2
   locked: 0
+  hapticTypes: 3
 --- !u!1 &8933288043325771134
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,6 +826,7 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 0
   locked: 0
+  hapticTypes: 3
 --- !u!1 &8933288043754289466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1117,7 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 6
   locked: 0
+  hapticTypes: 3
 --- !u!1 &8933288044029076076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1240,7 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 1
   locked: 0
+  hapticTypes: 3
 --- !u!1 &8933288044051449061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1363,7 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 7
   locked: 0
+  hapticTypes: 3
 --- !u!1 &8933288044337018832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,7 +1509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprites:
-  - {fileID: 21300000, guid: be499c22f7b6363468fa30a9f5bb8d6b, type: 3}
+  - {fileID: 21300000, guid: 8ceb003973b7d1d4bb9904db558674f0, type: 3}
   - {fileID: 21300000, guid: 020f9fc337c81b345a4c03445d4ea8c8, type: 3}
   - {fileID: 21300000, guid: 7c6023e94bd30a543b41b4305679ff23, type: 3}
   - {fileID: 21300000, guid: 2953ea405751d0e47b1453a02f57a980, type: 3}
@@ -1638,6 +1644,7 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 5
   locked: 0
+  hapticTypes: 3
 --- !u!1 &8933288044727656586
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,3 +2103,4 @@ MonoBehaviour:
   gameMode1: {fileID: 8933288044408182694}
   numberSprite: 4
   locked: 0
+  hapticTypes: 3

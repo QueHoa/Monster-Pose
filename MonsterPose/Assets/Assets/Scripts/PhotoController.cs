@@ -34,7 +34,6 @@ public class PhotoController : MonoBehaviour
     }
     public void ShareImage()
     {
-
         Texture2D text = (Texture2D)imageWin.sprite.texture;
         if (Application.isMobilePlatform)
         {

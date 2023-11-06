@@ -333,7 +333,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 235fee8b37e597343903ef9585d7d047, type: 3}
   - {fileID: 21300000, guid: 19dbe0dbe344e6a4d88d4318fa3dd719, type: 3}
   - {fileID: 21300000, guid: c347a9dba7f85c544974b8c5b4db8d3a, type: 3}
-  - {fileID: 21300000, guid: f79a5adb6e14964458a8cde8169efc0e, type: 3}
   - {fileID: 21300000, guid: fd055cdb81e213f41891dd491f264723, type: 3}
   - {fileID: 21300000, guid: c65aadfb830e73442bcb7d3e7b2c3675, type: 3}
   - {fileID: 21300000, guid: 274ce50ce218bfc48897a19d79d76a74, type: 3}
@@ -713,7 +712,6 @@ SpriteAtlas:
   - asset 130
   - SMURF6
   - asset 114
-  - 95lavender
   - asset_Lv149
   - deadline_Lv143
   - khung smurf4 - Smart Object Group

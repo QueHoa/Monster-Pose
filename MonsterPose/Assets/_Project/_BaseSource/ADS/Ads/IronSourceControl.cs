@@ -313,7 +313,7 @@ namespace OneHit
         #region =============== EVENT ADREVENUE IRONSOURCE ===============
 
         private bool _hasAdImpression;
-        private List<IronSourceImpressionData> _listImpressionData;
+        private List<IronSourceImpressionData> _listImpressionData = new List<IronSourceImpressionData>();
 
         private void Update()
         {

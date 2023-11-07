@@ -87,7 +87,7 @@ public class EndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (main.numberPlaying == unlockedLevelsNumber - 1 && main.numberPlaying != 149)
+        if (main.numberPlaying == unlockedLevelsNumber - 1 && main.numberPlaying != GameManager.numberLevel - 1)
         {
             PlayerPrefs.SetInt("levelsUnlocked", unlockedLevelsNumber + 1);
         }
@@ -106,7 +106,7 @@ public class EndGame : MonoBehaviour
                 {
                     Destroy(Level.gameObject);
                 }
-                if (main.numberPlaying != 149)
+                if (main.numberPlaying != GameManager.numberLevel - 1)
                 {
                     main.numberPlaying++;
                 }

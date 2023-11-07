@@ -694,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &75
 GameObject:
   m_ObjectHideFlags: 0
@@ -25940,7 +25940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textLevel: {fileID: 979340725}
   textPlayMode: {fileID: 466366908}
-  iconLockMode: {fileID: 742562700}
+  iconLockMode: {fileID: 742562698}
+  iconUnlockMode: {fileID: 1374754121}
   main: {fileID: 4}
   panelSetting: {fileID: 14}
   levelList: {fileID: 50}

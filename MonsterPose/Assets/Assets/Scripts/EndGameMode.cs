@@ -37,7 +37,7 @@ public class EndGameMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mode.numberPlaying == unlockedModeNumber && mode.numberPlaying != 30)
+        if (mode.numberPlaying == unlockedModeNumber && mode.numberPlaying != GameManager.numberMode)
         {
             PlayerPrefs.SetInt("levelsModeUnlocked", unlockedModeNumber + 1);
         }
@@ -55,7 +55,7 @@ public class EndGameMode : MonoBehaviour
                 Destroy(Level.gameObject);
             }
             mode.gameObject.SetActive(false);
-            if (mode.numberPlaying != 30)
+            if (mode.numberPlaying != GameManager.numberMode)
             {
                 mode.numberPlaying++;
             }
@@ -95,7 +95,7 @@ public class EndGameMode : MonoBehaviour
             {
                 Destroy(Level.gameObject);
             }
-            if (mode.numberPlaying != 30)
+            if (mode.numberPlaying != GameManager.numberMode)
             {
                 mode.numberPlaying++;
             }

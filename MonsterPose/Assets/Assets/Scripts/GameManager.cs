@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Level Start Show Ad")]
     public static float levelShowAd = 3f;
+    [Header("Number Level Classic")]
+    public static int numberLevel;
+    [Header("Number Level Mode")]
+    public static int numberMode;
 
     public GameObject main;
     public GameObject mode;
@@ -71,12 +75,12 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         Input.multiTouchEnabled = false;
         Instance = this;
-        //PlayerPrefs.SetInt("levelsUnlocked", 1);
+        PlayerPrefs.SetInt("levelsUnlocked", 1);
         if (!PlayerPrefs.HasKey("levelsUnlocked"))
         {
             PlayerPrefs.SetInt("levelsUnlocked", 1);
         }
-        //PlayerPrefs.SetInt("levelsModeUnlocked", 1);
+        PlayerPrefs.SetInt("levelsModeUnlocked", 1);
         if (!PlayerPrefs.HasKey("levelsModeUnlocked"))
         {
             PlayerPrefs.SetInt("levelsModeUnlocked", 1);
@@ -94,6 +98,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("VibrateOn", 1);
         }
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
+        numberLevel = homeController.numberLevel;
+        numberMode = homeController.numberMode;
         MasterControl.Instance.ShowBanner();
         
         isMusic = PlayerPrefs.GetInt("MusicOn");

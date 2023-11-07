@@ -329,7 +329,7 @@ public class MainController : MonoBehaviour
             buttonTextLevel.anchoredPosition = new Vector3(buttonTextLevel.anchoredPosition.x, 115, 0);
             buttonTime.anchoredPosition = new Vector3(buttonTime.anchoredPosition.x, 115, 0);
             numberTictac = 0;
-            if (numberPlaying == unlockedLevelsNumber - 1 && numberPlaying != 149)
+            if (numberPlaying == unlockedLevelsNumber - 1 && numberPlaying != GameManager.numberLevel - 1)
             {
                 PlayerPrefs.SetInt("levelsUnlocked", unlockedLevelsNumber + 1);
             }
@@ -338,7 +338,7 @@ public class MainController : MonoBehaviour
             {
                 Destroy(Level.gameObject);
             }
-            if (numberPlaying != 149)
+            if (numberPlaying != GameManager.numberLevel - 1)
             {
                 numberPlaying++;
             }
@@ -429,7 +429,7 @@ public class MainController : MonoBehaviour
             buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
             buttonTextLevel.DOAnchorPosY(-115, 0.8f).SetEase(Ease.OutQuart);
             buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
-            if (numberPlaying == unlockedLevelsNumber - 1 && numberPlaying != 149)
+            if (numberPlaying == unlockedLevelsNumber - 1 && numberPlaying != GameManager.numberLevel - 1)
             {
                 PlayerPrefs.SetInt("levelsUnlocked", unlockedLevelsNumber + 1);
             }
@@ -438,7 +438,7 @@ public class MainController : MonoBehaviour
             {
                 Destroy(Level.gameObject);
             }
-            if (numberPlaying != 149)
+            if (numberPlaying != GameManager.numberLevel - 1)
             {
                 numberPlaying++;
             }

@@ -8,12 +8,10 @@ using OneHit;
 
 public class HomeController : MonoBehaviour
 {
-    [SerializeField]
-    private Text textLevel;
-    [SerializeField]
-    private Text textPlayMode;
-    [SerializeField]
-    private Image iconLockMode;
+    public Text textLevel;
+    public Text textPlayMode;
+    public GameObject iconLockMode;
+    public GameObject iconUnlockMode;
     public GameObject main;
     public GameObject panelSetting;
     public GameObject levelList;
@@ -51,7 +49,6 @@ public class HomeController : MonoBehaviour
     public int numberMode;
 
     private Tween butTween1;
-    private Tween butTween2;
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;
     private MainController mainController;
@@ -72,18 +69,20 @@ public class HomeController : MonoBehaviour
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
-        textLevel.text = "Level " + unlockedLevelsNumber.ToString();
+        textLevel.text = "LEVEL " + unlockedLevelsNumber.ToString();
         if (unlockedLevelsNumber > 10)
         {
             btnMode.interactable = true;
-            textPlayMode.gameObject.SetActive(true);
-            iconLockMode.gameObject.SetActive(false);
+            textPlayMode.text = "CHALLENGE";
+            iconLockMode.SetActive(false);
+            iconUnlockMode.SetActive(true);
         }
         else
         {
             btnMode.interactable = false;
-            textPlayMode.gameObject.SetActive(false);
-            iconLockMode.gameObject.SetActive(true);
+            textPlayMode.text = "UNLOCK LEVEL 10";
+            iconLockMode.SetActive(true);
+            iconUnlockMode.SetActive(false);
         }
         buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
@@ -240,20 +239,12 @@ public class HomeController : MonoBehaviour
     IEnumerator StartHome()
     {
         buttonPlay.DOKill();
-        buttonMode.DOKill();
         butTween1.Kill();
-        butTween2.Kill();
         buttonPlay.transform.localScale = Vector3.zero;
-        buttonMode.transform.localScale = Vector3.zero;
         yield return new WaitForSeconds(0.45f);
         buttonPlay.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
-        buttonMode.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
         yield return new WaitForSeconds(0.75f);
         butTween1 = buttonPlay.transform.DOScale(Vector3.one * 0.95f, 0.65f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-        if (unlockedLevelsNumber >= 10)
-        {
-            butTween2 = buttonMode.transform.DOScale(Vector3.one * 0.95f, 0.65f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-        }
     }
     IEnumerator CreateButtonsWithNames()
     {
@@ -340,14 +331,16 @@ public class HomeController : MonoBehaviour
         if (unlockedLevelsNumber > 10)
         {
             btnMode.interactable = true;
-            textPlayMode.gameObject.SetActive(true);
-            iconLockMode.gameObject.SetActive(false);
+            textPlayMode.text = "CHALLENGE";
+            iconLockMode.SetActive(false);
+            iconUnlockMode.SetActive(true);
         }
         else
         {
             btnMode.interactable = false;
-            textPlayMode.gameObject.SetActive(false);
-            iconLockMode.gameObject.SetActive(true);
+            textPlayMode.text = "UNLOCK LEVEL 10";
+            iconLockMode.SetActive(true);
+            iconUnlockMode.SetActive(false);
         }
         levelList.SetActive(false);
         StartCoroutine(StartHome());
@@ -378,14 +371,16 @@ public class HomeController : MonoBehaviour
         if (unlockedLevelsNumber > 10)
         {
             btnMode.interactable = true;
-            textPlayMode.gameObject.SetActive(true);
-            iconLockMode.gameObject.SetActive(false);
+            textPlayMode.text = "CHALLENGE";
+            iconLockMode.SetActive(false);
+            iconUnlockMode.SetActive(true);
         }
         else
         {
             btnMode.interactable = false;
-            textPlayMode.gameObject.SetActive(false);
-            iconLockMode.gameObject.SetActive(true);
+            textPlayMode.text = "UNLOCK LEVEL 10";
+            iconLockMode.SetActive(true);
+            iconUnlockMode.SetActive(false);
         }
         levelListMode.SetActive(false);
         StartCoroutine(StartHome());
@@ -426,14 +421,16 @@ public class HomeController : MonoBehaviour
         if (unlockedLevelsNumber > 10)
         {
             btnMode.interactable = true;
-            textPlayMode.gameObject.SetActive(true);
-            iconLockMode.gameObject.SetActive(false);
+            textPlayMode.text = "CHALLENGE";
+            iconLockMode.SetActive(false);
+            iconUnlockMode.SetActive(true);
         }
         else
         {
             btnMode.interactable = false;
-            textPlayMode.gameObject.SetActive(false);
-            iconLockMode.gameObject.SetActive(true);
+            textPlayMode.text = "UNLOCK LEVEL 10";
+            iconLockMode.SetActive(true);
+            iconUnlockMode.SetActive(false);
         }
         gallery.SetActive(false);
         StartCoroutine(StartHome());

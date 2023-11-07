@@ -29,7 +29,8 @@ public class GamePlayTutorial3 : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private GameObject losePanel;
-    private int numHeart = 0;
+    [HideInInspector]
+    public int numHeart = 0;
     private int isTouch = 0;
     private float deltaX, deltaY;
     private bool isDrag;

@@ -370,11 +370,12 @@ MonoBehaviour:
   rightPos: {fileID: 4699503006395138}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212775127642134981}
-  numberWin: 3
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: 3551c50d31329884aa235a9035ea25d6, type: 3}
   - {fileID: 21300000, guid: aa0c842bf870e1545b36028e09464a93, type: 3}
   - {fileID: 21300000, guid: e0177a5aeaff5864abd6fd64de3f9c71, type: 3}
+  - {fileID: 21300000, guid: 7c8f1e75fcd9230458d0f4aba18e73be, type: 3}
   - {fileID: 21300000, guid: 29e91af93b56fad459e6e1121673d513, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}

@@ -349,11 +349,12 @@ MonoBehaviour:
   rightPos: {fileID: 4896130013684973}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212533274328657891}
-  numberWin: 3
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: 003e75504f3800c41863bbe93573ee40, type: 3}
   - {fileID: 21300000, guid: 518eaa8fe481fc1499cfd9b6de7ff7ad, type: 3}
   - {fileID: 21300000, guid: 6e67f27f53ee9d84a867457d507c77c0, type: 3}
+  - {fileID: 21300000, guid: 349df59a0b666434a933013aa4025e43, type: 3}
   - {fileID: 21300000, guid: cc37a284982ef0344a6d8e6f9460f039, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}

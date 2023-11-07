@@ -324,6 +324,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9f271879db13a6442982480a641de1fd, type: 3}
   - {fileID: 21300000, guid: 44489278fe1382a45980371c572e2996, type: 3}
   - {fileID: 21300000, guid: d70338ffde3620b46844c75b4bccccd4, type: 3}
+  - {fileID: 21300000, guid: 466e8b45720922e41a579884053db901, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
   isHand: 0

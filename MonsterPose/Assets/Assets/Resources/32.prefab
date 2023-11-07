@@ -209,7 +209,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 75515bfd1eccd4f47877ee38a674f6fd, type: 2}
+  m_Sprite: {fileID: 21300000, guid: c958f88195c56e74d84bdbeedac13ae7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -459,12 +459,14 @@ MonoBehaviour:
   failTap: {fileID: 95651773956115396}
   trueTap: {fileID: 95511973143603532}
   playerRenderer: {fileID: 212174969336668232}
-  numberWin: 2
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: ef563ad1b9c19ca4685b5791e1ecdb98, type: 3}
   - {fileID: 21300000, guid: 98348436722941e42b3fe4622fb00c55, type: 3}
-  - {fileID: 21300000, guid: 517fffe479456ee4b87128881148407e, type: 3}
   - {fileID: 21300000, guid: c7484e3fb8f551f43b1d6a9f32c66a05, type: 3}
+  - {fileID: 21300000, guid: a3ec84afcf073504291177da89256d94, type: 3}
+  - {fileID: 21300000, guid: 517fffe479456ee4b87128881148407e, type: 3}
+  - {fileID: 21300000, guid: 1521b43208c6f214095f8ff0ef786c58, type: 3}
   locked: 0
 --- !u!95 &3708523266472275771
 Animator:

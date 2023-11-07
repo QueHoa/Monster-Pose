@@ -823,13 +823,13 @@ MonoBehaviour:
   failTap: {fileID: 95468500562608576}
   trueTap: {fileID: 95715440188603176}
   playerRenderer: {fileID: 212685953506575662}
-  numberWin: 0
+  numberWin: 4
   playerSprites:
-  - {fileID: 21300000, guid: 9759073245c9d3040ad8e41e3c9ada41, type: 3}
   - {fileID: 21300000, guid: 47962c4a60ab4a6419083094ac0e42f1, type: 3}
-  - {fileID: 21300000, guid: ef6a8d00a5416b447912b19a3ec41ee2, type: 3}
+  - {fileID: 21300000, guid: 884536dc8d07b4c49b7bd37f801eaad4, type: 3}
   - {fileID: 21300000, guid: 4325d17d4c8eec646ab88f53a5d1a9d4, type: 3}
   - {fileID: 21300000, guid: 358f12cfc27a7024d931798e4c3b8f28, type: 3}
+  - {fileID: 21300000, guid: 9759073245c9d3040ad8e41e3c9ada41, type: 3}
   locked: 0
 --- !u!95 &1975857739
 Animator:

@@ -18,6 +18,7 @@ public class EndGame : MonoBehaviour
     private GameObject trailerMode;
     [SerializeField]
     private GameObject[] effect;
+    public GameObject loading;
     public Text heart;
     public GameObject fade;
     public Text title;
@@ -164,12 +165,29 @@ public class EndGame : MonoBehaviour
     }
     public void ShareImage()
     {
+        AudioManager.Play("click");
+        AudioManager.Stop("clap2");
         Texture2D text = (Texture2D)screenShot.texture;
-        if (Application.isMobilePlatform)
+        if (unlockedLevelsNumber > GameManager.levelShowAd - 1)
         {
-            NativeShare nativeShare = new NativeShare();
-            nativeShare.AddFile(text, (main.numberPlaying + 1).ToString() + ".jpg");
-            nativeShare.Share();
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                if (Application.isMobilePlatform)
+                {
+                    NativeShare nativeShare = new NativeShare();
+                    nativeShare.AddFile(text, (main.numberPlaying + 1).ToString() + ".jpg");
+                    nativeShare.Share();
+                }
+            });
+        }
+        else
+        {
+            if (Application.isMobilePlatform)
+            {
+                NativeShare nativeShare = new NativeShare();
+                nativeShare.AddFile(text, (main.numberPlaying + 1).ToString() + ".jpg");
+                nativeShare.Share();
+            }
         }
     }
     public void BackHome()
@@ -204,16 +222,17 @@ public class EndGame : MonoBehaviour
     }
     IEnumerator HideHome()
     {
-        anim.SetTrigger("hide");
-        yield return new WaitForSeconds(1.5f);
-        fade.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        home.SetActive(true);
         for (int i = 0; i < effect.Length; i++)
         {
             effect[i].SetActive(false);
         }
-        yield return new WaitForSeconds(0.2f);
+        /*anim.SetTrigger("hide");
+        yield return new WaitForSeconds(1.5f);
+        fade.SetActive(true);*/
+        loading.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
+        home.SetActive(true);
+        //yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
     }
     IEnumerator ShowTrailer()

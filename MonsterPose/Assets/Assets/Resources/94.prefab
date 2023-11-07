@@ -732,10 +732,11 @@ MonoBehaviour:
   rightPos: {fileID: 4294101242226600}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212766338755855836}
-  numberWin: 2
+  numberWin: 3
   playerSprites:
   - {fileID: 21300000, guid: f757b215f8e99534880cb9f7ab253c12, type: 3}
   - {fileID: 21300000, guid: ef4d482894a112b499ef8a78d801dea3, type: 3}
+  - {fileID: 21300000, guid: 202ce754bf57f6d4b99e537bc6375197, type: 3}
   - {fileID: 21300000, guid: e4183392ee694e548a0380fe6b6d4fa1, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
@@ -858,10 +859,12 @@ MonoBehaviour:
   rightPos: {fileID: 4469280131000881}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212081188477962052}
-  numberWin: 2
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: f5fcf4c4797ed8a409fbdb673dd4ff98, type: 3}
   - {fileID: 21300000, guid: f8a3dc296da2a834a9455b71e8f2e98e, type: 3}
+  - {fileID: 21300000, guid: 7a8ba1a55bd98f94889b14ee5024f009, type: 3}
+  - {fileID: 21300000, guid: 6fa1352b90555b040941620a2cc66f17, type: 3}
   - {fileID: 21300000, guid: 74cb456b1fa511940bcf307e9f20033f, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}

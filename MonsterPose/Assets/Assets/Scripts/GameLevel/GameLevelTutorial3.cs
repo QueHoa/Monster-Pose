@@ -75,12 +75,13 @@ public class GameLevelTutorial3 : MonoBehaviour
             if (!player[i].locked)
             {
                 int index = i;
-                player[index].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
+                player[index].playerRenderer.sprite = player[index].playerSprites[player[index].numberWin];
+                player[index].numHeart = player[index].numberWin;
                 player[index].block = true;
                 player[index].fade.SetActive(false);
                 player[index].frame.SetActive(false);
                 player[index].hand.SetActive(false);
-                player[index].transform.DOMove(player[i].rightPos.position, 1f).SetEase(Ease.OutQuart).OnComplete(() =>
+                player[index].transform.DOMove(player[index].rightPos.position, 1f).SetEase(Ease.OutQuart).OnComplete(() =>
                 {
                     player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine).OnComplete(() =>
                     {

@@ -240,6 +240,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f6e5eb85afb730e428e216afff2ae71e, type: 3}
   - {fileID: 21300000, guid: 3e74ddcef50ac6742807f7802e39a035, type: 3}
   locked: 0
+  oldPosition: {x: 0, y: 0}
   isHand: 0
 --- !u!1 &270690366295798682
 GameObject:
@@ -390,12 +391,14 @@ MonoBehaviour:
   rightPos: {fileID: 272921171289797011}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 86889396714828279}
-  numberWin: 2
+  numberWin: 3
   playerSprites:
   - {fileID: 21300000, guid: 2c94a52fe7ca0d14f836eaecfd6e3035, type: 3}
   - {fileID: 21300000, guid: 221756a4ab7729e45912f9fc3beaa5fb, type: 3}
+  - {fileID: 21300000, guid: 492eb42383fde7e4aa14b8a441085631, type: 3}
   - {fileID: 21300000, guid: e18e81548a27ff54ea1d0ff463d4975c, type: 3}
   locked: 0
+  oldPosition: {x: 0, y: 0}
   isHand: 0
 --- !u!1 &271005338168828002
 GameObject:

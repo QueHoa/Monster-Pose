@@ -292,12 +292,14 @@ MonoBehaviour:
   failTap: {fileID: 95524383065592832}
   trueTap: {fileID: 95149549301684975}
   playerRenderer: {fileID: 212938876714343121}
-  numberWin: 3
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: 1521b43208c6f214095f8ff0ef786c58, type: 3}
   - {fileID: 21300000, guid: 98348436722941e42b3fe4622fb00c55, type: 3}
   - {fileID: 21300000, guid: eda279c3af7e5c948b594d0cdd7071c8, type: 3}
+  - {fileID: 21300000, guid: d70338ffde3620b46844c75b4bccccd4, type: 3}
   - {fileID: 21300000, guid: ae9915f9e30c4f24a8a02ea28568e2d2, type: 3}
+  - {fileID: 21300000, guid: 517fffe479456ee4b87128881148407e, type: 3}
   locked: 0
 --- !u!95 &3519523247956621363
 Animator:

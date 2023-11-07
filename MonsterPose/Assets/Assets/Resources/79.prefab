@@ -418,12 +418,13 @@ MonoBehaviour:
   rightPos: {fileID: 4887697475444508}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212792420161303326}
-  numberWin: 2
+  numberWin: 4
   playerSprites:
-  - {fileID: 21300000, guid: fc014d72538b1734aae2263d3b3fd646, type: 3}
   - {fileID: 21300000, guid: cedc45a57309c064ab9d8b08bfbb4341, type: 3}
-  - {fileID: 21300000, guid: 83b7eb438d8902141933b04531ebe490, type: 3}
+  - {fileID: 21300000, guid: fc014d72538b1734aae2263d3b3fd646, type: 3}
   - {fileID: 21300000, guid: 38e067d64b0d9e441bab9868058736ee, type: 3}
+  - {fileID: 21300000, guid: 3052d2a3e3105284988f99e5e4937723, type: 3}
+  - {fileID: 21300000, guid: 83b7eb438d8902141933b04531ebe490, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
   isHand: 0
@@ -505,7 +506,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.06, y: 6.2}
+  m_Size: {x: 4.31, y: 6.21}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -629,11 +630,11 @@ MonoBehaviour:
   rightPos: {fileID: 4342228272105418}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212646089742866146}
-  numberWin: 1
+  numberWin: 2
   playerSprites:
   - {fileID: 21300000, guid: d494d2f444ce47c4b88644529ff24311, type: 3}
-  - {fileID: 21300000, guid: 4a056882eb7d4f8409e15dac43bcbc72, type: 3}
   - {fileID: 21300000, guid: 349991d4d122aaf48a17562069c0a818, type: 3}
+  - {fileID: 21300000, guid: 4a056882eb7d4f8409e15dac43bcbc72, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
   isHand: 0

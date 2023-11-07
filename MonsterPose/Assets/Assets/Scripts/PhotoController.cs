@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using OneHit;
+using OneHit.Framework;
 
 public class PhotoController : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class PhotoController : MonoBehaviour
     public RectTransform image;
     public CanvasGroup alpha;
     public Image imageWin;
+    private int unlockedLevelsNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class PhotoController : MonoBehaviour
     private void OnEnable()
     {
         alpha.alpha = 0;
+        unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         back.anchoredPosition = new Vector3(-112, back.anchoredPosition.y, 0);
         title.anchoredPosition = new Vector3(title.anchoredPosition.x, 160, 0);
         //image.localScale = Vector3.zero;
@@ -34,12 +38,29 @@ public class PhotoController : MonoBehaviour
     }
     public void ShareImage()
     {
+        AudioManager.Play("click");
         Texture2D text = (Texture2D)imageWin.sprite.texture;
-        if (Application.isMobilePlatform)
+        
+        if (unlockedLevelsNumber > GameManager.levelShowAd)
         {
-            NativeShare nativeShare = new NativeShare();
-            nativeShare.AddFile(text, level.text + ".jpg");
-            nativeShare.Share();
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                if (Application.isMobilePlatform)
+                {
+                    NativeShare nativeShare = new NativeShare();
+                    nativeShare.AddFile(text, level.text + ".jpg");
+                    nativeShare.Share();
+                }
+            });
+        }
+        else
+        {
+            if (Application.isMobilePlatform)
+            {
+                NativeShare nativeShare = new NativeShare();
+                nativeShare.AddFile(text, level.text + ".jpg");
+                nativeShare.Share();
+            }
         }
     }
 }

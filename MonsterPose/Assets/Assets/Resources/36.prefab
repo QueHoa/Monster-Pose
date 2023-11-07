@@ -286,10 +286,12 @@ MonoBehaviour:
   rightPos: {fileID: 4345075360704336}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212929702787895054}
-  numberWin: 2
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: 547e6007f92103f45aebf4d6afde73e1, type: 3}
   - {fileID: 21300000, guid: 47962c4a60ab4a6419083094ac0e42f1, type: 3}
+  - {fileID: 21300000, guid: 4930263770de92e499dff54b7036f262, type: 3}
+  - {fileID: 21300000, guid: 1a1ca708362e19140b194cd0420ec190, type: 3}
   - {fileID: 21300000, guid: 73b917f609c58d44fb2cb9ec5aad0cde, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
@@ -572,7 +574,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a15c4838f63d7eb4ab0aed29c24d691c, type: 2}
+  m_Sprite: {fileID: 21300000, guid: c797c388ce4f2da4e95e17ed0b0b149c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

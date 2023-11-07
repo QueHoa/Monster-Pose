@@ -118,9 +118,11 @@ MonoBehaviour:
   rightPos: {fileID: 8079816816348763620}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 8270111905093309804}
-  numberWin: 2
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: ec36995965b2c9b4b9a40f7819f0c296, type: 3}
+  - {fileID: 21300000, guid: 19dbe0dbe344e6a4d88d4318fa3dd719, type: 3}
+  - {fileID: 21300000, guid: 412b044b4fddd8d4684acd3ec6f57a22, type: 3}
   - {fileID: 21300000, guid: 19dbe0dbe344e6a4d88d4318fa3dd719, type: 3}
   - {fileID: 21300000, guid: 7a659b63eec62d642bd0f7860863018a, type: 3}
   locked: 0

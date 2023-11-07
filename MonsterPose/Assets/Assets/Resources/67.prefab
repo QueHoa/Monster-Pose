@@ -491,10 +491,11 @@ MonoBehaviour:
   rightPos: {fileID: 4347855794194577}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212683345314052491}
-  numberWin: 2
+  numberWin: 3
   playerSprites:
   - {fileID: 21300000, guid: ebd54e6a3dedd1b46835b56d4bff20ca, type: 3}
   - {fileID: 21300000, guid: b6fc2b30748b74e40b25474c372eda09, type: 3}
+  - {fileID: 21300000, guid: 13457d1c917513a41b0f1283df159fd5, type: 3}
   - {fileID: 21300000, guid: 0b341d470458ad44e9592196720d515a, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
@@ -568,7 +569,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.30018198, y: 3.28}
+  m_Offset: {x: 0.30018198, y: 3.74}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -579,7 +580,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8620555, y: 5.660395}
+  m_Size: {x: 3.41, y: 6.92}
   m_EdgeRadius: 0
 --- !u!50 &6260531829268381808
 Rigidbody2D:
@@ -617,10 +618,12 @@ MonoBehaviour:
   rightPos: {fileID: 4119129189494774}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212818477882320804}
-  numberWin: 2
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: 823cf7d952689f34ca9e2d921599eca4, type: 3}
   - {fileID: 21300000, guid: 7c8f1e75fcd9230458d0f4aba18e73be, type: 3}
+  - {fileID: 21300000, guid: 3551c50d31329884aa235a9035ea25d6, type: 3}
+  - {fileID: 21300000, guid: a7290048d46cc424cb594dbd3ca6d5d0, type: 3}
   - {fileID: 21300000, guid: 391807d25e45df949a080c5c2b602e3b, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
@@ -827,11 +830,12 @@ MonoBehaviour:
   rightPos: {fileID: 4086232454051437}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212073336395632556}
-  numberWin: 3
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: 6e67f27f53ee9d84a867457d507c77c0, type: 3}
   - {fileID: 21300000, guid: 518eaa8fe481fc1499cfd9b6de7ff7ad, type: 3}
   - {fileID: 21300000, guid: 12adff0682e77cd4485b7ae6c9e19396, type: 3}
+  - {fileID: 21300000, guid: cc37a284982ef0344a6d8e6f9460f039, type: 3}
   - {fileID: 21300000, guid: 003e75504f3800c41863bbe93573ee40, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}

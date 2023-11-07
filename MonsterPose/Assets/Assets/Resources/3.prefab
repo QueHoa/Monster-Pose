@@ -78,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.45, y: 7.71}
+  m_Size: {x: 5.43, y: 7.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -202,10 +202,11 @@ MonoBehaviour:
   rightPos: {fileID: 2823581866383235698}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 2725509671151224528}
-  numberWin: 2
+  numberWin: 3
   playerSprites:
   - {fileID: 21300000, guid: 1ffca4a2fac445643b934e97f83b2898, type: 3}
   - {fileID: 21300000, guid: 3106e3a8d74329847a3ea1097247910f, type: 3}
+  - {fileID: 21300000, guid: a74a2ff206442d44fb2c23b5c6063c00, type: 3}
   - {fileID: 21300000, guid: e2dceaf08d055844cb2d88ece45b60e5, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}

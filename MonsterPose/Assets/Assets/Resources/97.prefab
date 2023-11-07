@@ -118,10 +118,11 @@ MonoBehaviour:
   rightPos: {fileID: 4821471537922771}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212344096595989993}
-  numberWin: 2
+  numberWin: 3
   playerSprites:
   - {fileID: 21300000, guid: 76f8f3cd92c34e34e91e6bbbc3033a74, type: 3}
   - {fileID: 21300000, guid: 9a8d7873693ae1c4f86f8adf789cccb7, type: 3}
+  - {fileID: 21300000, guid: 7facac8c077637c43b58228e47158188, type: 3}
   - {fileID: 21300000, guid: 33fcdcf895bf85f489ec20b9f0b41ac0, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
@@ -338,11 +339,13 @@ MonoBehaviour:
   rightPos: {fileID: 4543171613548673}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212548305333622002}
-  numberWin: 1
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: 584b80d1725197e4895db76cf89ba5fb, type: 3}
-  - {fileID: 21300000, guid: cd38dc9fb2b45b84b93a16377527c546, type: 3}
   - {fileID: 21300000, guid: 6ad9bd3306ff4024da2e7a2609b29e4b, type: 3}
+  - {fileID: 21300000, guid: 329b3ededa4c4fd48be4608b826e063b, type: 3}
+  - {fileID: 21300000, guid: 1f116eae664c5914cb192772d7237f24, type: 3}
+  - {fileID: 21300000, guid: cd38dc9fb2b45b84b93a16377527c546, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
   isHand: 0

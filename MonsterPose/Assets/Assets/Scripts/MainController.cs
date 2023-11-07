@@ -35,6 +35,7 @@ public class MainController : MonoBehaviour
     [SerializeField]
     private GameObject trailerMode;
     public GameObject panelSetting;
+    public GameObject loading;
     public RectTransform buttonBack;
     public RectTransform buttonSuggest;
     public RectTransform buttonSkip;
@@ -282,13 +283,14 @@ public class MainController : MonoBehaviour
     IEnumerator EffectBack()
     {
         Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
-        Level.DOScale(Vector3.one, 0.75f).SetEase(Ease.OutQuart);
+        /*Level.DOScale(Vector3.one, 0.75f).SetEase(Ease.OutQuart);
         buttonBack.DOAnchorPosX(-102, 0.75f).SetEase(Ease.OutQuart);
         buttonSuggest.DOAnchorPosX(260.2f, 0.75f).SetEase(Ease.OutQuart);
         buttonSkip.DOAnchorPosX(113.8f, 0.75f).SetEase(Ease.OutQuart);
         buttonTextLevel.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);
-        buttonTime.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.8f);
+        buttonTime.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);*/
+        loading.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
         if (Level != null)
         {
             Destroy(Level.gameObject);

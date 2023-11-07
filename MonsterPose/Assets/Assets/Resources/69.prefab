@@ -454,11 +454,13 @@ MonoBehaviour:
   rightPos: {fileID: 4195562536173252}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212187473866697704}
-  numberWin: 3
+  numberWin: 5
   playerSprites:
   - {fileID: 21300000, guid: 6fa1352b90555b040941620a2cc66f17, type: 3}
   - {fileID: 21300000, guid: 003e75504f3800c41863bbe93573ee40, type: 3}
   - {fileID: 21300000, guid: 12adff0682e77cd4485b7ae6c9e19396, type: 3}
+  - {fileID: 21300000, guid: 8ae67f18f859eb7489b0f490f803cbd4, type: 3}
+  - {fileID: 21300000, guid: 518eaa8fe481fc1499cfd9b6de7ff7ad, type: 3}
   - {fileID: 21300000, guid: 489f38626d0219c499980e29c6c51ae9, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}

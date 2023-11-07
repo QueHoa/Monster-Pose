@@ -298,7 +298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254958063160097}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.45, z: 0}
+  m_LocalPosition: {x: 0.31, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -346,7 +346,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0dd33438b21e46746803ab9b1f2e13ef, type: 2}
+  m_Sprite: {fileID: 21300000, guid: b4bebb13226053d4f9cac19d60226006, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -596,11 +596,12 @@ MonoBehaviour:
   failTap: {fileID: 95587171022738173}
   trueTap: {fileID: 95379447699479789}
   playerRenderer: {fileID: 212897576176761049}
-  numberWin: 3
+  numberWin: 4
   playerSprites:
   - {fileID: 21300000, guid: ae9915f9e30c4f24a8a02ea28568e2d2, type: 3}
   - {fileID: 21300000, guid: 1521b43208c6f214095f8ff0ef786c58, type: 3}
   - {fileID: 21300000, guid: eda279c3af7e5c948b594d0cdd7071c8, type: 3}
+  - {fileID: 21300000, guid: ef563ad1b9c19ca4685b5791e1ecdb98, type: 3}
   - {fileID: 21300000, guid: 98348436722941e42b3fe4622fb00c55, type: 3}
   locked: 0
 --- !u!95 &1779888651241772138

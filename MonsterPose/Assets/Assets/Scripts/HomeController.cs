@@ -67,6 +67,7 @@ public class HomeController : MonoBehaviour
         buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
         buttonPlay.interactable = true;
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
+        textLevel.transform.localScale = new Vector3(0, 0, 1);
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
         textLevel.text = "LEVEL " + unlockedLevelsNumber.ToString();
@@ -151,6 +152,7 @@ public class HomeController : MonoBehaviour
         buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
         buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.interactable = false;
         btnMode.interactable = false;
         yield return new WaitForSeconds(0.4f);
@@ -176,6 +178,7 @@ public class HomeController : MonoBehaviour
         buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
         buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.interactable = false;
         btnMode.interactable = false;
         yield return new WaitForSeconds(0.4f);
@@ -201,6 +204,7 @@ public class HomeController : MonoBehaviour
         buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
         buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.interactable = false;
         btnMode.interactable = false;
         yield return new WaitForSeconds(0.4f);
@@ -241,8 +245,10 @@ public class HomeController : MonoBehaviour
         buttonPlay.DOKill();
         butTween1.Kill();
         buttonPlay.transform.localScale = Vector3.zero;
+        textLevel.transform.localScale = Vector3.zero;
         yield return new WaitForSeconds(0.45f);
         buttonPlay.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+        textLevel.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
         yield return new WaitForSeconds(0.75f);
         butTween1 = buttonPlay.transform.DOScale(Vector3.one * 0.95f, 0.65f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
@@ -327,6 +333,7 @@ public class HomeController : MonoBehaviour
         buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
         buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
+        textLevel.transform.localScale = new Vector3(0, 0, 1);
         buttonPlay.interactable = true;
         if (unlockedLevelsNumber > 10)
         {
@@ -367,6 +374,7 @@ public class HomeController : MonoBehaviour
         buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
         buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
+        textLevel.transform.localScale = new Vector3(0, 0, 1);
         buttonPlay.interactable = true;
         if (unlockedLevelsNumber > 10)
         {
@@ -417,6 +425,7 @@ public class HomeController : MonoBehaviour
         buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
         buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
+        textLevel.transform.localScale = new Vector3(0, 0, 1);
         buttonPlay.interactable = true;
         if (unlockedLevelsNumber > 10)
         {

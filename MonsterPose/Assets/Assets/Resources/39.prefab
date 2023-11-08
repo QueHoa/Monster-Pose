@@ -299,7 +299,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.81, y: 3.0736206}
+  m_Offset: {x: 0.81, y: 3.79}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -482,7 +482,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.5847623}
+  m_Offset: {x: 0, y: 3.16}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -531,11 +531,13 @@ MonoBehaviour:
   rightPos: {fileID: 4845781833871790}
   handTap: {fileID: 0}
   playerRenderer: {fileID: 212272532701825257}
-  numberWin: 2
+  numberWin: 3
   playerSprites:
   - {fileID: 21300000, guid: 265a399f209f1e34ba68c8a8a25b09b6, type: 3}
   - {fileID: 21300000, guid: 12c5d46d1bd584942b46297146a126bc, type: 3}
+  - {fileID: 21300000, guid: 228c1c9647af77f49b2197b48b7d7f42, type: 3}
   - {fileID: 21300000, guid: f4b56804a61ddc448bd536b8b3e0faac, type: 3}
+  - {fileID: 21300000, guid: e8f2e77dbbcd07442889ca2d9cbc1264, type: 3}
   locked: 0
   oldPosition: {x: 0, y: 0}
   isHand: 0

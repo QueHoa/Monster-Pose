@@ -71,7 +71,7 @@ public class GameModeTutorial : MonoBehaviour
     {
         anim.SetTrigger("tutorial");
         Input.multiTouchEnabled = false;
-        yield return new WaitForSeconds(13f);
+        yield return new WaitForSeconds(9.5f);
         Input.multiTouchEnabled = true;
         isTutorial = false;
     }

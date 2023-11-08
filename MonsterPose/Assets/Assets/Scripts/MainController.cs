@@ -91,7 +91,7 @@ public class MainController : MonoBehaviour
         buttonBack.DOAnchorPosX(102, 0.8f).SetEase(Ease.OutQuart);
         buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
         buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
-        buttonTextLevel.DOAnchorPosY(-115, 0.8f).SetEase(Ease.OutQuart);
+        buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
         buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
         startTime = false;
         AudioManager.Play("new_level");
@@ -356,7 +356,7 @@ public class MainController : MonoBehaviour
                 buttonBack.DOAnchorPosX(102, 0.8f).SetEase(Ease.OutQuart);
                 buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
                 buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
-                buttonTextLevel.DOAnchorPosY(-115, 0.8f).SetEase(Ease.OutQuart);
+                buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
                 buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
                 GameObject loadedPrefab = Resources.Load<GameObject>(numberPlaying.ToString());
                 GameObject level = Instantiate(loadedPrefab, gameObject.transform);
@@ -427,7 +427,7 @@ public class MainController : MonoBehaviour
             buttonBack.DOAnchorPosX(102, 0.8f).SetEase(Ease.OutQuart);
             buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
             buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
-            buttonTextLevel.DOAnchorPosY(-115, 0.8f).SetEase(Ease.OutQuart);
+            buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
             buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
             if (numberPlaying == unlockedLevelsNumber - 1 && numberPlaying != GameManager.numberLevel - 1)
             {

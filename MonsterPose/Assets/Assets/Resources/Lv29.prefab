@@ -208,6 +208,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 15
   locked: 0
+  hapticTypes: 3
 --- !u!1 &2237227700612061246
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +501,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 12
   locked: 0
+  hapticTypes: 3
 --- !u!1 &3273858757988469194
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +626,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 14
   locked: 0
+  hapticTypes: 3
 --- !u!1 &3281545678338818215
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +835,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 13
   locked: 0
+  hapticTypes: 3
 --- !u!1 &6524121663464891292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1082,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.4, y: 7}
+  m_Size: {x: 3.12, y: 7.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1718,6 +1722,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 5
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915539589442514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,6 +2099,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 9
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915539929397453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,6 +2476,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 4
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915540014974481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,6 +2601,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 10
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915540162460403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,6 +2726,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 3
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915540207656499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,6 +2975,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 2
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915540562254564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,6 +3100,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 0
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915540599705039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3214,6 +3225,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 11
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915540768301823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,6 +3434,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 8
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915540818222952
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,6 +3727,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 6
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915541094272957
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,6 +3852,7 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 7
   locked: 0
+  hapticTypes: 3
 --- !u!1 &9091915541109647668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3962,3 +3977,4 @@ MonoBehaviour:
   gameMode1: {fileID: 9091915539371580670}
   numberSprite: 1
   locked: 0
+  hapticTypes: 3

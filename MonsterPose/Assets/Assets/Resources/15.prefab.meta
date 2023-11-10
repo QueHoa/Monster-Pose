@@ -1,11 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 8e29966d2929b9b40b1e01220ef56f1b
-=======
-guid: 4b5165b72c2920e44a897856fe87bb0a
-timeCreated: 1691164427
+guid: de3f9cd7b0ba9e1419f2bf5857fb6a31
+timeCreated: 1691164426
 licenseType: Free
->>>>>>> Stashed changes
 PrefabImporter:
   externalObjects: {}
   addedObjectFileIDs: []

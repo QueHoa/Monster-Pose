@@ -15,25 +15,16 @@ public class MainController : MonoBehaviour
     [HideInInspector]
     public bool isWin;
 
-    [SerializeField]
-    private Image bg;
-    [SerializeField]
-    private Sprite[] background;
-    [SerializeField]
-    private Text textLevel;
+    public Image bg;
+    public Sprite[] background;
+    public Text textLevel;
     public Transform clock;
-    [SerializeField]
-    private Image sliceTime;
-    [SerializeField]
-    private Text txtTime;
-    [SerializeField]
-    private GameObject home;
-    [SerializeField]
-    private Animator losePanel;
-    [SerializeField]
-    private GameObject endGame;
-    [SerializeField]
-    private GameObject trailerMode;
+    public Image sliceTime;
+    public Text txtTime;
+    public GameObject home;
+    public Animator losePanel;
+    public GameObject endGame;
+    public GameObject trailerMode;
     public GameObject panelSetting;
     public GameObject loading;
     public RectTransform buttonBack;
@@ -92,7 +83,10 @@ public class MainController : MonoBehaviour
         buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
         buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
         buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
-        buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+        if (numberPlaying > 1)
+        {
+            buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+        }
         startTime = false;
         AudioManager.Play("new_level");
     }
@@ -111,7 +105,7 @@ public class MainController : MonoBehaviour
             {
                 StartCoroutine(StartTime());
             }
-            if (startTime)
+            if (startTime && numberPlaying > 1)
             {
                 time -= Time.deltaTime;
             }
@@ -357,7 +351,10 @@ public class MainController : MonoBehaviour
                 buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
                 buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
                 buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
-                buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+                if(numberPlaying > 1)
+                {
+                    buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+                }
                 GameObject loadedPrefab = Resources.Load<GameObject>(numberPlaying.ToString());
                 GameObject level = Instantiate(loadedPrefab, gameObject.transform);
                 level.transform.SetParent(gameObject.transform, false);
@@ -428,7 +425,10 @@ public class MainController : MonoBehaviour
             buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
             buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
             buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
-            buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+            if(numberPlaying > 1)
+            {
+                buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
+            }
             if (numberPlaying == unlockedLevelsNumber - 1 && numberPlaying != GameManager.numberLevel - 1)
             {
                 PlayerPrefs.SetInt("levelsUnlocked", unlockedLevelsNumber + 1);

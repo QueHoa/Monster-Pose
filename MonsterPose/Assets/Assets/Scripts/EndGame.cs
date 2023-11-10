@@ -148,10 +148,12 @@ public class EndGame : MonoBehaviour
     }
     IEnumerator Hide()
     {
-        anim.SetTrigger("hide");
+        /*anim.SetTrigger("hide");
         yield return new WaitForSeconds(1.5f);
         fade.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);*/
+        loading.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
         GameObject loadedPrefab = Resources.Load<GameObject>(main.numberPlaying.ToString());
         GameObject level = Instantiate(loadedPrefab, main.transform);
         level.transform.SetParent(main.transform, false);
@@ -160,7 +162,6 @@ public class EndGame : MonoBehaviour
         {
             effect[i].SetActive(false);
         }
-        yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
     }
     public void ShareImage()

@@ -118,6 +118,13 @@ public class GamePlayTutorial3 : MonoBehaviour
             fade.SetActive(false);
             losePanel.SetActive(false);
         }
+        if (main.losePanel.gameObject.activeInHierarchy)
+        {
+            hand.SetActive(false);
+            frame.SetActive(false);
+            hand2.SetActive(false);
+            frame2.SetActive(false);
+        }
     }    
     bool IsWithinBoxCollider()
     {
@@ -149,7 +156,7 @@ public class GamePlayTutorial3 : MonoBehaviour
         {
             hand2.SetActive(true);
             frame2.SetActive(true);
-            MoveTap();
+            //MoveTap();
         }
         else
         {

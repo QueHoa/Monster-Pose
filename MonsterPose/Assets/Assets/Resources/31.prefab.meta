@@ -1,7 +1,15 @@
 fileFormatVersion: 2
-guid: 2c1f36e5f90121949a1437b0f8dd2a9d
+<<<<<<< Updated upstream
+guid: 373a338c39ad28a4d97262a82a1a07f6
+=======
+guid: fea9062177790d6498ce89fb15c0aa1a
+timeCreated: 1691164427
+licenseType: Free
+>>>>>>> Stashed changes
 PrefabImporter:
   externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  addedObjectFileIDs: []
+  isPrefabVariant: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 1568703030}
     - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: testAppOpenAd
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: androidAppOpenAdID

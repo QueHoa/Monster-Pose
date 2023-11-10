@@ -25975,7 +25975,7 @@ MonoBehaviour:
   buttonParent: {fileID: 271}
   buttonModeParent: {fileID: 1143389153}
   buttonGalleryParent: {fileID: 976612351}
-  numberLevel: 80
+  numberLevel: 100
   numberMode: 20
 --- !u!114 &1800242577
 MonoBehaviour:
@@ -27549,7 +27549,7 @@ PrefabInstance:
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: audioClips.Array.data[10]
       value: 
-      objectReference: {fileID: 8300000, guid: e224e4f68818b4f49a42ae4171740094, type: 3}
+      objectReference: {fileID: 8300000, guid: 97877d63827536747adae7b6ad30265b, type: 3}
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: audioClips.Array.data[11]
       value: 
@@ -27561,7 +27561,7 @@ PrefabInstance:
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: audioClips.Array.data[13]
       value: 
-      objectReference: {fileID: 8300000, guid: 70997b1c830d5aa4092ab2f6e8e83be9, type: 3}
+      objectReference: {fileID: 8300000, guid: 4a00e17a4a2a36041817e18c6ffccc95, type: 3}
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: audioClips.Array.data[14]
       value: 
@@ -27677,7 +27677,7 @@ PrefabInstance:
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: sounds.Array.data[10].clip
       value: 
-      objectReference: {fileID: 8300000, guid: e224e4f68818b4f49a42ae4171740094, type: 3}
+      objectReference: {fileID: 8300000, guid: 97877d63827536747adae7b6ad30265b, type: 3}
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: sounds.Array.data[10].name
       value: pen_fail
@@ -27701,7 +27701,7 @@ PrefabInstance:
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: sounds.Array.data[13].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 70997b1c830d5aa4092ab2f6e8e83be9, type: 3}
+      objectReference: {fileID: 8300000, guid: 4a00e17a4a2a36041817e18c6ffccc95, type: 3}
     - target: {fileID: 5715442953092748618, guid: ff8b267a4ad3a9447990fe926c380259, type: 3}
       propertyPath: sounds.Array.data[13].name
       value: clap2

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4b5165b72c2920e44a897856fe87bb0a
-timeCreated: 1691164427
-licenseType: Free
+<<<<<<< Updated upstream:MonsterPose/Assets/Assets/Resources/Lv21.prefab.meta
+guid: 2b9fd968cfaa0784f8d1f3d8a3410921
+=======
+guid: 3c936c9f730420045880a32abd411ad6
+>>>>>>> Stashed changes:MonsterPose/Assets/Assets/Resources/51.prefab.meta
 PrefabImporter:
   externalObjects: {}
-  addedObjectFileIDs: []
-  isPrefabVariant: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

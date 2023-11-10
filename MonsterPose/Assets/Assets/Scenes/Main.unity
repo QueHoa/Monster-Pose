@@ -25976,7 +25976,7 @@ MonoBehaviour:
   buttonModeParent: {fileID: 1143389153}
   buttonGalleryParent: {fileID: 976612351}
   numberLevel: 100
-  numberMode: 20
+  numberMode: 30
 --- !u!114 &1800242577
 MonoBehaviour:
   m_ObjectHideFlags: 0

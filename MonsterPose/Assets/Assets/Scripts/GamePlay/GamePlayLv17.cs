@@ -12,6 +12,7 @@ public class GamePlayLv17 : MonoBehaviour
     public GameObject firework;
     public ParticleSystem effect;
     public SpriteRenderer playerRenderer;
+    public Animator fail;
 
     public int numberWin;
     public Sprite[] playerSprites;
@@ -84,6 +85,7 @@ public class GamePlayLv17 : MonoBehaviour
                     {
                         AudioManager.Play("pen_fail");
                         anim.SetTrigger("fail");
+                        fail.SetTrigger("show");
                         transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
                     }
                     isDrag = false;

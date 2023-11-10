@@ -9,6 +9,7 @@ public class SideGamePlay2 : MonoBehaviour
 {
     public Transform rightPos;
     public SpriteRenderer playerRenderer;
+    public Animator fail;
 
     [HideInInspector]
     public bool locked;
@@ -82,6 +83,7 @@ public class SideGamePlay2 : MonoBehaviour
                         {
                             AudioManager.Play("pen_fail");
                             anim.SetTrigger("fail");
+                            fail.SetTrigger("show");
                             transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
                         }
                     }

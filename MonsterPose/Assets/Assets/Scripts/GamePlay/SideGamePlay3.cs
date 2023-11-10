@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using OneHit.Framework;
 
 public class SideGamePlay3 : MonoBehaviour
 {
-    [SerializeField]
-    private SpriteRenderer playerRenderer;
+    public SpriteRenderer playerRenderer;
+    public Animator fail;
 
     [HideInInspector]
     public int numHeart = 0;
@@ -71,9 +72,10 @@ public class SideGamePlay3 : MonoBehaviour
                     }
                     else
                     {
+                        AudioManager.Play("pen_fail");
                         anim.SetTrigger("fail");
+                        fail.SetTrigger("show");
                         transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
-                        
                     }
                     isDrag = false;
                     isTouch = 0;

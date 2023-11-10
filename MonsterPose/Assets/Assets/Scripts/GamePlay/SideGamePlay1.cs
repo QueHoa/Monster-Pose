@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using OneHit.Framework;
 
 public class SideGamePlay1 : MonoBehaviour
 {
+    public Animator fail;
     private Camera mainCamera;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb;
@@ -53,7 +55,9 @@ public class SideGamePlay1 : MonoBehaviour
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
+                    AudioManager.Play("pen_fail");
                     anim.SetTrigger("fail");
+                    fail.SetTrigger("show");
                     transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
                     isDrag = false;
                 }

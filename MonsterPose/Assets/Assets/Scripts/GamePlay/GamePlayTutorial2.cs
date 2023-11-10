@@ -18,6 +18,7 @@ public class GamePlayTutorial2 : MonoBehaviour
     public SpriteRenderer playerRenderer;
     public SpriteRenderer heart;
     public SpriteRenderer hand;
+    public Animator fail;
 
     public int numberWin;
     public Transform endHand;
@@ -104,6 +105,7 @@ public class GamePlayTutorial2 : MonoBehaviour
                     {
                         AudioManager.Play("pen_fail");
                         anim.SetTrigger("fail");
+                        fail.SetTrigger("show");
                     }  
                 }                
                 if (playerRenderer.sprite == playerSprites[2] && touch.phase == TouchPhase.Ended && IsWithinBoxCollider())
@@ -119,6 +121,7 @@ public class GamePlayTutorial2 : MonoBehaviour
                     {
                         AudioManager.Play("pen_fail");
                         anim.SetTrigger("fail");
+                        fail.SetTrigger("show");
                         transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
                     }
                     isDrag = false;

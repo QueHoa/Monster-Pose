@@ -489,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 1568703030}
     - target: {fileID: 1298855112, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: _androidAppKey
-      value: 1b2b5e35d
+      value: 1bf65ee85
       objectReference: {fileID: 0}
     - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: fade
@@ -501,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1877545617, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: androidAppOpenAdID
-      value: ca-app-pub-1370756799605534/4527120795
+      value: ca-app-pub-1370756799605534/9648348246
       objectReference: {fileID: 0}
     - target: {fileID: 2138205115, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: m_Alpha
@@ -509,7 +509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1572320214677632130, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: appToken
-      value: sjryc1x9aio0
+      value: sm47o1xnk5j4
       objectReference: {fileID: 0}
     - target: {fileID: 1572320214677632130, guid: cb9265a14e6814946a32aa5984cbbf97, type: 3}
       propertyPath: startManually

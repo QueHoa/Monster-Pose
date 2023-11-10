@@ -15,6 +15,7 @@ public class GamePlayTutorial3 : MonoBehaviour
     public GameObject frame2;
     public GameObject fade;
     public SpriteRenderer playerRenderer;
+    public Animator fail;
 
     public int numberWin;
     public Transform endHand;
@@ -102,6 +103,7 @@ public class GamePlayTutorial3 : MonoBehaviour
                         {
                             AudioManager.Play("pen_fail");
                             anim.SetTrigger("fail");
+                            fail.SetTrigger("show");
                             transform.DOMove(new Vector3(oldPosition.x, oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
                         }
                     }

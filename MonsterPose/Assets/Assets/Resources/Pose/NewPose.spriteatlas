@@ -126,6 +126,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 489f38626d0219c499980e29c6c51ae9, type: 3}
   - {fileID: 21300000, guid: fc014d72538b1734aae2263d3b3fd646, type: 3}
   - {fileID: 21300000, guid: 4a056882eb7d4f8409e15dac43bcbc72, type: 3}
+  - {fileID: 21300000, guid: 37cfb09251d3fc746ba2122864c9fc5f, type: 3}
   - {fileID: 21300000, guid: e4183392ee694e548a0380fe6b6d4fa1, type: 3}
   - {fileID: 21300000, guid: 1ffca4a2fac445643b934e97f83b2898, type: 3}
   - {fileID: 21300000, guid: e1faada20aea98b4fbda364212f95879, type: 3}
@@ -135,6 +136,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 309fe6d2e5153c441adc55bc827352e4, type: 3}
   - {fileID: 21300000, guid: 391807d25e45df949a080c5c2b602e3b, type: 3}
   - {fileID: 21300000, guid: 8a1a9dd22735a7c4c91adc3b7240c539, type: 3}
+  - {fileID: 21300000, guid: 3bf5a8e26415bc944aa21055eb25266c, type: 3}
   - {fileID: 21300000, guid: a74a2ff206442d44fb2c23b5c6063c00, type: 3}
   - {fileID: 21300000, guid: 8d98f503d00fe444684055cfe3a2501f, type: 3}
   - {fileID: 21300000, guid: b4bebb13226053d4f9cac19d60226006, type: 3}
@@ -528,6 +530,7 @@ SpriteAtlas:
   - Sky_lv126
   - huggy1
   - longmommy_2
+  - LV86
   - Amanda_110
   - Grimace 10
   - LV97
@@ -537,6 +540,7 @@ SpriteAtlas:
   - Khung smurf_grim1-1
   - wednesday 114
   - green 64
+  - LV88
   - Grimace 7
   - nv5
   - lv K

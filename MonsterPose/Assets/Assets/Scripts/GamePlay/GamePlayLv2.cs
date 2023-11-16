@@ -23,6 +23,7 @@ public class GamePlayLv2 : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private GameObject losePanel;
+    private MainController main;
     private int numHeart = 0;
     private int isTouch = 0;
     private float deltaX, deltaY;
@@ -37,6 +38,7 @@ public class GamePlayLv2 : MonoBehaviour
     void Start()
     {
         losePanel = GameManager.Instance.losePanel;
+        main = GameManager.Instance.mainController;
         playerRenderer.sprite = playerSprites[0];
         mainCamera = Camera.main;
         oldPosition = transform.position;
@@ -54,7 +56,7 @@ public class GamePlayLv2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locked && IsWithinBoxCollider() && !losePanel.activeInHierarchy)
+        if (!locked && IsWithinBoxCollider() && !losePanel.activeInHierarchy && !main.isHint)
         {
             if (Input.touchCount > 0)
             {

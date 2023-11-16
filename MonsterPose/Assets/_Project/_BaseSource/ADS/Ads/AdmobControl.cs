@@ -199,6 +199,7 @@ namespace OneHit
             if (_hasAdImpression)
             {
                 _adsManager.OnAppOpenAdPaid(_adValue);
+                _adsManager.OnAppOpenAdSDKPaid(_adValue);
                 _hasAdImpression = false;
                 _adValue = null;
             }

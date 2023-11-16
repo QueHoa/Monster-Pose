@@ -84,6 +84,8 @@ namespace OneHit
                     GameManager.levelShowAd = levelAd.LongValue;
                     ConfigValue allowTrailer = FirebaseRemoteConfig.DefaultInstance.GetValue("TrailerEnable");
                     EndGame.allowTrailer = allowTrailer.BooleanValue;
+                    ConfigValue numberMonster = FirebaseRemoteConfig.DefaultInstance.GetValue("NumberMonsterLv1");
+                    GameManager.numberMonster = numberMonster.LongValue;
 
                     //if (MasterControl.Instance != null)
                     //{

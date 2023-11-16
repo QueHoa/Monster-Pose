@@ -30,6 +30,7 @@ public class GameLevel13 : MonoBehaviour
     private float oldHand;
     private Vector3 oldBee1 = Vector3.zero;
     private Vector3 oldBee2 = Vector3.zero;
+    private bool hint;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,7 @@ public class GameLevel13 : MonoBehaviour
         takeShot = 0;
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
         win = false;
+        hint = false;
         bee1.position = new Vector3(-10, oldBee1.y, oldBee1.z);
         bee2.position = new Vector3(-10, oldBee2.y, oldBee2.z);
         hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
@@ -62,19 +64,21 @@ public class GameLevel13 : MonoBehaviour
         {
             win = false;
         }
-        if (main.isHint)
+        if (main.isHint && !hint)
         {
+            hint = true;
             if (!player.locked)
             {
                 player.playerRenderer.sprite = player.playerSprites[player.numberWin];
                 player.transform.DOMove(player.rightPos.position, 1f).SetEase(Ease.OutQuart).OnComplete(() =>
                 {
-                    player.transform.DOMove(new Vector3(player.oldPosition.x, player.oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
-
+                    player.transform.DOMove(new Vector3(player.oldPosition.x, player.oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine).OnComplete(() =>
+                    {
+                        hint = false;
+                        main.isHint = false;
+                    });
                 });
             }
-            
-            main.isHint = false;
         }
         if (win && takeShot == 0)
         {

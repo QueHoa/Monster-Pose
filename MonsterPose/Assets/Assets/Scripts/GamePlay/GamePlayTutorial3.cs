@@ -5,20 +5,21 @@ using DG.Tweening;
 using OneHit.Framework;
 using UnityEngine.EventSystems;
 using TMPro;
+using MoreMountains.NiceVibrations;
 
 public class GamePlayTutorial3 : MonoBehaviour
 {
     public Transform rightPos;
     public GameObject hand;
     public GameObject hand2;
-    public GameObject frame;
     public GameObject frame2;
+    public GameObject frame3;
+    public GameObject frame4;
     public GameObject fade;
     public SpriteRenderer playerRenderer;
     public Animator fail;
 
     public int numberWin;
-    public Transform endHand;
     public Sprite[] playerSprites;
 
     [HideInInspector]
@@ -40,6 +41,7 @@ public class GamePlayTutorial3 : MonoBehaviour
     public Vector2 oldPosition;
     [HideInInspector]
     public bool block;
+    private int isVibrate;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,7 @@ public class GamePlayTutorial3 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         main = GameManager.Instance.mainController;
         anim = GetComponent<Animator>();
+        isVibrate = PlayerPrefs.GetInt("VibrateOn");
         isDrag = false;
         locked = false;
         block = false;
@@ -63,7 +66,7 @@ public class GamePlayTutorial3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locked && !losePanel.activeInHierarchy && block)
+        if (!locked && !losePanel.activeInHierarchy && block && IsWithinBoxCollider() && !main.isHint)
         {
             if (Input.touchCount > 0)
             {
@@ -117,15 +120,17 @@ public class GamePlayTutorial3 : MonoBehaviour
         {
             hand2.SetActive(false);
             frame2.SetActive(false);
+            frame3.SetActive(false);
             fade.SetActive(false);
             losePanel.SetActive(false);
         }
         if (main.losePanel.gameObject.activeInHierarchy)
         {
             hand.SetActive(false);
-            frame.SetActive(false);
+            frame4.SetActive(false);
             hand2.SetActive(false);
             frame2.SetActive(false);
+            frame3.SetActive(false);
         }
     }    
     bool IsWithinBoxCollider()
@@ -139,7 +144,7 @@ public class GamePlayTutorial3 : MonoBehaviour
         yield return new WaitForSeconds(1);
         fade.SetActive(true);
         hand.SetActive(true);
-        frame.SetActive(true);
+        frame4.SetActive(true);
 
     }
     void ChangeSprite()
@@ -158,17 +163,19 @@ public class GamePlayTutorial3 : MonoBehaviour
         {
             hand2.SetActive(true);
             frame2.SetActive(true);
+            frame3.SetActive(true);
             //MoveTap();
         }
         else
         {
             hand2.SetActive(false);
             frame2.SetActive(false);
+            frame3.SetActive(false);
         }
     } 
     public void MoveTap()
     {
-        hand2.transform.DOMove(endHand.position + new Vector3(0.5f, 4, 0), 1f)
+        hand2.transform.DOMove(rightPos.position + new Vector3(0.5f, 4, 0), 1f)
             .OnComplete(() =>
             {
                 hand2.transform.position = transform.position + new Vector3(0.5f, 4, 0);

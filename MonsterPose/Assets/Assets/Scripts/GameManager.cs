@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public static int numberLevel;
     [Header("Number Level Mode")]
     public static int numberMode;
+    [Header("Test Monster Tutorial")]
+    public static float numberMonster;
 
     public GameObject main;
     public GameObject mode;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject levelListMode;
     public GameObject gallery;
     public GameObject photo;
+    public GameObject loading;
     public Transform frameImageWin;
     public Image imageWin;
     public Text textHeart;
@@ -141,9 +144,6 @@ public class GameManager : MonoBehaviour
             onVibrate2.enabled = false;
             offVibrate.enabled = true;
         }
-        GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
-        GameObject level = Instantiate(loadedPrefab, main.transform);
-        level.transform.SetParent(main.transform, false);
     }   
 
     // Update is called once per frame

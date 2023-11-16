@@ -15,8 +15,8 @@ public class GameLevelTutorial : MonoBehaviour
     private GameObject heart;
     [SerializeField]
     private GameObject handTap;
-    public GameObject frame;
     public GameObject frame2;
+    public GameObject frame3;
     private GameObject endGame;
     private MainController main;
     public HapticTypes hapticTypes = HapticTypes.HeavyImpact;
@@ -41,8 +41,8 @@ public class GameLevelTutorial : MonoBehaviour
         win = false;
         takeShot = 0;
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
-        frame.SetActive(false);
         frame2.SetActive(false);
+        frame3.SetActive(false);
     }
 
     // Update is called once per frame
@@ -82,6 +82,7 @@ public class GameLevelTutorial : MonoBehaviour
     {
         main.isWin = true;
         frame2.SetActive(false);
+        frame3.SetActive(false);
         yield return new WaitForSeconds(0.2f);
         if (isVibrate == 1)
         {
@@ -92,13 +93,9 @@ public class GameLevelTutorial : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         endGame.SetActive(true);
     }
-    public void setFrame()
-    {
-        frame.SetActive(true);
-    }
     public void setFrame2()
     {
-        frame.SetActive(false);
         frame2.SetActive(true);
+        frame3.SetActive(true);
     }
 }

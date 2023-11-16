@@ -24,6 +24,7 @@ public class GamePlayLv18 : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private GameObject losePanel;
+    private MainController main;
     private int numHeart = 0;
     private int isTouch = 0;
     private float deltaX, deltaY;
@@ -41,6 +42,7 @@ public class GamePlayLv18 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         losePanel = GameManager.Instance.losePanel;
+        main = GameManager.Instance.mainController;
         isDrag = false;
         locked = false;
         transform.DOMoveX(oldPosition.x, 1f).SetEase(Ease.OutQuart);
@@ -49,7 +51,7 @@ public class GamePlayLv18 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locked && IsWithinBoxCollider() && !losePanel.activeInHierarchy)
+        if (!locked && IsWithinBoxCollider() && !losePanel.activeInHierarchy && !main.isHint)
         {
             if (Input.touchCount > 0)
             {

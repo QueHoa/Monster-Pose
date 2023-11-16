@@ -25,6 +25,7 @@ public class GameLevel3 : MonoBehaviour
     private int isVibrate;
     private float oldHand;
     private Vector3 oldScale = new Vector3(100, 100, 1);
+    private bool hint;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,7 @@ public class GameLevel3 : MonoBehaviour
         takeShot = 0;
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
         win = false;
+        hint = false;
         if (hand != null)
         {
             hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
@@ -63,8 +65,9 @@ public class GameLevel3 : MonoBehaviour
                 win = true;
             }
         }
-        if (main.isHint)
+        if (main.isHint && !hint)
         {
+            hint = true;
             for (int i = 0; i < player.Length; i++)
             {
                 if (!player[i].locked)
@@ -74,7 +77,11 @@ public class GameLevel3 : MonoBehaviour
                     player[i].playerRenderer.sprite = player[i].playerSprites[player[i].numberWin];
                     player[i].transform.DOMove(player[i].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
                     {
-                        player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+                        player[index].transform.DOMove(new Vector3(player[index].oldPosition.x, player[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            hint = false;
+                            main.isHint = false;
+                        });
 
                     });
                     if (player[i].handTap != null)
@@ -83,7 +90,6 @@ public class GameLevel3 : MonoBehaviour
                     }
                 }
             }
-            main.isHint = false;
         }
         if(transform.localScale != oldScale)
         {

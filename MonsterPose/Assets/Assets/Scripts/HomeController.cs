@@ -233,9 +233,33 @@ public class HomeController : MonoBehaviour
         buttonMode.interactable = false;*/
         loading.SetActive(true);
         yield return new WaitForSeconds(0.9f);
-        GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
-        GameObject level = Instantiate(loadedPrefab, main.transform);
-        level.transform.SetParent(main.transform, false);
+        if (unlockedLevelsNumber == 1)
+        {
+            if (GameManager.numberMonster == 1)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("01");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+            else if (GameManager.numberMonster == 2)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("02");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+            else if (GameManager.numberMonster == 3)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("03");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+        }
+        else
+        {
+            GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
+            GameObject level = Instantiate(loadedPrefab, main.transform);
+            level.transform.SetParent(main.transform, false);
+        }
         mainController.numberPlaying = unlockedLevelsNumber - 1;
         main.SetActive(true);
         gameObject.SetActive(false);

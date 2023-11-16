@@ -24,6 +24,7 @@ public class GameLevel31 : MonoBehaviour
     private int isVibrate;
     private bool win;
     private bool win2;
+    private bool hint;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,7 @@ public class GameLevel31 : MonoBehaviour
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
         win = false;
         win2 = false;
+        hint = false;
     }
 
     // Update is called once per frame
@@ -70,8 +72,9 @@ public class GameLevel31 : MonoBehaviour
                 win2 = true;
             }
         }
-        if (main.isHint)
+        if (main.isHint && !hint)
         {
+            hint = true;
             for (int i = 0; i < player2.Length; i++)
             {
                 if (!player2[i].locked)
@@ -81,7 +84,11 @@ public class GameLevel31 : MonoBehaviour
                     player2[index].playerRenderer.sprite = player2[index].playerSprites[player2[index].numberWin];
                     player2[index].transform.DOMove(player2[index].rightPos.position, 1.2f).SetEase(Ease.OutQuart).OnComplete(() =>
                     {
-                        player2[index].transform.DOMove(new Vector3(player2[index].oldPosition.x, player2[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine);
+                        player2[index].transform.DOMove(new Vector3(player2[index].oldPosition.x, player2[index].oldPosition.y, 0), 0.5f).SetEase(Ease.OutSine).OnComplete(() =>
+                        {
+                            hint = false;
+                            main.isHint = false;
+                        });
 
                     });
                 }
@@ -99,8 +106,6 @@ public class GameLevel31 : MonoBehaviour
                     });
                 }
             }
-            
-            main.isHint = false;
         }
         if (win && win2 && takeShot == 0)
         {

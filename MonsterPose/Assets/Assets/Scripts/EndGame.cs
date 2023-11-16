@@ -101,10 +101,40 @@ public class EndGame : MonoBehaviour
             MasterControl.Instance.ShowInterAd((bool res) =>
             {
                 main.isWin = false;
-                Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
-                if (Level != null)
+                if (main.numberPlaying == 0)
                 {
-                    Destroy(Level.gameObject);
+                    if (GameManager.numberMonster == 1)
+                    {
+                        Transform Level = main.transform.Find("01(Clone)");
+                        if (Level != null)
+                        {
+                            Destroy(Level.gameObject);
+                        }
+                    }
+                    else if (GameManager.numberMonster == 2)
+                    {
+                        Transform Level = main.transform.Find("02(Clone)");
+                        if (Level != null)
+                        {
+                            Destroy(Level.gameObject);
+                        }
+                    }
+                    else if (GameManager.numberMonster == 3)
+                    {
+                        Transform Level = main.transform.Find("03(Clone)");
+                        if (Level != null)
+                        {
+                            Destroy(Level.gameObject);
+                        }
+                    }
+                }
+                else
+                {
+                    Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
                 }
                 if (main.numberPlaying != GameManager.numberLevel - 1)
                 {
@@ -135,10 +165,40 @@ public class EndGame : MonoBehaviour
         else
         {
             main.isWin = false;
-            Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
-            if (Level != null)
+            if (main.numberPlaying == 0)
             {
-                Destroy(Level.gameObject);
+                if (GameManager.numberMonster == 1)
+                {
+                    Transform Level = main.transform.Find("01(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
+                }
+                else if (GameManager.numberMonster == 2)
+                {
+                    Transform Level = main.transform.Find("02(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
+                }
+                else if (GameManager.numberMonster == 3)
+                {
+                    Transform Level = main.transform.Find("03(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
+                }
+            }
+            else
+            {
+                Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
             }
             main.numberPlaying++;
             main.gameObject.SetActive(false);
@@ -154,9 +214,33 @@ public class EndGame : MonoBehaviour
         yield return new WaitForSeconds(1f);*/
         loading.SetActive(true);
         yield return new WaitForSeconds(0.9f);
-        GameObject loadedPrefab = Resources.Load<GameObject>(main.numberPlaying.ToString());
-        GameObject level = Instantiate(loadedPrefab, main.transform);
-        level.transform.SetParent(main.transform, false);
+        if(main.numberPlaying == 0)
+        {
+            if (GameManager.numberMonster == 1)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("01");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+            else if (GameManager.numberMonster == 2)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("02");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+            else if (GameManager.numberMonster == 3)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("03");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+        }
+        else
+        {
+            GameObject loadedPrefab = Resources.Load<GameObject>(main.numberPlaying.ToString());
+            GameObject level = Instantiate(loadedPrefab, main.transform);
+            level.transform.SetParent(main.transform, false);
+        }
         main.gameObject.SetActive(true);
         for (int i = 0; i < effect.Length; i++)
         {
@@ -200,10 +284,40 @@ public class EndGame : MonoBehaviour
             MasterControl.Instance.ShowInterAd((bool res) =>
             {
                 main.isWin = false;
-                Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
-                if (Level != null)
+                if (main.numberPlaying == 0)
                 {
-                    Destroy(Level.gameObject);
+                    if (GameManager.numberMonster == 1)
+                    {
+                        Transform Level = main.transform.Find("01(Clone)");
+                        if (Level != null)
+                        {
+                            Destroy(Level.gameObject);
+                        }
+                    }
+                    else if (GameManager.numberMonster == 2)
+                    {
+                        Transform Level = main.transform.Find("02(Clone)");
+                        if (Level != null)
+                        {
+                            Destroy(Level.gameObject);
+                        }
+                    }
+                    else if (GameManager.numberMonster == 3)
+                    {
+                        Transform Level = main.transform.Find("03(Clone)");
+                        if (Level != null)
+                        {
+                            Destroy(Level.gameObject);
+                        }
+                    }
+                }
+                else
+                {
+                    Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
                 }
                 main.gameObject.SetActive(false);
                 StartCoroutine(HideHome());
@@ -212,10 +326,40 @@ public class EndGame : MonoBehaviour
         else
         {
             main.isWin = false;
-            Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
-            if (Level != null)
+            if (main.numberPlaying == 0)
             {
-                Destroy(Level.gameObject);
+                if (GameManager.numberMonster == 1)
+                {
+                    Transform Level = main.transform.Find("01(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
+                }
+                else if (GameManager.numberMonster == 2)
+                {
+                    Transform Level = main.transform.Find("02(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
+                }
+                else if (GameManager.numberMonster == 3)
+                {
+                    Transform Level = main.transform.Find("03(Clone)");
+                    if (Level != null)
+                    {
+                        Destroy(Level.gameObject);
+                    }
+                }
+            }
+            else
+            {
+                Transform Level = main.transform.Find(main.numberPlaying.ToString() + "(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
             }
             main.gameObject.SetActive(false);
             StartCoroutine(HideHome());

@@ -15,11 +15,10 @@ public class GamePlayTutorial : MonoBehaviour
     public Animator fail;
 
     public int numberWin;
-    public Transform endHand;
     public Sprite[] playerSprites;
 
     [HideInInspector]
-    public bool locked;   
+    public bool locked;
 
     private Camera mainCamera;    
     private BoxCollider2D boxCollider;
@@ -32,6 +31,7 @@ public class GamePlayTutorial : MonoBehaviour
     private bool isTutorial;
     private bool isBeginInBox;
     private Vector2 oldPosition;
+    private int isVibrate;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +46,7 @@ public class GamePlayTutorial : MonoBehaviour
         anim = GetComponent<Animator>();
         isDrag = false;
         locked = false;
+        isVibrate = PlayerPrefs.GetInt("VibrateOn");
     }
 
     // Update is called once per frame
@@ -80,24 +81,7 @@ public class GamePlayTutorial : MonoBehaviour
                 {
                     isDrag = true;
                     rb.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
-                }
-                if (playerRenderer.sprite != playerSprites[0] && touch.phase == TouchPhase.Moved && IsWithinBoxCollider())
-                {
-                    transform.position = new Vector2(oldPosition.x, oldPosition.y);
-                }
-                if (playerRenderer.sprite != playerSprites[0] && touch.phase == TouchPhase.Ended)
-                {
-                    if (Mathf.Abs(touchPos.x - deltaX - oldPosition.x) <= 0.15f && Mathf.Abs(touchPos.y - deltaY - oldPosition.y) <= 0.15f && IsWithinBoxCollider())
-                    {
-                        anim.SetTrigger("change");
-                    }
-                    if ((Mathf.Abs(touchPos.x - deltaX - oldPosition.x) > 0.15f || Mathf.Abs(touchPos.y - deltaY - oldPosition.y) > 0.15f) && isBeginInBox)
-                    {
-                        AudioManager.Play("pen_fail");
-                        anim.SetTrigger("fail");
-                        fail.SetTrigger("show");
-                    }  
-                }                
+                }        
                 if (playerRenderer.sprite == playerSprites[0] && touch.phase == TouchPhase.Ended && IsWithinBoxCollider())
                 {
                     if (Mathf.Abs(transform.position.x - rightPos.position.x) <= 0.8f && Mathf.Abs(transform.position.y - rightPos.position.y) <= 0.8f && playerRenderer.sprite == playerSprites[numberWin])
@@ -149,13 +133,13 @@ public class GamePlayTutorial : MonoBehaviour
     IEnumerator Tutorial()
     {
         Input.multiTouchEnabled = false;
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(4.5f);
         Input.multiTouchEnabled = true;
         isTutorial = false;
     }
     private void MoveTap()
     {
-        handTap.transform.DOMove(endHand.position + new Vector3(0.5f, 4, 0), 1f)
+        handTap.transform.DOMove(rightPos.position + new Vector3(0.5f, 4, 0), 1f)
             .OnComplete(() =>
             {
                 handTap.transform.position = transform.position + new Vector3(0.5f, 4, 0);

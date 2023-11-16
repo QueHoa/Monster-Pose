@@ -26,6 +26,7 @@ public class GamePlayLv17 : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private GameObject losePanel;
+    private MainController main;
     private int numHeart = 0;
     private float deltaX, deltaY;
     private bool isDrag;
@@ -44,6 +45,7 @@ public class GamePlayLv17 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         losePanel = GameManager.Instance.losePanel;
+        main = GameManager.Instance.mainController;
         isDrag = false;
         locked = false;
         StartCoroutine(StartLevel());
@@ -52,7 +54,7 @@ public class GamePlayLv17 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!locked && IsWithinBoxCollider() && !losePanel.activeInHierarchy)
+        if (!locked && IsWithinBoxCollider() && !losePanel.activeInHierarchy && !main.isHint)
         {
             if (Input.touchCount > 0)
             {

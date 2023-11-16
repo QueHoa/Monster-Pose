@@ -49,6 +49,33 @@ public class MainController : MonoBehaviour
     private void Start()
     {
         InternetConnection.Instance.CheckInternetAfterLoading();
+        if (unlockedLevelsNumber == 1)
+        {
+            if (GameManager.numberMonster == 1)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString() + "1");
+                GameObject level = Instantiate(loadedPrefab, transform);
+                level.transform.SetParent(transform, false);
+            }
+            else if (GameManager.numberMonster == 2)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString() + "2");
+                GameObject level = Instantiate(loadedPrefab, transform);
+                level.transform.SetParent(transform, false);
+            }
+            else if (GameManager.numberMonster == 3)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString() + "3");
+                GameObject level = Instantiate(loadedPrefab, transform);
+                level.transform.SetParent(transform, false);
+            }
+        }
+        else
+        {
+            GameObject loadedPrefab = Resources.Load<GameObject>((unlockedLevelsNumber - 1).ToString());
+            GameObject level = Instantiate(loadedPrefab, transform);
+            level.transform.SetParent(transform, false);
+        }
         AudioManager.Play("new_level");
     }
 
@@ -83,7 +110,7 @@ public class MainController : MonoBehaviour
         buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
         buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
         buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
-        if (numberPlaying > 1)
+        if (numberPlaying > 2)
         {
             buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
         }
@@ -105,7 +132,7 @@ public class MainController : MonoBehaviour
             {
                 StartCoroutine(StartTime());
             }
-            if (startTime && numberPlaying > 1)
+            if (startTime && numberPlaying > 2)
             {
                 time -= Time.deltaTime;
             }
@@ -276,18 +303,42 @@ public class MainController : MonoBehaviour
     }
     IEnumerator EffectBack()
     {
-        Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
-        /*Level.DOScale(Vector3.one, 0.75f).SetEase(Ease.OutQuart);
-        buttonBack.DOAnchorPosX(-102, 0.75f).SetEase(Ease.OutQuart);
-        buttonSuggest.DOAnchorPosX(260.2f, 0.75f).SetEase(Ease.OutQuart);
-        buttonSkip.DOAnchorPosX(113.8f, 0.75f).SetEase(Ease.OutQuart);
-        buttonTextLevel.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);
-        buttonTime.DOAnchorPosY(115, 0.75f).SetEase(Ease.OutQuart);*/
         loading.SetActive(true);
         yield return new WaitForSeconds(0.9f);
-        if (Level != null)
+        if (numberPlaying == 0)
         {
-            Destroy(Level.gameObject);
+            if (GameManager.numberMonster == 1)
+            {
+                Transform Level = transform.Find("01(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
+            }
+            else if (GameManager.numberMonster == 2)
+            {
+                Transform Level = transform.Find("02(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
+            }
+            else if (GameManager.numberMonster == 3)
+            {
+                Transform Level = transform.Find("03(Clone)");
+                if (Level != null)
+                {
+                    Destroy(Level.gameObject);
+                }
+            }
+        }
+        else
+        {
+            Transform Level = transform.Find(numberPlaying.ToString() + "(Clone)");
+            if (Level != null)
+            {
+                Destroy(Level.gameObject);
+            }
         }
         home.SetActive(true);
         gameObject.SetActive(false);
@@ -351,7 +402,7 @@ public class MainController : MonoBehaviour
                 buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
                 buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
                 buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
-                if(numberPlaying > 1)
+                if(numberPlaying > 2)
                 {
                     buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
                 }
@@ -425,7 +476,7 @@ public class MainController : MonoBehaviour
             buttonSuggest.DOAnchorPosX(-260.2f, 0.8f).SetEase(Ease.OutQuart);
             buttonSkip.DOAnchorPosX(-113.8f, 0.8f).SetEase(Ease.OutQuart);
             buttonTextLevel.DOAnchorPosY(-140, 0.8f).SetEase(Ease.OutQuart);
-            if(numberPlaying > 1)
+            if(numberPlaying > 2)
             {
                 buttonTime.DOAnchorPosY(-283, 0.8f).SetEase(Ease.OutQuart);
             }

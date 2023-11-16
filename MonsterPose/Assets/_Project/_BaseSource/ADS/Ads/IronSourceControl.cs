@@ -326,6 +326,7 @@ namespace OneHit
                     _listImpressionData.RemoveAt(0);
 
                     SendRevenueToFirebase(impressionData);
+                    SendRevenueSDKToFirebase(impressionData);
                     SendRevenueToAdjust(impressionData);
                 }
                 else
@@ -363,6 +364,18 @@ namespace OneHit
                     new Parameter("value", impressionData.revenue ?? 0)
                };
             FirebaseAnalytics.LogEvent("ad_impression", adParameters);
+        }
+        private void SendRevenueSDKToFirebase(IronSourceImpressionData impressionData)
+        {
+            Parameter[] adParameters = {
+                    new Parameter("ad_platform", "ironSource"),
+                    new Parameter("ad_source", impressionData.adNetwork),
+                    new Parameter("ad_unit_name", impressionData.adUnit),
+                    new Parameter("ad_format", impressionData.instanceName),
+                    new Parameter("currency", "USD"),
+                    new Parameter("value", impressionData.revenue ?? 0)
+               };
+            FirebaseAnalytics.LogEvent("ad_revenue_sdk", adParameters);
         }
 
         private void SendRevenueToAdjust(IronSourceImpressionData impressionData)

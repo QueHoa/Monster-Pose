@@ -75,7 +75,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bdf6241b00c4588439ecf4608f639034, type: 3}
   - {fileID: 21300000, guid: 0a8cfa4b5edb8824f8036aab78e656c5, type: 3}
   - {fileID: 21300000, guid: 73c7e76b66d1296429285fee1e6fbb24, type: 3}
-  - {fileID: 21300000, guid: 1860c8abed5a7b741bfa771383a965e7, type: 3}
   - {fileID: 21300000, guid: d290f4db25c68eb47a8f9e83ceec3f6d, type: 3}
   - {fileID: 21300000, guid: f46ebdfbcc63f7d4dab71c0f90792f21, type: 3}
   - {fileID: 21300000, guid: c67a36ed84b5da640bcf48cc2b7380b6, type: 3}
@@ -109,7 +108,6 @@ SpriteAtlas:
   - share1
   - end_dark overlay
   - close (1)
-  - end_win_popup
   - Layer 212 - Smart Object Group
   - share
   - end_win_btn_next

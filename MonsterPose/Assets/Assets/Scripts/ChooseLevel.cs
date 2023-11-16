@@ -19,6 +19,7 @@ public class ChooseLevel : MonoBehaviour
     private GameObject main;
     private GameObject home;
     private GameObject levelList;
+    private GameObject loading;
     private MainController mainController;
     private HomeController homeController;
     private int unlockedLevelsNumber;
@@ -30,6 +31,7 @@ public class ChooseLevel : MonoBehaviour
         main = GameManager.Instance.main;
         home = GameManager.Instance.home;
         levelList = GameManager.Instance.levelList;
+        loading = GameManager.Instance.loading;
         mainController = GameManager.Instance.mainController;
         homeController = GameManager.Instance.homeController;
         value = int.Parse(gameObject.name);
@@ -71,14 +73,39 @@ public class ChooseLevel : MonoBehaviour
     IEnumerator EffectChoose()
     {
         AudioManager.Play("click");
-        homeController.buttonBack.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
+        /*homeController.buttonBack.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
         homeController.buttonText.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
-        homeController.boardLevel.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.8f);
+        homeController.boardLevel.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);*/
+        loading.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
         mainController.numberPlaying = int.Parse(gameObject.name);
-        GameObject loadedPrefab = Resources.Load<GameObject>(gameObject.name);
-        GameObject level = Instantiate(loadedPrefab, main.transform);
-        level.transform.SetParent(main.transform, false);
+        if (mainController.numberPlaying == 0)
+        {
+            if (GameManager.numberMonster == 1)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("01");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+            else if (GameManager.numberMonster == 2)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("02");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+            else if (GameManager.numberMonster == 3)
+            {
+                GameObject loadedPrefab = Resources.Load<GameObject>("03");
+                GameObject level = Instantiate(loadedPrefab, main.transform);
+                level.transform.SetParent(main.transform, false);
+            }
+        }
+        else
+        {
+            GameObject loadedPrefab = Resources.Load<GameObject>(gameObject.name);
+            GameObject level = Instantiate(loadedPrefab, main.transform);
+            level.transform.SetParent(main.transform, false);
+        }
         levelList.SetActive(false);
         main.SetActive(true);
         home.SetActive(false);

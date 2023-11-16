@@ -22,6 +22,8 @@ public class GameLevelTutorial3 : MonoBehaviour
     private RawImage rawImage;
     private int isVibrate;
     private float oldHand;
+    private bool hint;
+    private int firstHint;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,8 @@ public class GameLevelTutorial3 : MonoBehaviour
         takeShot = 0;
         isVibrate = PlayerPrefs.GetInt("VibrateOn");
         hand.DOMoveX(oldHand, 1f).SetEase(Ease.OutQuart);
+        hint = false;
+        firstHint = 0;
     }
 
     // Update is called once per frame
@@ -57,7 +61,7 @@ public class GameLevelTutorial3 : MonoBehaviour
                 win = true;
             }
         }
-        if (main.isHint)
+        if (main.isHint && !hint)
         {
             NewMethod();
         }
@@ -70,6 +74,7 @@ public class GameLevelTutorial3 : MonoBehaviour
     [ContextMenu("btn")]
     private void NewMethod()
     {
+        hint = true;
         for (int i = 0; i < player.Length; i++)
         {
             if (!player[i].locked)
@@ -79,7 +84,7 @@ public class GameLevelTutorial3 : MonoBehaviour
                 player[index].numHeart = player[index].numberWin;
                 player[index].block = true;
                 player[index].fade.SetActive(false);
-                player[index].frame.SetActive(false);
+                player[index].frame4.SetActive(false);
                 player[index].hand.SetActive(false);
                 player[index].transform.DOMove(player[index].rightPos.position, 1f).SetEase(Ease.OutQuart).OnComplete(() =>
                 {
@@ -87,12 +92,18 @@ public class GameLevelTutorial3 : MonoBehaviour
                     {
                         player[index].hand2.SetActive(true);
                         player[index].frame2.SetActive(true);
-                        player[index].MoveTap();
+                        player[index].frame3.SetActive(true);
+                        if (firstHint == 0)
+                        {
+                            player[index].MoveTap();
+                            firstHint++;
+                        }
+                        hint = false;
+                        main.isHint = false;
                     });
                 });
             }
         }
-        main.isHint = false;
     }
 
     IEnumerator Win()

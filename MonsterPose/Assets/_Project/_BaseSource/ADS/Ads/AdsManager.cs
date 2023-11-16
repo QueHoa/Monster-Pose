@@ -512,6 +512,20 @@ namespace OneHit
             //Sent event to Adjust server
             Adjust.trackAdRevenue(adjustEvent);
         }
+        public void OnAppOpenAdSDKPaid(AdValue adValue)
+        {
+            Debug.LogWarning("ADS MANAGER: On App Open Ad Paid");
+            double revenue = adValue.Value / 1000000f;
+            var imp = new[] {
+                    new Parameter("ad_platform", "admob"),
+                    new Parameter("ad_source", "admob"),
+                    new Parameter("ad_unit_name", "open_ads"),
+                    new Parameter("ad_format", "open_ads"),
+                    new Parameter("value", revenue),
+                    new Parameter("currency", adValue.CurrencyCode)
+               };
+            FirebaseAnalytics.LogEvent("cc_openad_native_revenue", imp);
+        }
         #endregion
 
 

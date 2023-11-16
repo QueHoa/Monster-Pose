@@ -5,6 +5,7 @@ using DG.Tweening;
 using OneHit.Framework;
 using UnityEngine.EventSystems;
 using TMPro;
+using MoreMountains.NiceVibrations;
 
 public class GamePlayTutorial2 : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GamePlayTutorial2 : MonoBehaviour
     public GameObject frame;
     public GameObject frame2;
     public GameObject frame3;
+    public GameObject frame4;
     public GameObject fade;
     public SpriteRenderer playerRenderer;
     public SpriteRenderer heart;
@@ -25,7 +27,7 @@ public class GamePlayTutorial2 : MonoBehaviour
     public Sprite[] playerSprites;
 
     [HideInInspector]
-    public bool locked;   
+    public bool locked;
 
     private Camera mainCamera;    
     private BoxCollider2D boxCollider;
@@ -38,6 +40,7 @@ public class GamePlayTutorial2 : MonoBehaviour
     private bool isTutorial;
     private bool isBeginInBox;
     private Vector2 oldPosition;
+    private int isVibrate;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +58,11 @@ public class GamePlayTutorial2 : MonoBehaviour
         isDrag = false;
         locked = false;
         fade.SetActive(false);
-        transform.DOMoveX(oldPosition.x, 1f).SetEase(Ease.OutQuart);
+        isVibrate = PlayerPrefs.GetInt("VibrateOn");
+        transform.DOMoveX(oldPosition.x, 1f).SetEase(Ease.OutQuart).OnComplete(() =>
+        {
+            frame2.SetActive(true);
+        });
     }
 
     // Update is called once per frame
@@ -133,6 +140,7 @@ public class GamePlayTutorial2 : MonoBehaviour
         {
             handTap.SetActive(false);
             frame3.SetActive(false);
+            frame4.SetActive(false);
             fade.SetActive(false);
             losePanel.SetActive(false);
         }
@@ -151,16 +159,13 @@ public class GamePlayTutorial2 : MonoBehaviour
             numHeart++;
         }           
         playerRenderer.sprite = playerSprites[numHeart];
-        if (playerRenderer.sprite == playerSprites[1])
-        {
-            frame.SetActive(false);
-            frame2.SetActive(true);
-        }
         if (playerRenderer.sprite == playerSprites[2])
         {
             handTapAnim.SetActive(false);
+            frame.SetActive(false);
             frame2.SetActive(false);
             frame3.SetActive(true);
+            frame4.SetActive(true);
             handTap.SetActive(true);
             heart.sortingOrder = 4;
             hand.sortingOrder = 6;
@@ -182,7 +187,7 @@ public class GamePlayTutorial2 : MonoBehaviour
         handTap.transform.DOMove(endHand.position + new Vector3(0, 4, 0), 1f)
             .OnComplete(() =>
             {
-                handTap.transform.position = transform.position + new Vector3(0, 4, 0);
+                handTap.transform.position = transform.position + new Vector3(0.5f, 4, 0);
                 MoveTap();
             });
     }

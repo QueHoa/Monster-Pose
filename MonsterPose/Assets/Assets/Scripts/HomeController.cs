@@ -17,6 +17,7 @@ public class HomeController : MonoBehaviour
     public GameObject levelList;
     public GameObject levelListMode;
     public GameObject gallery;
+    public GameObject leaderBoard;
     public GameObject photo;
     public GameObject mode;
     public GameObject loading;
@@ -189,6 +190,26 @@ public class HomeController : MonoBehaviour
         buttonTextGallery.anchoredPosition = new Vector3(buttonText.anchoredPosition.x, 160, 0);
         buttonBackGallery.DOAnchorPosX(112, 0.5f).SetEase(Ease.OutQuart);
         buttonTextGallery.DOAnchorPosY(-160, 0.5f).SetEase(Ease.OutQuart);
+    }
+    public void LeaderBoard()
+    {
+        StartCoroutine(EffectLeaderBoard());
+    }
+    IEnumerator EffectLeaderBoard()
+    {
+        AudioManager.Play("click");
+        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
+        buttonMode.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
+        buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
+        buttonPlay.interactable = false;
+        btnMode.interactable = false;
+        yield return new WaitForSeconds(0.4f);
+        leaderBoard.SetActive(true);
+        gameObject.SetActive(false);
     }
     public void Modelist()
     {

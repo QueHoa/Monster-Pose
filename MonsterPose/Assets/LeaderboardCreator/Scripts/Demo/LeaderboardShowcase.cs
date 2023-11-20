@@ -19,7 +19,8 @@ namespace Dan.Demo
 
         [Header("Search Query Essentials:")]
         [SerializeField] private TMP_Dropdown _timePeriodDropdown;
-        [SerializeField] private TMP_InputField _pageInput, _entriesToTakeInput;
+        [SerializeField] private int _pageInput;
+        [SerializeField] private int _entriesToTakeInput;
         [SerializeField] private int _defaultPageNumber = 1, _defaultEntriesToTake = 100;
 
         [Header("Personal Entry:")]
@@ -44,14 +45,10 @@ namespace Dan.Demo
                 _timePeriodDropdown.value == 3 ? Dan.Enums.TimePeriodType.ThisMonth :
                 _timePeriodDropdown.value == 4 ? Dan.Enums.TimePeriodType.ThisYear : Dan.Enums.TimePeriodType.AllTime;
 
-            var pageNumber = int.TryParse(_pageInput.text, out var pageValue) ? pageValue : _defaultPageNumber;
-            pageNumber = Mathf.Max(1, pageNumber);
-            _pageInput.text = pageNumber.ToString();
-            
-            var take = int.TryParse(_entriesToTakeInput.text, out var takeValue) ? takeValue : _defaultEntriesToTake;
-            take = Mathf.Clamp(take, 1, 100);
-            _entriesToTakeInput.text = take.ToString();
-            
+            var pageNumber = _pageInput;
+
+            var take = _entriesToTakeInput;
+
             var searchQuery = new LeaderboardSearchQuery
             {
                 Skip = (pageNumber - 1) * take,
@@ -59,19 +56,15 @@ namespace Dan.Demo
                 TimePeriod = timePeriod
             };
             
-            _pageInput.image.color = Color.white;
-            _entriesToTakeInput.image.color = Color.white;
-            
             Leaderboards.DemoSceneLeaderboard.GetEntries(searchQuery, OnLeaderboardLoaded, ErrorCallback);
             ToggleLoadingPanel(true);
         }
 
         public void ChangePageBy(int amount)
         {
-            var pageNumber = int.TryParse(_pageInput.text, out var pageValue) ? pageValue : _defaultPageNumber;
+            var pageNumber = _pageInput;
             pageNumber += amount;
             if (pageNumber < 1) return;
-            _pageInput.text = pageNumber.ToString();
         }
         
         private void OnLeaderboardLoaded(Entry[] entries)
@@ -79,8 +72,12 @@ namespace Dan.Demo
             foreach (Transform t in _entryDisplayParent) 
                 Destroy(t.gameObject);
 
-            foreach (var t in entries) 
-                CreateEntryDisplay(t);
+            /*foreach (var t in entries) 
+                CreateEntryDisplay(t);*/
+            for (int i = 3; i < entries.Length; i++)
+            {
+                CreateEntryDisplay(entries[i]);
+            }
             
             ToggleLoadingPanel(false);
         }
@@ -138,12 +135,6 @@ namespace Dan.Demo
         private void InitializeComponents()
         {
             StartCoroutine(LoadingTextCoroutine(_leaderboardLoadingPanel.GetComponentInChildren<TextMeshProUGUI>()));
-
-            _pageInput.onValueChanged.AddListener(_ => _pageInput.image.color = Color.yellow);
-            _entriesToTakeInput.onValueChanged.AddListener(_ => _entriesToTakeInput.image.color = Color.yellow);
-
-            _pageInput.placeholder.GetComponent<TextMeshProUGUI>().text = _defaultPageNumber.ToString();
-            _entriesToTakeInput.placeholder.GetComponent<TextMeshProUGUI>().text = _defaultEntriesToTake.ToString();
         }
         
         private void Start()

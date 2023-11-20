@@ -1138,10 +1138,8 @@ MonoBehaviour:
   _entryDisplayPrefab: {fileID: -295299235028769080, guid: 188bdb8a837f74c4087c00cbf810b79c, type: 3}
   _leaderboardLoadingPanel: {fileID: 476979522}
   _timePeriodDropdown: {fileID: 1065522264}
-  _pageInput: {fileID: 1056664604}
-  _entriesToTakeInput: {fileID: 557042157}
-  _defaultPageNumber: 1
-  _defaultEntriesToTake: 100
+  _pageInput: 1
+  _entriesToTakeInput: 20
   _personalEntryPanel: {fileID: 934123735}
   _personalEntryText: {fileID: 97027082}
 --- !u!1 &476979518
@@ -3123,7 +3121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.5000305, y: 37.5}
+  m_AnchoredPosition: {x: -12.500061, y: 37.5}
   m_SizeDelta: {x: -75, y: -175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827459079

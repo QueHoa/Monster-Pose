@@ -26,6 +26,7 @@ public class EndGame : MonoBehaviour
     private Animator anim;
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;
+    private int playerScore;
     private int x;
     private int numberHeart;
     // Start is called before the first frame update
@@ -35,7 +36,10 @@ public class EndGame : MonoBehaviour
     }
     private void Awake()
     {
-        
+        if (!PlayerPrefs.HasKey("PlayerScore"))
+        {
+            PlayerPrefs.SetInt("PlayerScore", 0);
+        }
     }
     private void OnEnable()
     {
@@ -68,6 +72,7 @@ public class EndGame : MonoBehaviour
         anim.SetTrigger("show");
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
+        playerScore = PlayerPrefs.GetInt("PlayerScore");
         for (int i = 0; i < effect.Length; i++)
         {
             effect[i].SetActive(true);
@@ -90,6 +95,7 @@ public class EndGame : MonoBehaviour
         if (main.numberPlaying == unlockedLevelsNumber - 1 && main.numberPlaying != GameManager.numberLevel - 1)
         {
             PlayerPrefs.SetInt("levelsUnlocked", unlockedLevelsNumber + 1);
+            PlayerPrefs.SetInt("PlayerScore", unlockedLevelsNumber + 1);
         }
     }
     public void Next()

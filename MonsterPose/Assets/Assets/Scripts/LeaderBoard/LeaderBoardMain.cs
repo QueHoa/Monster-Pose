@@ -34,7 +34,7 @@ public class LeaderBoardMain : MonoBehaviour
     List<EntryDisplay> _entries = new List<EntryDisplay>();
     private void Awake()
     {
-        //GenFakeUser();
+        GenFakeUser();
     }
     private void OnEnable()
     {
@@ -144,9 +144,9 @@ public class LeaderBoardMain : MonoBehaviour
         "Riley", "Hannah", "Samuel", "David", "Sarah", "Caleb", "Henry", "Evelyn", "Natalie", "Claire",
         "Andrew", "Sofia", "Avery", "Scarlett", "Abigail", "Victoria", "Michael", "Elijah", "Jackson",
         "Amelia", "Joseph", "Stella", "Madison", "Hannah", "Mason", "Grace", "Evelyn", "David",
-        "Samuel", "Olivia", "William", "Sophia",  "Evelyn", "Victoria", "Madison", "Scarlett", "Abigail",
-        "Elizabeth", "Addison", "Natalie", "Harper", "Scarlett", "Natalie", "Addison", "Evelyn", "Madison",
-        "Gabriel", "Zachary", "Allison", "Kennedy", "Scarlett", "Gabriel", "Benjamin", "Zachary", "Victoria",
+        "Samuel", "Olivia", "William", "Evelyn", "Victoria", "Madison", "Scarlett", "Abigail",
+        "Elizabeth", "Addison", "Natalie", "Harper", "Scarlett", "Natalie", "Evelyn", "Madison",
+        "Gabriel", "Zachary", "Allison", "Kennedy", "Scarlett", "Gabriel", "Benjamin", "Victoria",
         "Michael", "Nicholas", "Kimberly", "Nicholas", "Kennedy",
         "Jonathan","Christian",  "Nicholas", "Christian", "Sebastian"
 
@@ -156,9 +156,9 @@ public class LeaderBoardMain : MonoBehaviour
         {
             LeaderboardCreator.ResetPlayer();
             LeaderboardCreator.UploadNewEntry(LeaderBoardMain.publicKey,
-                    nicknames[Random.Range(0, nicknames.Length)],
+                    nicknames[Random.Range(0, nicknames.Length - 1)],
                     score,
-                    Random.Range(1, 8).ToString()
+                    Random.Range(0,7).ToString()
                     );
 
             await UniTask.Delay(350);

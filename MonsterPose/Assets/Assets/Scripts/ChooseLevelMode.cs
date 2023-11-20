@@ -19,6 +19,7 @@ public class ChooseLevelMode : MonoBehaviour
 
     private GameObject mode;
     private GameObject home;
+    private GameObject loading;
     private GameObject levelListMode;
     private ModeController modeController;
     private HomeController homeController;
@@ -30,6 +31,7 @@ public class ChooseLevelMode : MonoBehaviour
         transform.localScale = new Vector3(0, 0, 1);
         mode = GameManager.Instance.mode;
         home = GameManager.Instance.home;
+        loading = GameManager.Instance.loading;
         levelListMode = GameManager.Instance.levelListMode;
         modeController = GameManager.Instance.modeController;
         homeController = GameManager.Instance.homeController;
@@ -71,10 +73,8 @@ public class ChooseLevelMode : MonoBehaviour
     IEnumerator EffectChoose()
     {
         AudioManager.Play("click");
-        homeController.buttonBackMode.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
-        homeController.buttonTextMode.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
-        homeController.boardLevelMode.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
-        yield return new WaitForSeconds(0.8f);
+        loading.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
         modeController.numberPlaying = int.Parse(gameObject.name);
         GameObject loadedPrefab = Resources.Load<GameObject>("Lv" + gameObject.name);
         GameObject level = Instantiate(loadedPrefab, mode.transform);

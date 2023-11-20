@@ -14,7 +14,7 @@ public class EndGameMode : MonoBehaviour
     [SerializeField]
     private GameObject[] effect;
     public GameObject home;
-    public GameObject fade;
+    public GameObject loading;
     private Animator anim;
     private int unlockedModeNumber;
     // Start is called before the first frame update
@@ -70,9 +70,8 @@ public class EndGameMode : MonoBehaviour
     IEnumerator Hide()
     {
         anim.SetTrigger("hide");
-        yield return new WaitForSeconds(0.5f);
-        fade.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        loading.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
         GameObject loadedPrefab = Resources.Load<GameObject>("Lv" + mode.numberPlaying.ToString());
         GameObject level = Instantiate(loadedPrefab, mode.transform);
         level.transform.SetParent(mode.transform, false);
@@ -110,7 +109,8 @@ public class EndGameMode : MonoBehaviour
     IEnumerator HideHome()
     {
         anim.SetTrigger("hide");
-        yield return new WaitForSeconds(0.5f);
+        loading.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
         home.SetActive(true);
         for (int i = 0; i < effect.Length; i++)
         {

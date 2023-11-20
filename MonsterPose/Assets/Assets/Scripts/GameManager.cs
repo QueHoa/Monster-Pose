@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("Number Level Mode")]
     public static int numberMode;
     [Header("Test Monster Tutorial")]
-    public static float numberMonster;
+    public static float numberMonster = Random.Range(1,3);
 
     public GameObject main;
     public GameObject mode;
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         Input.multiTouchEnabled = false;
         Instance = this;
-        //PlayerPrefs.SetInt("levelsUnlocked", 100);
+        //PlayerPrefs.SetInt("levelsUnlocked", 1);
         if (!PlayerPrefs.HasKey("levelsUnlocked"))
         {
             PlayerPrefs.SetInt("levelsUnlocked", 1);

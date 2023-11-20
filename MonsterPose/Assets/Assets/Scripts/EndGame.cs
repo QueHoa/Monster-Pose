@@ -393,7 +393,56 @@ public class EndGame : MonoBehaviour
     }
     public void SetHeart()
     {
-        int endHeart = Random.Range(71, 99);
+        int endHeart = 0;
+        if(main.numberPlaying < 3)
+        {
+            endHeart = Random.Range(91, 100);
+        }
+        else if(main.numberPlaying >= 3 && main.numberPlaying < 20)
+        {
+            if(main.time >= 15)
+            {
+                endHeart = Random.Range(91, 100);
+            }else if (main.time >=10 && main.time < 15)
+            {
+                endHeart = Random.Range(81, 90);
+            }
+            else
+            {
+                endHeart = Random.Range(70, 80);
+            }
+        }
+        else if (main.numberPlaying >= 20 && main.numberPlaying < 50)
+        {
+            if (main.time >= 20)
+            {
+                endHeart = Random.Range(91, 100);
+            }
+            else if (main.time >= 10 && main.time < 20)
+            {
+                endHeart = Random.Range(81, 90);
+            }
+            else
+            {
+                endHeart = Random.Range(70, 80);
+            }
+        }
+        else if (main.numberPlaying >= 50)
+        {
+            if (main.time >= 20)
+            {
+                endHeart = Random.Range(91, 100);
+            }
+            else if (main.time >= 10 && main.time < 20)
+            {
+                endHeart = Random.Range(81, 90);
+            }
+            else
+            {
+                endHeart = Random.Range(70, 80);
+            }
+        }
+
         PlayerPrefs.SetInt(main.numberPlaying.ToString(), endHeart);
         heart.gameObject.SetActive(true);
         DOTween.To(() => numberHeart, x => numberHeart = x, endHeart, 1.5f)

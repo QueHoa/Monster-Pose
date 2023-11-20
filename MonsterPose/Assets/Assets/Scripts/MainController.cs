@@ -14,6 +14,8 @@ public class MainController : MonoBehaviour
     public bool isHint;
     [HideInInspector]
     public bool isWin;
+    [HideInInspector]
+    public float time;
 
     public Image bg;
     public Sprite[] background;
@@ -32,7 +34,6 @@ public class MainController : MonoBehaviour
     public RectTransform buttonSkip;
     public RectTransform buttonTextLevel;
     public RectTransform buttonTime;
-    private float time;
     private int timeInSecond;
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;

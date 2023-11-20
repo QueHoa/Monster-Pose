@@ -67,6 +67,7 @@ namespace OneHit
 
         private IEnumerator WaitForFetchDone()
         {
+            PrefInfo.adEnable = true;
             yield return new WaitUntil(() => fetchDone);
 
             if (result.Equals(LastFetchStatus.Success))

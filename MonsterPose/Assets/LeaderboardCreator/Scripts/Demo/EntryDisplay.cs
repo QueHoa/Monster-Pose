@@ -13,7 +13,8 @@ namespace Dan.Demo
         public Sprite userSprite;
         public Sprite mineSprite;
         public Sprite[] avt;
-        private int idUser;
+        [HideInInspector]
+        public int idUser;
         public void SetEntry(Entry entry)
         {
             if(_rankText != null)

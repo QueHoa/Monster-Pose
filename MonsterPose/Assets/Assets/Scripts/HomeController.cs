@@ -14,6 +14,7 @@ public class HomeController : MonoBehaviour
     public GameObject iconUnlockMode;
     public GameObject main;
     public GameObject panelSetting;
+    public GameObject panelProfile;
     public GameObject levelList;
     public GameObject levelListMode;
     public GameObject gallery;
@@ -22,10 +23,12 @@ public class HomeController : MonoBehaviour
     public GameObject mode;
     public GameObject loading;
     public RectTransform buttonSetting;
+    public RectTransform buttonProfile;
     public RectTransform buttonNoAds;
     public Button buttonPlay;
     public RectTransform buttonLevelList;
     public RectTransform buttonGallery;
+    public RectTransform buttonLeaderboard;
     public RectTransform buttonMode;
     public Button btnMode;
     public RectTransform buttonBack;
@@ -46,6 +49,10 @@ public class HomeController : MonoBehaviour
     public Transform buttonParent;
     public Transform buttonModeParent;
     public Transform buttonGalleryParent;
+    public Image avatar;
+    public Text nameProfile;
+    public Text score;
+    public Sprite[] listAvt;
     public int numberLevel;
     public int numberMode;
 
@@ -53,25 +60,53 @@ public class HomeController : MonoBehaviour
     private int unlockedLevelsNumber;
     private int unlockedModeNumber;
     private MainController mainController;
+    private string nameUser;
+    private int yourScore;
+    private int idAvt;
 
     // Start is called before the first frame update
     void Start()
     {
         mainController = GameManager.Instance.mainController;
+        if (!PlayerPrefs.HasKey("name"))
+        {
+            PlayerPrefs.SetString("name", "");
+        }
+        if (!PlayerPrefs.HasKey("avatar"))
+        {
+            PlayerPrefs.SetInt("avatar", -1);
+        }
+        if (!PlayerPrefs.HasKey("score"))
+        {
+            PlayerPrefs.SetInt("score", 0);
+        }
     }
     private void OnEnable()
     {
-        buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonSetting.anchoredPosition = new Vector3(buttonSetting.anchoredPosition.x, 150, 0);
+        buttonProfile.anchoredPosition = new Vector3(buttonProfile.anchoredPosition.x, 150, 0);
+        buttonNoAds.anchoredPosition = new Vector3(buttonNoAds.anchoredPosition.x, 150, 0);
         buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
         buttonMode.anchoredPosition = new Vector3(-130, buttonMode.anchoredPosition.y, 0);
         buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
-        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
+        buttonLeaderboard.anchoredPosition = new Vector3(130, buttonLeaderboard.anchoredPosition.y, 0);
         buttonPlay.interactable = true;
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
         textLevel.transform.localScale = new Vector3(0, 0, 1);
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         unlockedModeNumber = PlayerPrefs.GetInt("levelsModeUnlocked");
+        idAvt = PlayerPrefs.GetInt("avatar");
+        if(idAvt >= 0 && idAvt < 8)
+        {
+            avatar.sprite = listAvt[idAvt];
+        }
         textLevel.text = "LEVEL " + unlockedLevelsNumber.ToString();
+        yourScore = 0;
+        for (int i = 0; i < unlockedLevelsNumber; i++)
+        {
+            yourScore += PlayerPrefs.GetInt(i.ToString());
+            PlayerPrefs.SetInt("score", yourScore);
+        }
         if (unlockedLevelsNumber > 10)
         {
             btnMode.interactable = true;
@@ -86,17 +121,23 @@ public class HomeController : MonoBehaviour
             iconLockMode.SetActive(true);
             iconUnlockMode.SetActive(false);
         }
-        buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonProfile.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
         StartCoroutine(StartHome());
     }
 
     // Update is called once per frame
     void Update()
     {
+        nameUser = PlayerPrefs.GetString("name");
+        nameProfile.text = nameUser;
+        score.text = yourScore.ToString();
+        avatar.sprite = listAvt[PlayerPrefs.GetInt("avatar")];
         if (!levelList.activeInHierarchy)
         {
             Transform[] children = new Transform[buttonParent.childCount];
@@ -139,6 +180,11 @@ public class HomeController : MonoBehaviour
         AudioManager.Play("click");
         panelSetting.SetActive(true);
     }
+    public void Profile()
+    {
+        AudioManager.Play("click");
+        panelProfile.SetActive(true);
+    }
     public void LevelList()
     {
         FirebaseManager.Instance.LogEvent("LEVEL_LEVELIST_ACCESS");
@@ -147,11 +193,13 @@ public class HomeController : MonoBehaviour
     IEnumerator EffectLevelList()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonProfile.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.interactable = false;
@@ -173,11 +221,13 @@ public class HomeController : MonoBehaviour
     IEnumerator EffectGallery()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonProfile.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.interactable = false;
@@ -198,11 +248,13 @@ public class HomeController : MonoBehaviour
     IEnumerator EffectLeaderBoard()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonProfile.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.interactable = false;
@@ -219,11 +271,13 @@ public class HomeController : MonoBehaviour
     IEnumerator EffectMode()
     {
         AudioManager.Play("click");
-        buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
+        buttonProfile.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(150, 0.4f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         textLevel.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
         buttonPlay.interactable = false;
@@ -244,14 +298,6 @@ public class HomeController : MonoBehaviour
     IEnumerator EffectPlay()
     {
         AudioManager.Play("click");
-        /*buttonSetting.DOAnchorPosX(-123, 0.4f).SetEase(Ease.OutQuart);
-        buttonLevelList.DOAnchorPosX(-130, 0.4f).SetEase(Ease.OutQuart);
-        buttonGallery.DOAnchorPosX(130, 0.4f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(123, 0.4f).SetEase(Ease.OutQuart);
-        buttonPlay.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
-        buttonMode.transform.DOScale(0, 0.4f).SetEase(Ease.OutQuart);
-        buttonPlay.interactable = false;
-        buttonMode.interactable = false;*/
         loading.SetActive(true);
         yield return new WaitForSeconds(0.9f);
         if (unlockedLevelsNumber == 1)
@@ -367,16 +413,20 @@ public class HomeController : MonoBehaviour
         buttonText.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
         boardLevel.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
         yield return new WaitForSeconds(0.75f);
-        buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonProfile.anchoredPosition = new Vector3(buttonProfile.anchoredPosition.x, 150, 0);
+        buttonSetting.anchoredPosition = new Vector3(buttonSetting.anchoredPosition.x, 150, 0);
+        buttonNoAds.anchoredPosition = new Vector3(buttonNoAds.anchoredPosition.x, 150, 0);
         buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
         buttonMode.anchoredPosition = new Vector3(-130, buttonMode.anchoredPosition.y, 0);
         buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
-        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
-        buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.anchoredPosition = new Vector3(130, buttonLeaderboard.anchoredPosition.y, 0);
+        buttonProfile.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
         textLevel.transform.localScale = new Vector3(0, 0, 1);
         buttonPlay.interactable = true;
@@ -408,16 +458,20 @@ public class HomeController : MonoBehaviour
         buttonTextMode.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
         boardLevelMode.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
         yield return new WaitForSeconds(0.75f);
-        buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonProfile.anchoredPosition = new Vector3(buttonProfile.anchoredPosition.x, 150, 0);
+        buttonSetting.anchoredPosition = new Vector3(buttonSetting.anchoredPosition.x, 150, 0);
+        buttonNoAds.anchoredPosition = new Vector3(buttonNoAds.anchoredPosition.x, 150, 0);
         buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
         buttonMode.anchoredPosition = new Vector3(-130, buttonMode.anchoredPosition.y, 0);
         buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
-        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
-        buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.anchoredPosition = new Vector3(130, buttonLeaderboard.anchoredPosition.y, 0);
+        buttonProfile.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
         textLevel.transform.localScale = new Vector3(0, 0, 1);
         buttonPlay.interactable = true;
@@ -459,16 +513,20 @@ public class HomeController : MonoBehaviour
         buttonTextGallery.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
         boardGallery.DOScale(Vector3.zero, 0.75f).SetEase(Ease.OutQuart);
         yield return new WaitForSeconds(0.75f);
-        buttonSetting.anchoredPosition = new Vector3(-123, buttonSetting.anchoredPosition.y, 0);
+        buttonProfile.anchoredPosition = new Vector3(buttonProfile.anchoredPosition.x, 150, 0);
+        buttonSetting.anchoredPosition = new Vector3(buttonSetting.anchoredPosition.x, 150, 0);
+        buttonNoAds.anchoredPosition = new Vector3(buttonNoAds.anchoredPosition.x, 150, 0);
         buttonLevelList.anchoredPosition = new Vector3(-130, buttonLevelList.anchoredPosition.y, 0);
         buttonMode.anchoredPosition = new Vector3(-130, buttonMode.anchoredPosition.y, 0);
         buttonGallery.anchoredPosition = new Vector3(130, buttonGallery.anchoredPosition.y, 0);
-        buttonNoAds.anchoredPosition = new Vector3(123, buttonNoAds.anchoredPosition.y, 0);
-        buttonSetting.DOAnchorPosX(123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.anchoredPosition = new Vector3(130, buttonLeaderboard.anchoredPosition.y, 0);
+        buttonProfile.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonSetting.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
+        buttonNoAds.DOAnchorPosY(-150, 0.5f).SetEase(Ease.OutQuart);
         buttonLevelList.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonMode.DOAnchorPosX(130, 0.5f).SetEase(Ease.OutQuart);
         buttonGallery.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
-        buttonNoAds.DOAnchorPosX(-123, 0.5f).SetEase(Ease.OutQuart);
+        buttonLeaderboard.DOAnchorPosX(-130, 0.5f).SetEase(Ease.OutQuart);
         buttonPlay.transform.localScale = new Vector3(0, 0, 1);
         textLevel.transform.localScale = new Vector3(0, 0, 1);
         buttonPlay.interactable = true;

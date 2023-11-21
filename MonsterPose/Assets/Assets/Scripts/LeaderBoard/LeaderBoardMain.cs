@@ -17,6 +17,8 @@ public class LeaderBoardMain : MonoBehaviour
     // use for getLeaderboard on web
 
     public GameObject home;
+    public GameObject popupName;
+    public GameObject loading;
     public RectTransform buttonBack;
     public RectTransform title;
     public Transform board;
@@ -25,19 +27,31 @@ public class LeaderBoardMain : MonoBehaviour
     public EntryDisplay top1;
     public EntryDisplay top2;
     public EntryDisplay top3;
+    public EntryDisplay mineUser;
     private int _pageInput = 1;
     public int _entriesToTakeInput;
 
     private int _playerScore;
+    private string noteName;
 
     private Coroutine _personalEntryMoveCoroutine;
     List<EntryDisplay> _entries = new List<EntryDisplay>();
     private void Awake()
     {
-        GenFakeUser();
+        //GenFakeUser();
     }
     private void OnEnable()
     {
+        noteName = PlayerPrefs.GetString("name");
+        if (noteName == "")
+        {
+            popupName.SetActive(true);
+        }
+        else
+        {
+            loading.SetActive(true);
+        }
+        LoadMineUser();
         buttonBack.anchoredPosition = new Vector3(-112, buttonBack.anchoredPosition.y, 0);
         title.anchoredPosition = new Vector3(title.anchoredPosition.x, 160, 0);
         board.localScale = Vector3.zero;
@@ -45,8 +59,27 @@ public class LeaderBoardMain : MonoBehaviour
         buttonBack.DOAnchorPosX(112, 0.75f).SetEase(Ease.OutQuart);
         title.DOAnchorPosY(-160, 0.75f).SetEase(Ease.OutQuart);
         board.DOScale(1, 0.75f).SetEase(Ease.OutQuart);
+        LeaderboardCreator.GetPersonalEntry(publicKey,  (user) => 
+        {
+            mineUser.SetEntry(user);
+        });
     }
-    
+    private void Update()
+    {
+        if (!popupName.activeInHierarchy)
+        {
+            loading.SetActive(true);
+        }
+    }
+    public void LoadMineUser()
+    {
+        LeaderboardCreator.UploadNewEntry(publicKey,
+                    PlayerPrefs.GetString("name"),
+                    PlayerPrefs.GetInt("score"),
+                    PlayerPrefs.GetInt("avatar").ToString()
+                    );
+    }
+
     public void GetLeaderBoard()
     {
         LeaderboardCreator.GetLeaderboard(publicKey, (users) =>
@@ -155,7 +188,7 @@ public class LeaderBoardMain : MonoBehaviour
         for (int i = 1; i <= 50; i++)
         {
             LeaderboardCreator.ResetPlayer();
-            LeaderboardCreator.UploadNewEntry(LeaderBoardMain.publicKey,
+            LeaderboardCreator.UploadNewEntry(publicKey,
                     nicknames[Random.Range(0, nicknames.Length - 1)],
                     score,
                     Random.Range(0,7).ToString()

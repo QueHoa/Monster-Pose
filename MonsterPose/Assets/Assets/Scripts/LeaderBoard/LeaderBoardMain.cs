@@ -3,6 +3,7 @@ using Dan.Demo;
 using Dan.Main;
 using Dan.Models;
 using DG.Tweening;
+using OneHit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,7 +18,6 @@ public class LeaderBoardMain : MonoBehaviour
     // use for getLeaderboard on web
 
     public GameObject home;
-    public GameObject popupName;
     public GameObject loading;
     public RectTransform buttonBack;
     public RectTransform title;
@@ -31,10 +31,6 @@ public class LeaderBoardMain : MonoBehaviour
     private int _pageInput = 1;
     public int _entriesToTakeInput;
 
-    private int _playerScore;
-    private string noteName;
-
-    private Coroutine _personalEntryMoveCoroutine;
     List<EntryDisplay> _entries = new List<EntryDisplay>();
     private void Awake()
     {
@@ -42,14 +38,10 @@ public class LeaderBoardMain : MonoBehaviour
     }
     private void OnEnable()
     {
-        noteName = PlayerPrefs.GetString("name");
-        if (noteName == "")
+        loading.SetActive(true);
+        if(PlayerPrefs.GetInt("avatar") == -1)
         {
-            popupName.SetActive(true);
-        }
-        else
-        {
-            loading.SetActive(true);
+            PlayerPrefs.SetInt("avatar", Random.Range(0, 7));
         }
         LoadMineUser();
         buttonBack.anchoredPosition = new Vector3(-112, buttonBack.anchoredPosition.y, 0);
@@ -63,13 +55,6 @@ public class LeaderBoardMain : MonoBehaviour
         {
             mineUser.SetEntry(user);
         });
-    }
-    private void Update()
-    {
-        if (!popupName.activeInHierarchy)
-        {
-            loading.SetActive(true);
-        }
     }
     public void LoadMineUser()
     {
@@ -121,13 +106,6 @@ public class LeaderBoardMain : MonoBehaviour
             TimePeriod = timePeriod
         };
         GetLeaderBoard();
-        //Leaderboards.DemoSceneLeaderboard.GetEntries(searchQuery, OnLeaderboardLoaded, ErrorCallback);
-    }
-    public void ChangePageBy(int amount)
-    {
-        var pageNumber = _pageInput;
-        pageNumber += amount;
-        if (pageNumber < 1) return;
     }
     public void Back()
     {
@@ -135,38 +113,13 @@ public class LeaderBoardMain : MonoBehaviour
     }
     IEnumerator Effectback()
     {
+        AudioManager.Play("click");
         buttonBack.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);
         title.DOAnchorPosY(160, 0.75f).SetEase(Ease.OutQuart);
         board.DOScale(0, 0.75f).SetEase(Ease.OutQuart);
         yield return new WaitForSeconds(0.75f);
         home.SetActive(true);
         gameObject.SetActive(false);
-    }
-
-    public void Submit()
-    {
-        //Leaderboards.DemoSceneLeaderboard.UploadNewEntry(_playerUsernameInput.text, _playerScore, Callback, ErrorCallback);
-    }
-
-    public void DeleteEntry()
-    {
-        Leaderboards.DemoSceneLeaderboard.DeleteEntry(Callback, ErrorCallback);
-    }
-
-    public void ResetPlayer()
-    {
-        LeaderboardCreator.ResetPlayer();
-    }
-
-    private void Callback(bool success)
-    {
-        if (success)
-            Load();
-    }
-
-    private void ErrorCallback(string error)
-    {
-        Debug.LogError(error);
     }
     public static async void GenFakeUser()
     {

@@ -1,3 +1,4 @@
+using OneHit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class UIProfile : MonoBehaviour
 {
     public Image avatar;
     public InputField nameUser;
-    public GameObject popupName;
     public Sprite[] listAvt;
 
     [HideInInspector]
@@ -26,10 +26,6 @@ public class UIProfile : MonoBehaviour
             avatar.sprite = listAvt[idAvt];
         }
         nameUser.text = PlayerPrefs.GetString("name");
-        if (nameUser.text == "")
-        {
-            popupName.SetActive(true);
-        }
     }
 
     // Update is called once per frame
@@ -40,10 +36,6 @@ public class UIProfile : MonoBehaviour
         {
             avatar.sprite = listAvt[idAvt];
         }
-        if (!popupName.activeInHierarchy && PlayerPrefs.GetString("name") == "")
-        {
-            nameUser.text = PlayerPrefs.GetString("name");
-        }
     }
     public void Save()
     {
@@ -51,6 +43,7 @@ public class UIProfile : MonoBehaviour
     }
     IEnumerator EffectSave()
     {
+        AudioManager.Play("click");
         anim.SetTrigger("hide");
         PlayerPrefs.SetInt("avatar", idAvatar);
         PlayerPrefs.SetString("name", nameUser.text);

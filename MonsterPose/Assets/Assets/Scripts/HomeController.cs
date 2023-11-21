@@ -8,8 +8,9 @@ using OneHit;
 
 public class HomeController : MonoBehaviour
 {
-    public Text textLevel;
-    public Text textPlayMode;
+    public UIPopupName popupName;
+    
+    [Header("GameObject:")]
     public GameObject iconLockMode;
     public GameObject iconUnlockMode;
     public GameObject main;
@@ -22,6 +23,11 @@ public class HomeController : MonoBehaviour
     public GameObject photo;
     public GameObject mode;
     public GameObject loading;
+    public GameObject buttonPrefab;
+    public GameObject buttonModePrefab;
+    public GameObject buttonGalleryPrefab;
+
+    [Header("Tranform:")]
     public RectTransform buttonSetting;
     public RectTransform buttonProfile;
     public RectTransform buttonNoAds;
@@ -40,15 +46,16 @@ public class HomeController : MonoBehaviour
     public RectTransform buttonBackPhoto;
     public RectTransform buttonTextPhoto;
     public RectTransform imagePhoto;
-    public GameObject buttonPrefab;
-    public GameObject buttonModePrefab;
-    public GameObject buttonGalleryPrefab;
     public Transform boardLevel;
     public Transform boardLevelMode;
     public Transform boardGallery;
     public Transform buttonParent;
     public Transform buttonModeParent;
     public Transform buttonGalleryParent;
+
+    [Header("UI:")]
+    public Text textLevel;
+    public Text textPlayMode;
     public Image avatar;
     public Text nameProfile;
     public Text score;
@@ -137,7 +144,11 @@ public class HomeController : MonoBehaviour
         nameUser = PlayerPrefs.GetString("name");
         nameProfile.text = nameUser;
         score.text = yourScore.ToString();
-        avatar.sprite = listAvt[PlayerPrefs.GetInt("avatar")];
+        idAvt = PlayerPrefs.GetInt("avatar");
+        if (idAvt >= 0 && idAvt < 8)
+        {
+            avatar.sprite = listAvt[idAvt];
+        }
         if (!levelList.activeInHierarchy)
         {
             Transform[] children = new Transform[buttonParent.childCount];
@@ -183,7 +194,15 @@ public class HomeController : MonoBehaviour
     public void Profile()
     {
         AudioManager.Play("click");
-        panelProfile.SetActive(true);
+        if (PlayerPrefs.GetString("name") == "")
+        {
+            popupName.gameObject.SetActive(true);
+            popupName.idProfile = 1;
+        }
+        else
+        {
+            panelProfile.SetActive(true);
+        }
     }
     public void LevelList()
     {
@@ -243,7 +262,16 @@ public class HomeController : MonoBehaviour
     }
     public void LeaderBoard()
     {
-        StartCoroutine(EffectLeaderBoard());
+        if (PlayerPrefs.GetString("name") == "")
+        {
+            AudioManager.Play("click");
+            popupName.gameObject.SetActive(true);
+            popupName.idProfile = 2;
+        }
+        else
+        {
+            StartCoroutine(EffectLeaderBoard());
+        }
     }
     IEnumerator EffectLeaderBoard()
     {

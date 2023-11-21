@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIPopupName : MonoBehaviour
 {
     public InputField nameUser;
+    public HomeController home;
+
+    [HideInInspector]
+    public int idProfile;
 
     private Animator anim;
     // Start is called before the first frame update
@@ -26,7 +29,22 @@ public class UIPopupName : MonoBehaviour
         if(nameUser.text.Length >=3 && nameUser.text.Length <= 10)
         {
             PlayerPrefs.SetString("name", nameUser.text);
-            StartCoroutine(EffectExit());
+            StartCoroutine(EffectDone());
+        }
+    }
+    IEnumerator EffectDone()
+    {
+        anim.SetTrigger("hide");
+        yield return new WaitForSeconds(0.8f);
+        if(idProfile == 1)
+        {
+            home.Profile();
+            gameObject.SetActive(false);
+        }
+        if(idProfile == 2)
+        {
+            home.LeaderBoard();
+            gameObject.SetActive(false);
         }
     }
     public void Exit()

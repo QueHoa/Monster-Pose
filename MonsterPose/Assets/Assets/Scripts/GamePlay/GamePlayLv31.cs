@@ -9,6 +9,7 @@ public class GamePlayLv31 : MonoBehaviour
 {
     public Transform rightPos;
     public GameObject tide;
+    public GameObject handTap;
     public SpriteRenderer playerRenderer;
     public Animator fail;
 
@@ -29,8 +30,11 @@ public class GamePlayLv31 : MonoBehaviour
     private int isTouch = 0;
     private float deltaX, deltaY;
     private bool isDrag;
+    private float time;
     [HideInInspector]
     public Vector2 oldPosition;
+    [HideInInspector]
+    public bool isHand;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +50,8 @@ public class GamePlayLv31 : MonoBehaviour
         main = GameManager.Instance.mainController;
         isDrag = false;
         locked = false;
+        isHand = true;
+        time = 0;
         transform.DOMoveX(oldPosition.x, 1f).SetEase(Ease.OutQuart);
     }
 
@@ -67,6 +73,7 @@ public class GamePlayLv31 : MonoBehaviour
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
                     isTouch = 1;
+                    isHand = false;
                 }
                 if (touch.phase == TouchPhase.Moved && isTouch == 1)
                 {
@@ -110,6 +117,18 @@ public class GamePlayLv31 : MonoBehaviour
             tide.SetActive(false);
         }
         anim.SetBool("drag", isDrag);
+        time += Time.deltaTime;
+        if (handTap != null)
+        {
+            if (time >= 4.2f && isHand)
+            {
+                handTap.SetActive(true);
+            }
+            else
+            {
+                handTap.SetActive(false);
+            }
+        }
     }
     bool IsWithinBoxCollider()
     {

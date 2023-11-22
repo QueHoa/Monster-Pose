@@ -24,6 +24,8 @@ public class SideGamePlay2 : MonoBehaviour
     private bool isDrag;
     [HideInInspector]
     public Vector2 oldPosition;
+    [HideInInspector]
+    public bool isHand;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,7 @@ public class SideGamePlay2 : MonoBehaviour
         losePanel = GameManager.Instance.losePanel;
         isDrag = false;
         locked = false;
+        isHand = true;
         transform.DOMoveX(oldPosition.x, 0.8f).SetEase(Ease.OutQuart);
     }
 
@@ -58,6 +61,7 @@ public class SideGamePlay2 : MonoBehaviour
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
                     isTouch = 1;
+                    isHand = false;
                 }
                 if (touch.phase == TouchPhase.Moved && isTouch == 1)
                 {

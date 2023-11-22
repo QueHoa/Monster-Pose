@@ -71,8 +71,7 @@ public class HomeController : MonoBehaviour
     private int yourScore;
     private int idAvt;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         mainController = GameManager.Instance.mainController;
         if (!PlayerPrefs.HasKey("name"))
@@ -81,7 +80,7 @@ public class HomeController : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("avatar"))
         {
-            PlayerPrefs.SetInt("avatar", -1);
+            PlayerPrefs.SetInt("avatar", Random.Range(0, 7));
         }
         if (!PlayerPrefs.HasKey("score"))
         {
@@ -142,7 +141,11 @@ public class HomeController : MonoBehaviour
     void Update()
     {
         nameUser = PlayerPrefs.GetString("name");
-        nameProfile.text = nameUser;
+        
+        if(nameUser.Length >= 3 && nameUser.Length <= 10)
+        {
+            nameProfile.text = nameUser;
+        }
         score.text = yourScore.ToString();
         idAvt = PlayerPrefs.GetInt("avatar");
         if (idAvt >= 0 && idAvt < 8)
@@ -201,6 +204,7 @@ public class HomeController : MonoBehaviour
         }
         else
         {
+            FirebaseManager.Instance.LogEvent("PROFILE_ACCESS");
             panelProfile.SetActive(true);
         }
     }
@@ -270,6 +274,7 @@ public class HomeController : MonoBehaviour
         }
         else
         {
+            FirebaseManager.Instance.LogEvent("LEADERBOARD_ACCESS");
             StartCoroutine(EffectLeaderBoard());
         }
     }

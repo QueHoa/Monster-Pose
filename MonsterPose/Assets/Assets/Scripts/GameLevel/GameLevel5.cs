@@ -111,6 +111,17 @@ public class GameLevel5 : MonoBehaviour
             StartCoroutine(Win());
             takeShot++;
         }
+        for (int i = 0; i < sidePlayer.Length; i++)
+        {
+            if (!sidePlayer[i].isHand)
+            {
+                for (int j = 0; j < player.Length; j++)
+                {
+                    player[j].isHand = false;
+                }
+                break;
+            }
+        }
     }
     IEnumerator Win()
     {

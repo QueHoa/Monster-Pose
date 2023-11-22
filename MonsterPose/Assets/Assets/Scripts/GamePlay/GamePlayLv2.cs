@@ -107,10 +107,6 @@ public class GamePlayLv2 : MonoBehaviour
             }
         }
         anim.SetBool("drag", isDrag);
-        if (handTap != null && locked)
-        {
-            handTap.SetActive(false);
-        }
         time += Time.deltaTime;
         if (handTap != null)
         {

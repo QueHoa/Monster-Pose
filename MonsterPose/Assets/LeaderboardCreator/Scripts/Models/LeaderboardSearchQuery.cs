@@ -18,7 +18,7 @@ namespace Dan.Models
         public static LeaderboardSearchQuery Default => new LeaderboardSearchQuery
         {
             Skip = 0,
-            Take = 0,
+            Take = 1000,
             Username = "",
             TimePeriod = TimePeriodType.AllTime
         };

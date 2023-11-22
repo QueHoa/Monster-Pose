@@ -39,7 +39,10 @@ public class UIProfile : MonoBehaviour
     }
     public void Save()
     {
-        StartCoroutine(EffectSave());
+        if(nameUser.text.Length >=3 && nameUser.text.Length <= 10)
+        {
+            StartCoroutine(EffectSave());
+        }
     }
     IEnumerator EffectSave()
     {

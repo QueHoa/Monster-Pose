@@ -3,6 +3,7 @@ using Dan.Demo;
 using Dan.Main;
 using Dan.Models;
 using DG.Tweening;
+using OneHit;
 using OneHit.Framework;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ public class LeaderBoardMain : MonoBehaviour
     public EntryDisplay top3;
     public EntryDisplay mineUser;
     private int _pageInput = 1;
+    private int unlockedLevelsNumber;
     public int _entriesToTakeInput;
 
     List<EntryDisplay> _entries = new List<EntryDisplay>();
@@ -38,12 +40,8 @@ public class LeaderBoardMain : MonoBehaviour
     }
     private void OnEnable()
     {
-        loading.SetActive(true);
-        if(PlayerPrefs.GetInt("avatar") == -1)
-        {
-            PlayerPrefs.SetInt("avatar", Random.Range(0, 7));
-        }
         LoadMineUser();
+        loading.SetActive(true);
         buttonBack.anchoredPosition = new Vector3(-112, buttonBack.anchoredPosition.y, 0);
         title.anchoredPosition = new Vector3(title.anchoredPosition.x, 160, 0);
         board.localScale = Vector3.zero;
@@ -51,10 +49,11 @@ public class LeaderBoardMain : MonoBehaviour
         buttonBack.DOAnchorPosX(112, 0.75f).SetEase(Ease.OutQuart);
         title.DOAnchorPosY(-160, 0.75f).SetEase(Ease.OutQuart);
         board.DOScale(1, 0.75f).SetEase(Ease.OutQuart);
-        LeaderboardCreator.GetPersonalEntry(publicKey,  (user) => 
+        LeaderboardCreator.GetPersonalEntry(publicKey, (user) => 
         {
             mineUser.SetEntry(user);
         });
+        unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
     }
     public void LoadMineUser()
     {
@@ -109,9 +108,19 @@ public class LeaderBoardMain : MonoBehaviour
     }
     public void Back()
     {
-        StartCoroutine(Effectback());
+        if (unlockedLevelsNumber > GameManager.levelShowAd)
+        {
+            MasterControl.Instance.ShowInterAd((bool res) =>
+            {
+                StartCoroutine(EffectBack());
+            });
+        }
+        else
+        {
+            StartCoroutine(EffectBack());
+        }
     }
-    IEnumerator Effectback()
+    IEnumerator EffectBack()
     {
         AudioManager.Play("click");
         buttonBack.DOAnchorPosX(-112, 0.75f).SetEase(Ease.OutQuart);

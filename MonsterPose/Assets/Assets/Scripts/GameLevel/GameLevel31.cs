@@ -112,6 +112,36 @@ public class GameLevel31 : MonoBehaviour
             StartCoroutine(Win());
             takeShot++;
         }
+        for (int i = 0; i < player.Length; i++)
+        {
+            if (!player[i].isHand)
+            {
+                for (int j = 0; j < player.Length; j++)
+                {
+                    player[j].isHand = false;
+                }
+                for (int j = 0; j < player2.Length; j++)
+                {
+                    player2[j].isHand = false;
+                }
+                break;
+            }
+        }
+        for (int i = 0; i < player2.Length; i++)
+        {
+            if (!player2[i].isHand)
+            {
+                for (int j = 0; j < player2.Length; j++)
+                {
+                    player2[j].isHand = false;
+                }
+                for (int j = 0; j < player.Length; j++)
+                {
+                    player[j].isHand = false;
+                }
+                break;
+            }
+        }
     }
     IEnumerator Win()
     {

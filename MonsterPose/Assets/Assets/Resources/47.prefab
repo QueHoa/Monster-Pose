@@ -443,7 +443,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11088586, y: 2.9975753}
+  m_Offset: {x: -0.11088586, y: 2.54}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -454,7 +454,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.684191, y: 9.335418}
+  m_Size: {x: 4.05, y: 6.83}
   m_EdgeRadius: 0
 --- !u!50 &1391580124
 Rigidbody2D:
@@ -491,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightPos: {fileID: 4213970595161424}
   tide: {fileID: 1047935464790496}
+  handTap: {fileID: 0}
   playerRenderer: {fileID: 212030369010632961}
   fail: {fileID: 5153594053874426543}
   numberWin: 5
@@ -504,6 +505,7 @@ MonoBehaviour:
   locked: 0
   numHeart: 0
   oldPosition: {x: 0, y: 0}
+  isHand: 0
 --- !u!1 &1643386260046437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632773824031525093, guid: a009f84538bb9ed4fb17e3e3ea1709c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.41
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4632773824031525093, guid: a009f84538bb9ed4fb17e3e3ea1709c2, type: 3}
       propertyPath: m_LocalPosition.y

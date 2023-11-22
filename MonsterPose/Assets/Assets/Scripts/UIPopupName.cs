@@ -1,5 +1,7 @@
+using Dan.Main;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,6 +46,11 @@ public class UIPopupName : MonoBehaviour
         if(idProfile == 2)
         {
             home.LeaderBoard();
+            LeaderboardCreator.UploadNewEntry(LeaderBoardMain.publicKey,
+                    PlayerPrefs.GetString("name"),
+                    PlayerPrefs.GetInt("score"),
+                    PlayerPrefs.GetInt("avatar").ToString()
+                    );
             gameObject.SetActive(false);
         }
     }

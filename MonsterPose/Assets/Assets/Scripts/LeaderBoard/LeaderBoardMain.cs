@@ -40,7 +40,6 @@ public class LeaderBoardMain : MonoBehaviour
     }
     private void OnEnable()
     {
-        LoadMineUser();
         loading.SetActive(true);
         buttonBack.anchoredPosition = new Vector3(-112, buttonBack.anchoredPosition.y, 0);
         title.anchoredPosition = new Vector3(title.anchoredPosition.x, 160, 0);

@@ -1,6 +1,8 @@
+using Dan.Main;
 using OneHit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,9 +49,14 @@ public class UIProfile : MonoBehaviour
     IEnumerator EffectSave()
     {
         AudioManager.Play("click");
-        anim.SetTrigger("hide");
         PlayerPrefs.SetInt("avatar", idAvatar);
         PlayerPrefs.SetString("name", nameUser.text);
+        LeaderboardCreator.UploadNewEntry(LeaderBoardMain.publicKey,
+                    PlayerPrefs.GetString("name"),
+                    PlayerPrefs.GetInt("score"),
+                    PlayerPrefs.GetInt("avatar").ToString()
+                    );
+        anim.SetTrigger("hide");
         yield return new WaitForSeconds(0.8f);
         gameObject.SetActive(false);
     }

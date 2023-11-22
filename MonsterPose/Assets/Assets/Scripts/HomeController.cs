@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 using OneHit.Framework;
 using OneHit;
+using Dan.Main;
+using System.Security.Cryptography.X509Certificates;
 
 public class HomeController : MonoBehaviour
 {
@@ -80,7 +82,7 @@ public class HomeController : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("avatar"))
         {
-            PlayerPrefs.SetInt("avatar", Random.Range(0, 7));
+            PlayerPrefs.SetInt("avatar", Random.Range(0,7));
         }
         if (!PlayerPrefs.HasKey("score"))
         {
@@ -107,6 +109,14 @@ public class HomeController : MonoBehaviour
             avatar.sprite = listAvt[idAvt];
         }
         textLevel.text = "LEVEL " + unlockedLevelsNumber.ToString();
+        if(PlayerPrefs.GetString("name").Length >=3 && PlayerPrefs.GetString("name").Length <= 10)
+        {
+            LeaderboardCreator.UploadNewEntry(LeaderBoardMain.publicKey,
+                    PlayerPrefs.GetString("name"),
+                    PlayerPrefs.GetInt("score"),
+                    PlayerPrefs.GetInt("avatar").ToString()
+                    );
+        }
         yourScore = 0;
         for (int i = 0; i < unlockedLevelsNumber; i++)
         {

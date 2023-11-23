@@ -389,7 +389,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2616916, y: 5.9026012}
+  m_Size: {x: 3.2616916, y: 5.43}
   m_EdgeRadius: 0
 --- !u!50 &8373564115269278957
 Rigidbody2D:
@@ -598,6 +598,7 @@ MonoBehaviour:
   fail: {fileID: 4889766664009693232}
   locked: 0
   oldPosition: {x: 0, y: 0}
+  isHand: 0
 --- !u!50 &3432966256502567132
 Rigidbody2D:
   serializedVersion: 4

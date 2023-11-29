@@ -48,10 +48,10 @@ public class LeaderBoardMain : MonoBehaviour
         buttonBack.DOAnchorPosX(112, 0.75f).SetEase(Ease.OutQuart);
         title.DOAnchorPosY(-160, 0.75f).SetEase(Ease.OutQuart);
         board.DOScale(1, 0.75f).SetEase(Ease.OutQuart);
-        LeaderboardCreator.GetPersonalEntry(publicKey, (user) => 
+        /*LeaderboardCreator.GetPersonalEntry(publicKey, (user) => 
         {
             mineUser.SetEntry(user);
-        });
+        });*/
         unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
     }
     public void LoadMineUser()
@@ -71,6 +71,10 @@ public class LeaderBoardMain : MonoBehaviour
             {
                 Debug.Log($"Rank {user.Rank} username {user.Username} score {user.Score}");
                 //do anything you want
+                if (user.Username == PlayerPrefs.GetString("name") && user.Score == PlayerPrefs.GetInt("score") && user.Extra == PlayerPrefs.GetInt("avatar").ToString())
+                {
+                    mineUser.SetEntry(user);
+                }
             }
             foreach (Transform t in _entryDisplayParent) Destroy(t.gameObject);
 

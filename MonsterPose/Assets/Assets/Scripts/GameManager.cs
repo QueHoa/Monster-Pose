@@ -63,8 +63,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int isSound;
 
-    private int unlockedLevelsNumber;
-    private int unlockedModesNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,7 +98,6 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("VibrateOn", 1);
         }
-        unlockedLevelsNumber = PlayerPrefs.GetInt("levelsUnlocked");
         numberLevel = homeController.numberLevel;
         numberMode = homeController.numberMode;
         MasterControl.Instance.ShowBanner();

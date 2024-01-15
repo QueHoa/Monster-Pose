@@ -20,7 +20,7 @@ namespace OneHit
 
         #region =============== INITIALIZATION ===============
 
-        public void Init(AdsManager adsManager)
+        public void Init(AdsManager adsManager, bool isConsent)
         {
             Debug.LogWarning($"IronSource: Start init...");
             _adsManager = adsManager;
@@ -33,7 +33,7 @@ namespace OneHit
 
             // SDK init
             IronSource.Agent.init(_adUnitId);
-            IronSource.Agent.setConsent(true);
+            IronSource.Agent.setConsent(isConsent); // set consent by GDPR
             IronSource.Agent.shouldTrackNetworkState(true);
             IronSource.Agent.validateIntegration();
             IronSource.Agent.setMetaData("do_not_sell", "false"); // Setup new
@@ -333,7 +333,7 @@ namespace OneHit
                 {
                     _hasAdImpression = false;
                 }
-               
+
                 //SendRevenueToFirebase(_listImpressionData);
                 //SendRevenueToAdjust(_listImpressionData);
             }

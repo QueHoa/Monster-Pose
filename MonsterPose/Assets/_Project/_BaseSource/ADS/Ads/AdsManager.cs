@@ -58,10 +58,10 @@ namespace OneHit
             _admob = GetComponentInChildren<AdmobControl>();
         }
 
-        public void Init()
+        public void Init(bool isConsent)
         {
             Debug.LogWarning("<color=orange> ADS MANAGER: Start init... </color>");
-            _ironSource.Init(this);
+            _ironSource.Init(this, isConsent);
             _admob.Init(this);
 
             // set time to show ads

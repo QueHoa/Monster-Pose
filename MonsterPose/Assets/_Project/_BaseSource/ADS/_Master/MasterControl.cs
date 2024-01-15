@@ -32,7 +32,7 @@ namespace OneHit
 
         private async void Start()
         {
-            _adsManager.Init();
+            //_adsManager.Init();
             await UniTask.Delay(500);
             _purchaser.Init();
             await UniTask.Delay(500);
